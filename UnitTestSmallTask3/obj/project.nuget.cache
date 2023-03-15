@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "AR1BfYmCHE35GWH5qe4yMana8tAR7l28j46daPAWO0Pf2vjCEMvrS6vLeCKQTQJtzQH/FvnGhfneIbOqAyx3Bw==",
+  "dgSpecHash": "AlfbpNHZyXzPw761pfwEGwhS+u7N1FJrObf9P1kovpWq+vgcM6en88CDwzFSic59zQCflWLHSuihupu5pWctFQ==",
   "success": true,
-  "projectFilePath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\UnitTestSmallTask3\\UnitTestSmallTask3.csproj",
+  "projectFilePath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\UnitTestSmallTask3\\UnitTestSmallTask3.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\simon\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\simon\\.nuget\\packages\\microsoft.codecoverage\\17.3.2\\microsoft.codecoverage.17.3.2.nupkg.sha512",

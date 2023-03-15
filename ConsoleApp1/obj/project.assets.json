@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\ConsoleApp1\\SmallTask3.csproj",
+      "projectUniqueName": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\ConsoleApp1\\SmallTask3.csproj",
       "projectName": "SmallTask3",
-      "projectPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\ConsoleApp1\\SmallTask3.csproj",
+      "projectPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\ConsoleApp1\\SmallTask3.csproj",
       "packagesPath": "C:\\Users\\simon\\.nuget\\packages\\",
-      "outputPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\ConsoleApp1\\obj\\",
+      "outputPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\ConsoleApp1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\simon\\AppData\\Roaming\\NuGet\\NuGet.Config",

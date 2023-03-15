@@ -6793,11 +6793,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\UnitTestSmallTask1\\UnitTestSmallTask1.csproj",
+      "projectUniqueName": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\UnitTestSmallTask1\\UnitTestSmallTask1.csproj",
       "projectName": "UnitTestSmallTask1",
-      "projectPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\UnitTestSmallTask1\\UnitTestSmallTask1.csproj",
+      "projectPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\UnitTestSmallTask1\\UnitTestSmallTask1.csproj",
       "packagesPath": "C:\\Users\\simon\\.nuget\\packages\\",
-      "outputPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\UnitTestSmallTask1\\obj\\",
+      "outputPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\UnitTestSmallTask1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -6814,8 +6814,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\SmallTask1\\SmallTask1.csproj": {
-              "projectPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\SmallTask1\\SmallTask1.csproj"
+            "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\SmallTask1\\SmallTask1.csproj": {
+              "projectPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\SmallTask1\\SmallTask1.csproj"
             }
           }
         }

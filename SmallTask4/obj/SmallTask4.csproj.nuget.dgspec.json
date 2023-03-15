@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\SmallTask4\\SmallTask4.csproj": {}
+    "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\SmallTask4\\SmallTask4.csproj": {}
   },
   "projects": {
-    "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\SmallTask4\\SmallTask4.csproj": {
+    "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\SmallTask4\\SmallTask4.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\SmallTask4\\SmallTask4.csproj",
+        "projectUniqueName": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\SmallTask4\\SmallTask4.csproj",
         "projectName": "SmallTask4",
-        "projectPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\SmallTask4\\SmallTask4.csproj",
+        "projectPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\SmallTask4\\SmallTask4.csproj",
         "packagesPath": "C:\\Users\\simon\\.nuget\\packages\\",
-        "outputPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3\\SmallTask4\\obj\\",
+        "outputPath": "E:\\Assignments\\One with many tests in folders for repoSafeCopy3 - Copy\\SmallTask4\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\simon\\AppData\\Roaming\\NuGet\\NuGet.Config",
