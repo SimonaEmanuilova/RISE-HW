@@ -1,0 +1,75 @@
+E:\Assignments\One\ConsoleApp1\bin\Debug\net6.0\SmallTask3.exe
+E:\Assignments\One\ConsoleApp1\bin\Debug\net6.0\SmallTask3.deps.json
+E:\Assignments\One\ConsoleApp1\bin\Debug\net6.0\SmallTask3.runtimeconfig.json
+E:\Assignments\One\ConsoleApp1\bin\Debug\net6.0\SmallTask3.dll
+E:\Assignments\One\ConsoleApp1\bin\Debug\net6.0\SmallTask3.pdb
+E:\Assignments\One\ConsoleApp1\obj\Debug\net6.0\SmallTask3.csproj.AssemblyReference.cache
+E:\Assignments\One\ConsoleApp1\obj\Debug\net6.0\SmallTask3.GeneratedMSBuildEditorConfig.editorconfig
+E:\Assignments\One\ConsoleApp1\obj\Debug\net6.0\SmallTask3.AssemblyInfoInputs.cache
+E:\Assignments\One\ConsoleApp1\obj\Debug\net6.0\SmallTask3.AssemblyInfo.cs
+E:\Assignments\One\ConsoleApp1\obj\Debug\net6.0\SmallTask3.csproj.CoreCompileInputs.cache
+E:\Assignments\One\ConsoleApp1\obj\Debug\net6.0\SmallTask3.dll
+E:\Assignments\One\ConsoleApp1\obj\Debug\net6.0\refint\SmallTask3.dll
+E:\Assignments\One\ConsoleApp1\obj\Debug\net6.0\SmallTask3.pdb
+E:\Assignments\One\ConsoleApp1\obj\Debug\net6.0\SmallTask3.genruntimeconfig.cache
+E:\Assignments\One\ConsoleApp1\obj\Debug\net6.0\ref\SmallTask3.dll
+E:\Assignments\One with tests\ConsoleApp1\bin\Debug\net6.0\SmallTask3.exe
+E:\Assignments\One with tests\ConsoleApp1\bin\Debug\net6.0\SmallTask3.deps.json
+E:\Assignments\One with tests\ConsoleApp1\bin\Debug\net6.0\SmallTask3.runtimeconfig.json
+E:\Assignments\One with tests\ConsoleApp1\bin\Debug\net6.0\SmallTask3.dll
+E:\Assignments\One with tests\ConsoleApp1\bin\Debug\net6.0\SmallTask3.pdb
+E:\Assignments\One with tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.csproj.AssemblyReference.cache
+E:\Assignments\One with tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.GeneratedMSBuildEditorConfig.editorconfig
+E:\Assignments\One with tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.AssemblyInfoInputs.cache
+E:\Assignments\One with tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.AssemblyInfo.cs
+E:\Assignments\One with tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.csproj.CoreCompileInputs.cache
+E:\Assignments\One with tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.dll
+E:\Assignments\One with tests\ConsoleApp1\obj\Debug\net6.0\refint\SmallTask3.dll
+E:\Assignments\One with tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.pdb
+E:\Assignments\One with tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.genruntimeconfig.cache
+E:\Assignments\One with tests\ConsoleApp1\obj\Debug\net6.0\ref\SmallTask3.dll
+E:\Assignments\One with many tests\ConsoleApp1\bin\Debug\net6.0\SmallTask3.exe
+E:\Assignments\One with many tests\ConsoleApp1\bin\Debug\net6.0\SmallTask3.deps.json
+E:\Assignments\One with many tests\ConsoleApp1\bin\Debug\net6.0\SmallTask3.runtimeconfig.json
+E:\Assignments\One with many tests\ConsoleApp1\bin\Debug\net6.0\SmallTask3.dll
+E:\Assignments\One with many tests\ConsoleApp1\bin\Debug\net6.0\SmallTask3.pdb
+E:\Assignments\One with many tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.csproj.AssemblyReference.cache
+E:\Assignments\One with many tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.GeneratedMSBuildEditorConfig.editorconfig
+E:\Assignments\One with many tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.AssemblyInfoInputs.cache
+E:\Assignments\One with many tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.AssemblyInfo.cs
+E:\Assignments\One with many tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.csproj.CoreCompileInputs.cache
+E:\Assignments\One with many tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.dll
+E:\Assignments\One with many tests\ConsoleApp1\obj\Debug\net6.0\refint\SmallTask3.dll
+E:\Assignments\One with many tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.pdb
+E:\Assignments\One with many tests\ConsoleApp1\obj\Debug\net6.0\SmallTask3.genruntimeconfig.cache
+E:\Assignments\One with many tests\ConsoleApp1\obj\Debug\net6.0\ref\SmallTask3.dll
+E:\Assignments\One with many tests in folders\ConsoleApp1\bin\Debug\net6.0\SmallTask3.exe
+E:\Assignments\One with many tests in folders\ConsoleApp1\bin\Debug\net6.0\SmallTask3.deps.json
+E:\Assignments\One with many tests in folders\ConsoleApp1\bin\Debug\net6.0\SmallTask3.runtimeconfig.json
+E:\Assignments\One with many tests in folders\ConsoleApp1\bin\Debug\net6.0\SmallTask3.dll
+E:\Assignments\One with many tests in folders\ConsoleApp1\bin\Debug\net6.0\SmallTask3.pdb
+E:\Assignments\One with many tests in folders\ConsoleApp1\obj\Debug\net6.0\SmallTask3.csproj.AssemblyReference.cache
+E:\Assignments\One with many tests in folders\ConsoleApp1\obj\Debug\net6.0\SmallTask3.GeneratedMSBuildEditorConfig.editorconfig
+E:\Assignments\One with many tests in folders\ConsoleApp1\obj\Debug\net6.0\SmallTask3.AssemblyInfoInputs.cache
+E:\Assignments\One with many tests in folders\ConsoleApp1\obj\Debug\net6.0\SmallTask3.AssemblyInfo.cs
+E:\Assignments\One with many tests in folders\ConsoleApp1\obj\Debug\net6.0\SmallTask3.csproj.CoreCompileInputs.cache
+E:\Assignments\One with many tests in folders\ConsoleApp1\obj\Debug\net6.0\SmallTask3.dll
+E:\Assignments\One with many tests in folders\ConsoleApp1\obj\Debug\net6.0\refint\SmallTask3.dll
+E:\Assignments\One with many tests in folders\ConsoleApp1\obj\Debug\net6.0\SmallTask3.pdb
+E:\Assignments\One with many tests in folders\ConsoleApp1\obj\Debug\net6.0\SmallTask3.genruntimeconfig.cache
+E:\Assignments\One with many tests in folders\ConsoleApp1\obj\Debug\net6.0\ref\SmallTask3.dll
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\bin\Debug\net6.0\SmallTask3.exe
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\bin\Debug\net6.0\SmallTask3.deps.json
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\bin\Debug\net6.0\SmallTask3.runtimeconfig.json
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\bin\Debug\net6.0\SmallTask3.dll
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\bin\Debug\net6.0\SmallTask3.pdb
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\obj\Debug\net6.0\SmallTask3.csproj.AssemblyReference.cache
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\obj\Debug\net6.0\SmallTask3.GeneratedMSBuildEditorConfig.editorconfig
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\obj\Debug\net6.0\SmallTask3.AssemblyInfoInputs.cache
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\obj\Debug\net6.0\SmallTask3.AssemblyInfo.cs
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\obj\Debug\net6.0\SmallTask3.csproj.CoreCompileInputs.cache
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\obj\Debug\net6.0\SmallTask3.dll
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\obj\Debug\net6.0\refint\SmallTask3.dll
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\obj\Debug\net6.0\SmallTask3.pdb
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\obj\Debug\net6.0\SmallTask3.genruntimeconfig.cache
+E:\Assignments\One with many tests in folders for repoSafeCopy3\ConsoleApp1\obj\Debug\net6.0\ref\SmallTask3.dll
