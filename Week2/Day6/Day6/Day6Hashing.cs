@@ -7,7 +7,7 @@ namespace Day6
     {
         public static void Main(string[] args)
         {
-
+            
         }
 
         public static HashSet<string> ManageCarNumberToOwner(Hashtable plateNumberToOwner)
@@ -45,7 +45,6 @@ namespace Day6
 
                 throw new ArgumentException("There is no such number.");
             };
-
 
             string name = plateNumberToOwner[plateNumber].ToString();
 
@@ -153,6 +152,109 @@ namespace Day6
             }
 
             return wrongWords;
+        }
+
+
+        public static bool FindAnagrams(List<string> inputList)
+        {
+            bool areAnagrams = false;
+            bool areThereAnagrams = false;
+
+            Dictionary<string, List<string>> anagramsDict = new Dictionary<string, List<string>>();
+
+            for (int i = 0; i < inputList.Count; i++)
+            {
+                for (int j = i + 1; j < inputList.Count; j++)
+                {
+
+                    if (inputList[i].Length == inputList[j].Length)
+                    {
+                        areAnagrams = AreTwoWordsAnagrams(inputList[i], inputList[j]);
+
+                        if (areAnagrams)
+                        {
+                            areThereAnagrams = true;
+                            if (!anagramsDict.ContainsKey(inputList[i]))
+                            {
+                                List<string> anagramsHolder = new List<string> { inputList[j] };
+                                anagramsDict.Add(inputList[i], anagramsHolder);
+                            }
+                            else
+                            {
+                                anagramsDict[inputList[i]].Add(inputList[j]);
+                            }
+                        }
+                    }
+
+                }
+            }
+            return areThereAnagrams;
+        }
+
+        //The time complexity for AreTwoWordsAnagrams is O(n)
+        public static bool AreTwoWordsAnagrams(string word1, string word2)
+        {
+
+            word1 = word1.ToLower();
+            word2 = word2.ToLower();
+            bool areAnagrams = true;
+
+            if (word1.Length != word2.Length)
+            {
+                Console.WriteLine("The length of the words is different so they are not anagrams.");
+
+                return false;
+            }
+
+            char[] charsInWord1 = word1.ToCharArray();
+            char[] charsInWord2 = word2.ToCharArray();
+            Dictionary<char, int> chars1Dict = new Dictionary<char, int>();
+            Dictionary<char, int> chars2Dict = new Dictionary<char, int>();
+
+            foreach (char c in charsInWord1)
+            {
+                if (!chars1Dict.ContainsKey(c))
+                {
+                    chars1Dict.Add(c, 1);
+                }
+                else
+                {
+                    chars1Dict[c]++;
+                }
+            }
+
+            foreach (char c in charsInWord2)
+            {
+                if (!chars2Dict.ContainsKey(c))
+                {
+                    chars2Dict.Add(c, 1);
+                }
+                else
+                {
+                    chars2Dict[c]++;
+                }
+            }
+
+            foreach (var pair in chars1Dict)
+            {
+                int value;
+                if (chars2Dict.TryGetValue(pair.Key, out value))
+                {
+                    if (value != pair.Value)
+                    {
+                        areAnagrams = false;
+                        break;
+                    }
+                }
+                else
+                {
+                    areAnagrams = false;
+
+                    break;
+                }
+            }
+
+            return areAnagrams;
         }
 
 

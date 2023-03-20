@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Day6;
 
 namespace UnitTestDay6
@@ -18,7 +19,7 @@ namespace UnitTestDay6
                 { "G5034AM", "Dilyana Gocheva" }
             };
 
-            // Assert
+            // Act and Assert
             Assert.ThrowsException<ArgumentException>(() => Day6Hashing.ManageCarNumberToOwner(input));
         }
 
@@ -35,9 +36,9 @@ namespace UnitTestDay6
                 { "H5034AM", "Dilyana Gocheva" },
                 { "G5034AM", "Dilyana Gocheva" }
             };
-
             HashSet<string> expected = new HashSet<string> { "Ivan Petrov", "Dilyana Gocheva" };
 
+            //Act
             HashSet<string> real = Day6Hashing.ManageCarNumberToOwner(input);
 
 
@@ -61,7 +62,7 @@ namespace UnitTestDay6
             string plateNumber = "H3035AM";
             string expected = "Stoyan Stoyanov";
 
-            // Assert
+            // Act and Assert
             Assert.IsTrue(expected.SequenceEqual(Day6Hashing.HumanWithCoolestPlate(inputHT, plateNumber)));
         }
 
@@ -78,7 +79,7 @@ namespace UnitTestDay6
             };
             string nonExistingPlateNumber = "AAAAAAA";
 
-            // Assert
+            // Act and Assert
             Assert.ThrowsException<ArgumentException>(() => Day6Hashing.HumanWithCoolestPlate(input, nonExistingPlateNumber));
         }
 
@@ -92,7 +93,7 @@ namespace UnitTestDay6
 
             int[] expected = new int[] { 1, 2, 3 };
 
-            // Assert
+            // Act and Assert
             CollectionAssert.AreEquivalent(expected, Day6Hashing.FindIntersection(arr1, arr2));
         }
 
@@ -105,7 +106,7 @@ namespace UnitTestDay6
 
             int[] expected = new int[] { };
 
-            // Assert
+            // Act and Assert
             CollectionAssert.AreEquivalent(expected, Day6Hashing.FindIntersection(arr1, arr2));
         }
 
@@ -116,7 +117,7 @@ namespace UnitTestDay6
             string input = "hello";
             List<char> expected = new List<char>() { 'h', 'e', 'o' };
 
-            // Assert
+            // Act and Assert
             CollectionAssert.AreEquivalent(expected.ToList(), Day6Hashing.FindNonRepeatingChars(input));
         }
 
@@ -127,7 +128,7 @@ namespace UnitTestDay6
             string input = "helo";
             List<char> expected = new List<char>() { 'h', 'e', 'l', 'o' };
 
-            // Assert
+            // Act and Assert
             CollectionAssert.AreEquivalent(expected.ToList(), Day6Hashing.FindNonRepeatingChars(input));
         }
 
@@ -138,7 +139,7 @@ namespace UnitTestDay6
             string input = "hheelloo";
             List<char> expected = new List<char>() { };
 
-            // Assert
+            // Act and Assert
             CollectionAssert.AreEquivalent(expected.ToList(), Day6Hashing.FindNonRepeatingChars(input));
         }
 
@@ -150,7 +151,7 @@ namespace UnitTestDay6
             List<char> nonRepeatingChars = new List<char>() { 'h', 'e', 'o' };
             int expectedIndex = 0;
 
-            // Assert
+            // Act and Assert
             Assert.AreEqual(expectedIndex, Day6Hashing.FirstNonRepeating(nonRepeatingChars, input));
         }
 
@@ -162,7 +163,7 @@ namespace UnitTestDay6
             string wrongSentence = "This is a tessst";
             List<string> expected = new List<string>() { "tessst" };
 
-            // Assert
+            // Act and Assert
             CollectionAssert.AreEquivalent(expected.ToList(), Day6Hashing.SpellChecker(dictionaryExample, wrongSentence));
         }
 
@@ -172,10 +173,60 @@ namespace UnitTestDay6
             // Arrange
             HashSet<string> dictionaryExample = new HashSet<string>() { "this", "is", "a", "test" };
             string wrongSentence = "This isss a tessst";
-            List<string> expected = new List<string>() { "isss","tessst" };
+            List<string> expected = new List<string>() { "isss", "tessst" };
 
-            // Assert
+            // Act and Assert
             CollectionAssert.AreEquivalent(expected.ToList(), Day6Hashing.SpellChecker(dictionaryExample, wrongSentence));
         }
+
+
+        [TestMethod]
+        public void TestAreTwoWordsAnagramsGivenTwoAnagrams()
+        {
+            // Arrange
+            string word1 = "hero";
+            string word2 = "ohre";
+            bool expected = true;
+
+            // Act and Assert
+            Assert.AreEqual(expected, Day6Hashing.AreTwoWordsAnagrams(word1, word2));
+        }
+
+        [TestMethod]
+        public void TestAreTwoWordsAnagramsGivenTwoNotAnagrams()
+        {
+            // Arrange
+            string word1 = "hero";
+            string word2 = "ohme";
+            bool expected = false;
+
+            // Act and Assert
+            Assert.AreEqual(expected, Day6Hashing.AreTwoWordsAnagrams(word1, word2));
+        }
+
+        [TestMethod]
+        public void TestAreTwoWordsAnagramsGivenTwoWordsWithDifferentLength()
+        {
+            // Arrange
+            string word1 = "hero";
+            string word2 = "ohm";
+            bool expected = false;
+
+            // Act and Assert
+            Assert.AreEqual(expected, Day6Hashing.AreTwoWordsAnagrams(word1, word2));
+        }
+
+        [TestMethod]
+        public void TestFindAnagramsGivenTwoWordsWithDifferentLength()
+        {
+            // Arrange
+            List<string> listWithAnagrams = new List<string>() { "arc", "more", "car", "erom", "bone", "rac" };
+            bool areThereAnagrams = true;
+            
+            // Act and Assert
+            Assert.AreEqual(areThereAnagrams, Day6Hashing.FindAnagrams(listWithAnagrams));
+        }
+
+
     }
 }
