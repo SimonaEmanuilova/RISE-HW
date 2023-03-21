@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TreeInClassWorkRise.Model
+namespace Day7Trees.Model
 {
     public class BinaryTreeNode
     {
@@ -21,10 +21,6 @@ namespace TreeInClassWorkRise.Model
 
         public BinaryTreeNode Right { get; set; }
 
-        public bool IsLeaf()
-        {
-            return (Right == null && Left == null);
-        }
-
+       
     }
 }
