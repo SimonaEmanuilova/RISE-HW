@@ -10,14 +10,7 @@ namespace Day5
     public class Day5Tasks
     {
         static void Main(string[] args)
-        {
-            List<int> inputList = new List<int>() { 1, 2, 3, 1, 1 };
-            List<int> resultList = new List<int>(GetUniqueNumbers(inputList));
-
-            LinkedList<int> input = new LinkedList<int>(new[] { 1, 2, 3, 4, 5 });
-            RemoveMiddleNumber(input);
-
-            HanoiTower(3);
+        {   HanoiTower(3);
 
             Console.WriteLine("\n\nProblem 4: Expression expansion \nType an expression to be expanded:");
             string inputExpression = Console.ReadLine();
@@ -44,41 +37,41 @@ namespace Day5
             return resultList;
         }
 
-        public static LinkedList<int> RemoveMiddleNumber(LinkedList<int> input)
+
+        public static bool RemoveMiddleNumber(LinkedList<int> input)
         {
-            LinkedList<int> tempList = new LinkedList<int>();
+             if (input == null)
+            {
+                throw new NullReferenceException("The input parameter should not be null!");
+            }
+
+            if (input.Count <= 2)
+            {
+                return false;
+            }
 
             bool removed = false;
-            decimal initialSize = input.Count;
-            decimal middle = Math.Floor(initialSize / 2);
-
-            Console.WriteLine("\n\nProblem 2: Remove middle number:");
-
-            for (int i = 0; i <= (int)initialSize; i++)
+            decimal middle = Math.Floor((decimal)input.Count / 2);
+            ;
+            for (int i = 0; i <= (int)input.Count; i++)
             {
+                ;
                 if (input.Count == 0)
                 {
                     break;
                 }
                 int temp = input.First();
-                tempList.AddLast(temp);
+                input.AddLast(temp);
                 input.RemoveFirst();
-
 
                 if (removed != true && i == (int)middle)
                 {
-                    tempList.RemoveLast();
+                    input.RemoveLast();
                     removed = true;
                 }
             }
-            Console.WriteLine($"The new linked list is:");
-
-            foreach (var num in tempList)
-            {
-                Console.Write(" " + num);
-            }
-
-            return tempList;
+            
+            return removed;
         }
 
         public static bool HanoiTower(int numberOfDiscs)
@@ -94,7 +87,7 @@ namespace Day5
                 startRod.Push(i);
             }
 
-            Console.WriteLine($"\n\nProblem 3: Hanoi Towers\nYou start the game with {numberOfDiscs} disks on rod A:");
+            Console.WriteLine($"Problem 3: Hanoi Towers\nYou start the game with {numberOfDiscs} disks on rod A:");
 
             foreach (int num in startRod)
             {
@@ -236,19 +229,3 @@ namespace Day5
     }
 }
 
-
-
-
-
-//public static class MyExtensions
-//{
-
-//    public static LinkedList<T> ToLinkedList<T>(this T[] a)
-//    {
-
-//        return new LinkedList<T>(a);
-
-//    }
-
-
-//}

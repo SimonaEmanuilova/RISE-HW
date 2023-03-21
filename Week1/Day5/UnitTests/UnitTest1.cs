@@ -33,10 +33,11 @@ public class UnitTest1
         LinkedList<int> input = new LinkedList<int>(new[] { 1, 2, 3, 4, 5 });
         LinkedList<int> expected = new LinkedList<int>(new[] { 1, 2, 4, 5 });
 
+        //Act
+        Day5Tasks.RemoveMiddleNumber(input);
+
         // Assert
-        Assert.IsTrue(expected.SequenceEqual(Day5Tasks.RemoveMiddleNumber(input)));
-
-
+        Assert.IsTrue(expected.SequenceEqual(input));
     }
 
     [TestMethod]
@@ -46,8 +47,67 @@ public class UnitTest1
         LinkedList<int> input = new LinkedList<int>(new[] { 1, 2, 3, 4, 5, 6 });
         LinkedList<int> expected = new LinkedList<int>(new[] { 1, 2, 3, 5, 6 });
 
+        //Act
+        Day5Tasks.RemoveMiddleNumber(input);
+
         // Assert
-        Assert.IsTrue(expected.SequenceEqual(Day5Tasks.RemoveMiddleNumber(input)));
+        Assert.IsTrue(expected.SequenceEqual(input));
+    }
+
+    [TestMethod]
+    public void TestIsMiddleNumberRemovedGivenEvenList()
+    {
+        // Arrange and Act
+        LinkedList<int> input = new LinkedList<int>(new[] { 1, 2, 3, 4, 5, 6 });
+        bool expected = true;
+        bool actual = Day5Tasks.RemoveMiddleNumber(input);
+
+        // Assert
+        Assert.AreEqual(expected, actual);
+    }
+
+    [TestMethod]
+    public void TestIsMiddleNumberRemovedGivenOddList()
+    {
+        // Arrange and Act
+        LinkedList<int> input = new LinkedList<int>(new[] { 1, 2, 3, 4, 5 });
+        bool actual = Day5Tasks.RemoveMiddleNumber(input);
+
+        // Assert
+        Assert.AreEqual(true, actual);
+    }
+
+    [TestMethod]
+    public void TestIsMiddleNumberRemovedGiven2NumberList()
+    {
+        // Arrange
+        LinkedList<int> input = new LinkedList<int>(new[] { 1, 2 });
+
+        //Act
+        bool isRemoved = Day5Tasks.RemoveMiddleNumber(input);
+
+        // Assert
+        Assert.AreEqual(false, isRemoved);
+    }
+
+    [TestMethod]
+    public void TestIsMiddleNumberRemovedGivennEmptyList()
+    {
+        // Arrange
+        LinkedList<int> input = new LinkedList<int>();
+
+        //Act
+        bool isRemoved = Day5Tasks.RemoveMiddleNumber(input);
+
+        // Assert
+        Assert.AreEqual(false, isRemoved);
+    }
+
+    [TestMethod]
+    public void TestRemoveMiddleNumberGivenNullInput()
+    {
+        // Arrange and Assert
+        Assert.ThrowsException<NullReferenceException>(() => Day5Tasks.ExpressionExpansion(null));
     }
 
     [TestMethod]
