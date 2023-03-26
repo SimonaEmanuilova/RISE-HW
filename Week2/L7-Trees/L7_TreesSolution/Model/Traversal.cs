@@ -5,6 +5,7 @@
         public Traversal()
         {
             this.Values = new List<int>();
+
         }
         public List<int> Values { get; set; }
         public void PreOrder(BinaryTreeNode root)

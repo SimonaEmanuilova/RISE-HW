@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TreeInClassWorkRise\TreeInClassWorkRise.csproj" />
+    <ProjectReference Include="..\L7_TreesSolution\L7_TreesSolution.csproj" />
   </ItemGroup>
 
 </Project>
