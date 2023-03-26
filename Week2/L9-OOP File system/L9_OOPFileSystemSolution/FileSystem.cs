@@ -45,12 +45,14 @@ namespace ImplementFIleSystem
                 case "cd":
                     isFirstTime = true;
                     Console.WriteLine(folders.Peek().name);
+                    output = folders.Peek().name;
                     break;
 
                 case "cd ..":
                     folders.Pop();
                     currentFolder = folders.Peek();
                     Console.WriteLine(folders.Peek().name);
+                    output = folders.Peek().name;
                     break;
 
                 case "cd .":
@@ -78,14 +80,15 @@ namespace ImplementFIleSystem
                         if (splitInput[1] == currentFolder.name)
                         {
                             isChild = true;
-                            output = "You are already on this path.";
                             Console.WriteLine("You are already on this path.");
+                            return output = "You are already on this path.";
                         }
 
                         if (!isChild && !isFirstTime)
                         {
-                            output = "The system cannot find the path specified.";
+                            
                             Console.WriteLine("The system cannot find the path specified.");
+                            return output = "The system cannot find the path specified.";
                         }
 
                         currentFolder = folders.Peek();
@@ -103,6 +106,12 @@ namespace ImplementFIleSystem
             string output = "";
             string[] splitInput = input.Split(' ');
 
+            if (splitInput.Length == 1)
+            {
+                Console.WriteLine("Folder name can not be empty");
+                return "Folder name can not be empty";
+            }
+
             string newFolderName = splitInput[1];
             Folder newFolder = new Folder(newFolderName);
             newFolder.parent = currentFolder;
@@ -119,6 +128,13 @@ namespace ImplementFIleSystem
             string output = "";
 
             string[] splitInput = input.Split(' ');
+
+            if (splitInput.Length == 1)
+            {
+                Console.WriteLine("File name can not be empty");
+                return "File name can not be empty";
+            }
+
             string fileName = splitInput[1];
 
             File newFile = new File(fileName);
