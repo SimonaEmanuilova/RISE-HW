@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Channels;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -257,8 +258,8 @@ namespace ImplementFIleSystem
 
                     foreach (var line in file.content)
                     {
-                        Console.Write(line.Value + " ");
-                        Console.WriteLine(line.Key);
+                        Console.Write(line.Key + " ");
+                        Console.WriteLine(line.Value);
                     }
 
                     output = file.content;
@@ -362,7 +363,8 @@ namespace ImplementFIleSystem
                 {
                     foundFile = true;
                     if (file.content.ContainsKey(lineKey))
-                    {   output+= " " + text;
+                    {
+                        output += " " + text;
                         file.content[lineKey] += " " + text;
 
                         if (splitInput.Contains("-overwrite"))
@@ -373,7 +375,7 @@ namespace ImplementFIleSystem
                     }
                     else
                     {
-                        output=text;
+                        output = text;
                         file.content.Add(lineKey, text);
                     }
 
@@ -400,6 +402,95 @@ namespace ImplementFIleSystem
                 }
             }
         }
+
+        public int WordOrLineCountInFile(string input)
+        {
+            string[] splitInput = input.Split(' ');
+            string fileName;
+            bool countNumberOfLines = false;
+            int output = 0; // it will be number of words or number of lines depending on the -l feature
+            bool foundFile = false;
+
+            if (splitInput[1] == "-l")
+            {
+                fileName = splitInput[2];
+                countNumberOfLines = true;
+
+                foreach (var file in currentFolder.files)
+                {
+                    if (file.name != fileName) { continue; }
+
+                    int numberOfLines = file.content.Any() ? file.content.Keys.Last() : 0;
+                    output = numberOfLines;
+                    Console.WriteLine($"The file has {numberOfLines} lines.");
+
+                }
+                if (!foundFile)
+                {
+                    WordCountInText(input, countNumberOfLines);
+                }
+            }
+            else
+            {
+                fileName = splitInput[1];
+                int wordCount = 0;
+
+                foreach (var file in currentFolder.files)
+                {
+                    if (file.name != fileName) { continue; }
+
+                    foundFile = true;
+                    foreach (var textLine in file.content.Values)
+                    {
+                        string[] wordsInLine = textLine.Split(' ');
+                        foreach (var word in wordsInLine)
+                        {
+                            if (word != "")
+                            {
+                                wordCount++;
+                            }
+                        }
+                    }
+
+                    output = wordCount;
+                    Console.WriteLine($"There are {wordCount} words in {file.name}");
+                }
+
+                if (!foundFile)
+                {
+                    WordCountInText(input, countNumberOfLines);
+                }
+            }
+            return output;
+        }
+
+        public int WordCountInText(string input, bool hasFeatureL)
+        {
+            int output = 0;
+            if (!hasFeatureL)
+            {
+                string[] splitInput = input.Split(' ');
+                int wordCount = -1;  // -1 because we remove the 'wc' word.
+
+                foreach (var word in splitInput)
+                {
+                    wordCount++;
+                }
+                output = wordCount;
+                Console.WriteLine($"There are {wordCount} words in the text.");
+            }
+            else
+            {
+                string[] lines = input.Split("\\n");
+                int linesCount = lines.Length;
+                output= linesCount; 
+                Console.WriteLine($"There are {linesCount} new lines in the text.");
+
+            }
+
+            return output;
+        }
+
 
     }
 }

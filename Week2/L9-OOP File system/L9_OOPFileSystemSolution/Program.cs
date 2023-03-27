@@ -47,6 +47,10 @@ namespace ImplementFileSystem
                         filesystem.Tail(input);
                         break;
 
+                    case "wc":
+                        filesystem.WordOrLineCountInFile(input);
+                        break;
+
                     case "exit":
                         Console.WriteLine("Exited Command typing mode.");
                         isInReadMode = false;
