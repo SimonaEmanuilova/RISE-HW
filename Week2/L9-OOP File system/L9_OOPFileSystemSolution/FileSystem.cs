@@ -87,7 +87,7 @@ namespace ImplementFIleSystem
 
                         if (!isChild && !isFirstTime)
                         {
-                            
+
                             Console.WriteLine("The system cannot find the path specified.");
                             return output = "The system cannot find the path specified.";
                         }
@@ -118,8 +118,8 @@ namespace ImplementFIleSystem
             newFolder.parent = currentFolder;
             currentFolder.children.Add(newFolder);
 
-            Console.WriteLine($"Added folder {newFolder.name} .");
-            output = $"Added folder {newFolder.name} .";
+            Console.WriteLine($"Added folder {newFolder.name}");
+            output = $"Added folder {newFolder.name}";
 
             return output;
         }
@@ -143,8 +143,8 @@ namespace ImplementFIleSystem
             currentFolder.files.Add(newFile);
             newFile.size = 0;
 
-            Console.WriteLine($"Created file {newFile.name} .");
-            output = $"Created file {newFile.name} .";
+            Console.WriteLine($"Created file {newFile.name}");
+            output = $"Created file {newFile.name}";
 
             return output;
         }
@@ -203,16 +203,29 @@ namespace ImplementFIleSystem
 
         public void ListFiles(string input)
         {
+            List<File> files = new List<File>();
+
             if (input == "ls")
             {
                 foreach (var file in currentFolder.files)
                 {
+                    files.Add(file);
                     Console.WriteLine(file.name);
                 }
                 foreach (var childFolder in currentFolder.children)
                 {
                     Console.WriteLine(childFolder.name);
                 }
+            }
+            else if (input.Contains("|"))
+            {
+                foreach (var file in currentFolder.files)
+                {
+                    files.Add(file);
+                    Console.WriteLine(file.name);
+                }
+
+                pipeWordCount(input, files);
             }
             else if (input == "ls --sorted desc")
             {
@@ -411,7 +424,7 @@ namespace ImplementFIleSystem
             int output = 0; // it will be number of words or number of lines depending on the -l feature
             bool foundFile = false;
 
-            if (splitInput[1] == "-l")
+            if (input.Contains("-l"))
             {
                 fileName = splitInput[2];
                 countNumberOfLines = true;
@@ -420,6 +433,8 @@ namespace ImplementFIleSystem
                 {
                     if (file.name != fileName) { continue; }
 
+                    foundFile = true;
+
                     int numberOfLines = file.content.Any() ? file.content.Keys.Last() : 0;
                     output = numberOfLines;
                     Console.WriteLine($"The file has {numberOfLines} lines.");
@@ -427,7 +442,7 @@ namespace ImplementFIleSystem
                 }
                 if (!foundFile)
                 {
-                    WordCountInText(input, countNumberOfLines);
+                    WordOrLineCountInText(input, countNumberOfLines);
                 }
             }
             else
@@ -458,13 +473,13 @@ namespace ImplementFIleSystem
 
                 if (!foundFile)
                 {
-                    WordCountInText(input, countNumberOfLines);
+                    WordOrLineCountInText(input, countNumberOfLines);
                 }
             }
             return output;
         }
 
-        public int WordCountInText(string input, bool hasFeatureL)
+        public int WordOrLineCountInText(string input, bool hasFeatureL)
         {
             int output = 0;
             if (!hasFeatureL)
@@ -483,13 +498,27 @@ namespace ImplementFIleSystem
             {
                 string[] lines = input.Split("\\n");
                 int linesCount = lines.Length;
-                output= linesCount; 
+                output = linesCount;
                 Console.WriteLine($"There are {linesCount} new lines in the text.");
 
             }
 
             return output;
         }
+
+        public void pipeWordCount(string input, List<File> files)
+        {
+            string[] splitInput = input.Split(' ');
+
+            foreach (var file in files)
+            {
+                string wordCountInput = "wc -l " + file.name;
+                WordOrLineCountInFile(wordCountInput);
+            }
+
+        }
+
+
 
 
     }

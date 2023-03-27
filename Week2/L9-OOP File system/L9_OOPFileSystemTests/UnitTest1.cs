@@ -72,7 +72,7 @@ namespace L9_OOPFileSystemTests
         {
             FileSystem filesystem = new FileSystem();
             string input = "mkdir testFolder";
-            string expected = "Added folder testFolder .";
+            string expected = "Added folder testFolder";
 
             string actual = filesystem.NewFolder(input);
             string command = "cd testFolder";
@@ -104,7 +104,7 @@ namespace L9_OOPFileSystemTests
         {
             FileSystem filesystem = new FileSystem();
             string input = "create_file testFile";
-            string expected = $"Created file testFile .";
+            string expected = $"Created file testFile";
 
             string actual = filesystem.CreateFile(input);
 
