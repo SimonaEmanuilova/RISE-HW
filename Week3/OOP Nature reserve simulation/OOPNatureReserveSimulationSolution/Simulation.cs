@@ -1,9 +1,4 @@
 ﻿using L11_OOPEncapsulation.Animals;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using L11_OOPEncapsulation.Foods;
 
 namespace L11_OOPEncapsulation
@@ -71,7 +66,6 @@ namespace L11_OOPEncapsulation
             Console.WriteLine($"The maximum lifespan is: {maxLifeSpan}");
             Console.WriteLine($"The average lifespan is: {averageLifeSpan}");
         }
-
 
         public void RunSimulation()
         {
