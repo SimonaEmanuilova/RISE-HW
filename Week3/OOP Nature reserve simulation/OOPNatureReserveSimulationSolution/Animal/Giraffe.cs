@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace L11_OOPEncapsulation.Animals
 {
-    class Giraffe : Animal
+    public class Giraffe : Animal
     {
 
         public Giraffe() : base(10, new HashSet<Food>() { new Milk(), new Seeds() })

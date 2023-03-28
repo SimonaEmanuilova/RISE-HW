@@ -11,10 +11,10 @@ namespace L11_OOPEncapsulation.Animals
 {
     public class Animal
     {
-        protected int Energy { get; set; }
-        public int MaxEnergy { get; set; }
-        protected HashSet<Food> Diet { get; set; }
-        public int LifeSpan { get; set; } = 0;
+        public int Energy { get;  set; }
+        public int MaxEnergy { get; private set; }
+        public HashSet<Food> Diet { get; private set; }
+        public int LifeSpan { get; private set; } = 0;
         public bool IsAlive => Energy > 0;
 
         public Animal(int energy, HashSet<Food> diet)
