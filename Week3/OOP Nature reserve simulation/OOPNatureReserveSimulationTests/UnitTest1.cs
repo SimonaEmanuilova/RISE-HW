@@ -1,7 +1,7 @@
 using L11_OOPEncapsulation;
 using L11_OOPEncapsulation.Animals;
 using L11_OOPEncapsulation.Foods;
-
+using OOPNatureReserveSimulationSolution.Animals;
 
 namespace L11_OOPEncapsulationTests
 {
@@ -12,20 +12,19 @@ namespace L11_OOPEncapsulationTests
         public void TestEatToCheckEnergyGivenMeatThatTheLionAndHippoEat()
         {
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Giraffe(),
-                new Lion(),
-                new Hippo() };
+            HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy = 10 }, new Salmon { Energy = 10 } , new Frog { Energy = 10}
+                };
 
-            Food foodOftheDay = new Meat();
+            Food randomFood = new Milk();
 
-            List<int> expectedEnergy = new List<int>() { 9, 10, 10 };
+            List<int> expectedEnergy = new List<int>() { 10, 9, 9 };
 
 
             List<int> actualEnergy = new List<int>();
 
             foreach (Animal animal in animals)
             {
-                animal.Eat(foodOftheDay);
+                animal.Eat(randomFood);
                 actualEnergy.Add(animal.Energy);
             }
 
@@ -36,11 +35,10 @@ namespace L11_OOPEncapsulationTests
         public void TestEatToCheckEnergyGivenFoodThatNoOneEats()
         {
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Giraffe(),
-                new Lion(),
-                new Hippo() };
+            HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy = 10 }, new Frog { Energy = 10 }, new Salmon { Energy = 10 }
+               };
 
-            Food foodOftheDay = new ToxicMushroom();
+            Food randomFood = new ToxicMushroom();
 
             List<int> expectedEnergy = new List<int>() { 9, 9, 9 };
 
@@ -49,7 +47,7 @@ namespace L11_OOPEncapsulationTests
 
             foreach (Animal animal in animals)
             {
-                animal.Eat(foodOftheDay);
+                animal.Eat(randomFood);
                 actualEnergy.Add(animal.Energy);
             }
 
@@ -60,11 +58,11 @@ namespace L11_OOPEncapsulationTests
         public void TestEatToCheckLifeSpanGrowForOneCycle()
         {
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Giraffe(),
+            HashSet<Animal> animals = new HashSet<Animal>() { new Herbivores(),
                 new Lion(),
-                new Hippo() };
+                new Nonspecified() };
 
-            Food foodOftheDay = new Milk();
+            Food randomFood = new Milk();
 
             List<int> expectedLifespan = new List<int>() { 1, 1, 1 };
 
@@ -73,7 +71,7 @@ namespace L11_OOPEncapsulationTests
 
             foreach (Animal animal in animals)
             {
-                animal.Eat(foodOftheDay);
+                animal.Eat(randomFood);
                 actualLifespan.Add(animal.LifeSpan);
             }
 
@@ -83,17 +81,17 @@ namespace L11_OOPEncapsulationTests
         [TestMethod]
         public void TestEatWhereAnimalDiesGivenFoodItDoesntEat()
         {
-            HashSet<Animal> animals = new HashSet<Animal>() { new Giraffe { Energy = 1 }, new Lion { Energy = 1 }, new Hippo { Energy = 1 } };
+            HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy = 1 }, new Frog { Energy = 1 }, new Salmon { Energy = 1 } };
 
-            Food foodOftheDay = new Meat();
+            Food randomFood = new Milk();
 
-            List<bool> expectedIsAlife = new List<bool>() { false, true, true };
+            List<bool> expectedIsAlife = new List<bool>() { true, false, false };
 
             List<bool> actualIsAlive = new List<bool>();
 
             foreach (Animal animal in animals)
             {
-                animal.Eat(foodOftheDay);
+                animal.Eat(randomFood);
                 actualIsAlive.Add(animal.IsAlive);
             }
 

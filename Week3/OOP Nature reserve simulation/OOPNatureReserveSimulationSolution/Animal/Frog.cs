@@ -8,26 +8,32 @@ using System.Threading.Tasks;
 
 namespace OOPNatureReserveSimulationSolution.Animals
 {
-    public class Lion : Carnivores
+    public class Frog : Animal
     {
-        public Lion() : base(10, new HashSet<Food>() { new Milk() }, 10)
+
+        public Frog() : base(10, new HashSet<Food>() { new Algae() }, 1)
         {
+        }
+
+        public override HashSet<Food> GetMatureDiet()
+        {
+            return new HashSet<Food> { new Algae(), new Insects() };
         }
 
         public override void CheckIfStarving()
         {
             if (Starving)
-                Console.WriteLine($"A lion is starving.");
+                Console.WriteLine($"A frog is starving.");
         }
 
         public override void GetDyingAnimal()
         {
-            Console.WriteLine("A lion has died.");
+            Console.WriteLine("A frog has died.");
         }
 
         public override void MakeSoundWhenEating(Food food)
         {
-            Console.WriteLine($"A lion is eating {food.Name}.");
+            Console.WriteLine($"A frog is eating {food.Name}.");
         }
     }
 }

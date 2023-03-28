@@ -1,5 +1,6 @@
 ﻿using L11_OOPEncapsulation.Animals;
 using L11_OOPEncapsulation.Foods;
+using OOPNatureReserveSimulationSolution.Animals;
 
 namespace L11_OOPEncapsulation
 {
@@ -12,9 +13,11 @@ namespace L11_OOPEncapsulation
         protected HashSet<Animal> InitializeAnimals()
         {
             HashSet<Animal> allAnimals = new HashSet<Animal>()
-            {   new Giraffe(),
+            {   new Herbivores(),
                 new Lion(),
-                new Hippo(), new Hippo() , new Hippo()
+                new Frog(),
+                new Salmon(),
+                new Nonspecified(),
             };
 
             return allAnimals;
@@ -22,11 +25,9 @@ namespace L11_OOPEncapsulation
 
         protected HashSet<Food> InitializeFoods()
         {
-            Meat meat = new Meat();
-            Milk milk = new Milk();
-            Seeds seeds = new Seeds();
-            ToxicMushroom toxicMushroom = new ToxicMushroom();
-            HashSet<Food> allFoods = new HashSet<Food>() { meat, milk, seeds, toxicMushroom };
+            HashSet<Food> allFoods = new HashSet<Food>() {
+                new Meat(), new Milk(), new Seeds(), new TallPlant(),
+                new ToxicMushroom(), new Algae(), new Insects(), new Krill() };
 
             return allFoods;
         }
@@ -39,13 +40,16 @@ namespace L11_OOPEncapsulation
             return foodOfTheDay;
         }
 
-        protected HashSet<Animal> FeedAnimals(Food foodOfTheDay, HashSet<Animal> allAnimals)
+        protected HashSet<Animal> FeedAnimals(HashSet<Food> allFoods, HashSet<Animal> allAnimals)
         {
+
+
             foreach (Animal animal in allAnimals)
             {
-                animal.Eat(foodOfTheDay);
+                Food randomFood = GetRandomFood(allFoods);
+                animal.Eat(randomFood);
             }
-
+            Console.WriteLine();
             return allAnimals;
         }
 
@@ -77,8 +81,7 @@ namespace L11_OOPEncapsulation
             while (hasAlive)
             {
                 hasAlive = false;
-                Food foodOfTheDay = GetRandomFood(allFoods);
-                FeedAnimals(foodOfTheDay, allAnimals.Where(x => x.IsAlive == true).ToHashSet());
+                FeedAnimals(allFoods, allAnimals.Where(x => x.IsAlive == true).ToHashSet());
                 foreach (Animal animal in allAnimals)
                 {
                     if (animal.IsAlive)

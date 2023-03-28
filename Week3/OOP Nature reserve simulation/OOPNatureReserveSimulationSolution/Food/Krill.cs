@@ -1,0 +1,15 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace L11_OOPEncapsulation.Foods
+{
+    internal class Krill : Food
+    {
+        public Krill() {
+            this.Name = "Krill";
+        }
+    }
+}
