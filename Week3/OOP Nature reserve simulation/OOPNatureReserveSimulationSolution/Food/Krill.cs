@@ -8,8 +8,8 @@ namespace OOPNatureReserveSimulationSolution.Foods
 {
     internal class Krill : Food
     {
-        public Krill() {
-            this.Name = "Krill";
+        public Krill() : base("Krill", 4)
+        {
         }
     }
 }

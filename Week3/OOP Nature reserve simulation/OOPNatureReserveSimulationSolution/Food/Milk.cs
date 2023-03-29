@@ -1,10 +1,8 @@
 ﻿namespace OOPNatureReserveSimulationSolution.Foods
 {
-    public class Milk:Food
+    public class Milk : Food
     {
         public Milk()
-        {
-            this.Name = "Milk";
-        }
+        : base("Milk", 50) {}
     }
 }

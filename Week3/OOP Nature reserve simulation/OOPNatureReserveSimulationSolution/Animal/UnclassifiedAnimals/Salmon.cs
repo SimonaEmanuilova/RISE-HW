@@ -10,28 +10,13 @@ namespace OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals
 {
     public class Salmon : Animal
     {
-        public Salmon() : base(10, new HashSet<Food>() { new Insects() }, 2)
+        public Salmon() : base("Salmon", 10, new HashSet<Food>() { new Insects() }, 2)
         {
         }
 
         public override HashSet<Food> GetMatureDiet()
         {
             return new HashSet<Food> { new Algae(), new Insects() };
-        }
-        public override void CheckIfStarving()
-        {
-            if (Starving)
-                Console.WriteLine($"A salmon is starving.");
-        }
-
-        public override void GetDyingAnimal()
-        {
-            Console.WriteLine("A salmon has died.");
-        }
-
-        public override void MakeSoundWhenEating(Food food)
-        {
-            Console.WriteLine($"A salmon is eating {food.Name}.");
         }
     }
 }

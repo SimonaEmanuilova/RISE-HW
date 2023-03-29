@@ -24,11 +24,11 @@ namespace OOPNatureReserveSimulationSolution
             return allAnimals;
         }
 
-        protected HashSet<Food> InitializeFoods()
+        protected HashSet<Food> InitializeFoods(HashSet<Animal> allAnimals)
         {
-            HashSet<Food> allFoods = new HashSet<Food>() {
+            HashSet<Food> allFoods = new HashSet<Food>(allAnimals) {
                 new Meat(), new Milk(), new Seeds(), new TallPlant(),
-                new ToxicMushroom(), new Algae(), new Insects(), new Krill() };
+                new ToxicMushroom(), new Algae(), new Insects(), new Krill(), new Plant() };
 
             return allFoods;
         }
@@ -36,7 +36,7 @@ namespace OOPNatureReserveSimulationSolution
         protected Food GetRandomFood(HashSet<Food> allFoods)
         {
             Random random = new Random();
-            Food foodOfTheDay = allFoods.ElementAt(random.Next(allFoods.Count));
+            Food foodOfTheDay = allFoods.Where(x => x.NutritionalValue > 0).ElementAt(random.Next(allFoods.Where(x => x.NutritionalValue > 0).ToHashSet().Count));
 
             return foodOfTheDay;
         }
@@ -44,8 +44,7 @@ namespace OOPNatureReserveSimulationSolution
         protected HashSet<Animal> FeedAnimals(HashSet<Food> allFoods, HashSet<Animal> allAnimals)
         {
 
-
-            foreach (Animal animal in allAnimals)
+            foreach (Animal animal in allAnimals.Where(x => x.IsAlive == true))
             {
                 Food randomFood = GetRandomFood(allFoods);
                 animal.Eat(randomFood);
@@ -72,18 +71,33 @@ namespace OOPNatureReserveSimulationSolution
             Console.WriteLine($"The average lifespan is: {averageLifeSpan}");
         }
 
+        protected void RegeneratePlants(HashSet<Food> allFood)
+        {
+            foreach (Food food in allFood)
+            {
+                if (food.IsPLant && food.NutritionalValue < food.MaxNutritionalValue)
+                {
+                    food.NutritionalValue++;
+                }
+            }
+        }
+
         public void RunSimulation()
         {
 
             bool hasAlive = true;
-            HashSet<Food> allFoods = InitializeFoods();
             HashSet<Animal> allAnimals = InitializeAnimals();
+
+            HashSet<Food> allFoods = InitializeFoods(allAnimals);
+            int dayCounter = 0;
 
             while (hasAlive)
             {
+                dayCounter++;
+                Console.WriteLine($"Day {dayCounter}");
                 hasAlive = false;
                 FeedAnimals(allFoods, allAnimals);
-
+                RegeneratePlants(allFoods);
                 foreach (Animal animal in allAnimals)
                 {
                     if (animal.IsAlive)

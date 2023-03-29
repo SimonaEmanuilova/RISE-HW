@@ -3,9 +3,7 @@
     public class Meat : Food
     {
         public Meat()
-        {
-            this.Name = "Meat";
-        }
+        : base("Meat", 10) { }
 
     }
 }

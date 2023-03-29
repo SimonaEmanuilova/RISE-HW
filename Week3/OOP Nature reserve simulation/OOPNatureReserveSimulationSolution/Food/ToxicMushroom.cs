@@ -3,8 +3,6 @@
     public class ToxicMushroom : Food
     {
         public ToxicMushroom()
-        {
-            this.Name = "ToxicMushroom";
-        }
+        : base("ToxicMushroom", 5) {  }
     }
 }

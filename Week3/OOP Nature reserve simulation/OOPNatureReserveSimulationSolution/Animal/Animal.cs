@@ -1,22 +1,24 @@
 ﻿using OOPNatureReserveSimulationSolution.Foods;
+using System.ComponentModel.Design;
 
 namespace OOPNatureReserveSimulationSolution.Animals
 {
-    public abstract class Animal
+    public abstract class Animal : Food
     {
-        public int Energy { get;  set; }
+        public int Energy { get; set; }
         public int MaxEnergy { get; protected set; } = 10;
-        public HashSet<Food> Diet { get; protected set; }
+
+        public HashSet<Food> Diet;
         public int LifeSpan { get; private set; } = 0;
-        public bool IsAlive => Energy > 0;
+        public bool IsAlive => Energy > 0 && NutritionalValue == MaxEnergy;
         public int MatureAge { get; protected set; }
-        public bool Starving => (Energy == MaxEnergy / 2) ? true : false;
+        public bool Starving => (Energy <= MaxEnergy / 2) ? true : false;
 
 
-        public Animal(int energy, HashSet<Food> diet, int matureAge)
+        public Animal(string name, int maxEnergy, HashSet<Food> diet, int matureAge) : base(name, maxEnergy)
         {
-            Energy = energy;
-            MaxEnergy = energy;
+            Energy = maxEnergy;
+            MaxEnergy = maxEnergy;
             Diet = diet;
             MatureAge = matureAge;
         }
@@ -27,10 +29,21 @@ namespace OOPNatureReserveSimulationSolution.Animals
             CheckIfStarving();
             ChooseDiet();
 
-            if (Diet.Contains(food))
+            if (Diet.Contains(food) && food.NutritionalValue > 0)
             {
                 if (Energy < MaxEnergy)
-                    Energy++;
+                {
+                    Energy += food.NutritionalValue;
+                   
+
+                    MakeSoundWhenEating(food);
+                    RecalculateNutritionValueOfFood(food); 
+
+                    if (Energy > MaxEnergy)
+                    {
+                        Energy = MaxEnergy;
+                    }
+                }
             }
             else
             {
@@ -38,10 +51,19 @@ namespace OOPNatureReserveSimulationSolution.Animals
             }
             LifeSpan++;
 
-            MakeSoundWhenEating(food);
             CheckIfDying();
         }
 
+        private void RecalculateNutritionValueOfFood(Food food)
+        {
+            int NutritionalValueRemainder = Energy - MaxEnergy;
+
+            if (NutritionalValueRemainder <= 0)
+            {
+                food.NutritionalValue = 0;
+            }
+            else { food.NutritionalValue = NutritionalValueRemainder; }
+        }
 
         public virtual void ChooseDiet()
         {
@@ -56,13 +78,13 @@ namespace OOPNatureReserveSimulationSolution.Animals
 
         public virtual void MakeSoundWhenEating(Food food)
         {
-            Console.WriteLine($"Nonspecified animal is eating {food.Name}.");
+            Console.WriteLine($"{Name} is eating {food.Name} with {food.NutritionalValue} nutritional Value.");
         }
 
         public virtual void CheckIfStarving()
         {
             if (Starving)
-                Console.WriteLine($"Nonspecified animal is starving.");
+                Console.WriteLine($"{Name} is starving.");
         }
 
         public virtual void CheckIfDying()
@@ -77,8 +99,10 @@ namespace OOPNatureReserveSimulationSolution.Animals
 
         public virtual void GetDyingAnimal()
         {
-            Console.WriteLine("Nonspecified animal has died.");
+            Console.WriteLine($"{Name} has died.");
         }
+
+        public virtual void ChangeDietForCarnivores() { }
 
     }
 

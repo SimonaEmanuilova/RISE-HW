@@ -9,9 +9,8 @@ namespace OOPNatureReserveSimulationSolution.Foods
 {
     public class Algae : Food
     {
-        public Algae()
+        public Algae():base("Algae",2)
         {
-            this.Name = "Algae";
         }
     }
 }

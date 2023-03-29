@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OOPNatureReserveSimulationSolution.Foods;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace OOPNatureReserveSimulationSolution.Foods
 {
-    public class Insects : Food
+    public class Plant : Food
     {
-        public Insects():base("Insects", 4)
+
+        public Plant() : base("Grass", 3)
         {
+            this.IsPLant = true;
         }
 
+
     }
-
-
 }
-
