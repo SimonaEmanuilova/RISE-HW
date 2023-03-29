@@ -1,8 +1,10 @@
-﻿using L11_OOPEncapsulation.Animals;
-using L11_OOPEncapsulation.Foods;
-using OOPNatureReserveSimulationSolution.Animals;
+﻿using OOPNatureReserveSimulationSolution.Animals;
+using OOPNatureReserveSimulationSolution.Foods;
+using OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals;
+using OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals;
+using OOPNatureReserveSimulationSolution.Animals.HerbivoreAnimals;
 
-namespace L11_OOPEncapsulation
+namespace OOPNatureReserveSimulationSolution
 {
     public class Simulation
     {
@@ -13,11 +15,10 @@ namespace L11_OOPEncapsulation
         protected HashSet<Animal> InitializeAnimals()
         {
             HashSet<Animal> allAnimals = new HashSet<Animal>()
-            {   new Herbivores(),
+            {   new Gazelle(),
                 new Lion(),
                 new Frog(),
-                new Salmon(),
-                new Nonspecified(),
+                new Salmon()
             };
 
             return allAnimals;
@@ -81,7 +82,8 @@ namespace L11_OOPEncapsulation
             while (hasAlive)
             {
                 hasAlive = false;
-                FeedAnimals(allFoods, allAnimals.Where(x => x.IsAlive == true).ToHashSet());
+                FeedAnimals(allFoods, allAnimals);
+
                 foreach (Animal animal in allAnimals)
                 {
                     if (animal.IsAlive)

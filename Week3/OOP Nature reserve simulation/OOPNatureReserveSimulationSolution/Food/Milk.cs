@@ -1,4 +1,4 @@
-﻿namespace L11_OOPEncapsulation.Foods
+﻿namespace OOPNatureReserveSimulationSolution.Foods
 {
     public class Milk:Food
     {

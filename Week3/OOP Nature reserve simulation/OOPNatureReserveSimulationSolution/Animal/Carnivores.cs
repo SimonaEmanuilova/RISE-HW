@@ -1,6 +1,6 @@
-﻿using L11_OOPEncapsulation.Foods;
+﻿using OOPNatureReserveSimulationSolution.Foods;
 
-namespace L11_OOPEncapsulation.Animals
+namespace OOPNatureReserveSimulationSolution.Animals
 {
     public class Carnivores : Animal
     {

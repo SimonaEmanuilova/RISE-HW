@@ -1,17 +1,16 @@
-﻿using L11_OOPEncapsulation.Animals;
-using L11_OOPEncapsulation.Foods;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OOPNatureReserveSimulationSolution.Foods;
 
-namespace OOPNatureReserveSimulationSolution.Animals
+namespace OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals
 {
     public class Lion : Carnivores
     {
-        public Lion() : base(10, new HashSet<Food>() { new Milk() }, 10)
+        public Lion() : base(15, new HashSet<Food>() { new Milk() }, 6)
         {
+        }
+
+        public override HashSet<Food> GetMatureDiet()
+        {
+            return base.GetMatureDiet();
         }
 
         public override void CheckIfStarving()

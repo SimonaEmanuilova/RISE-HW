@@ -1,4 +1,4 @@
-﻿namespace L11_OOPEncapsulation
+﻿namespace OOPNatureReserveSimulationSolution
 {
     internal class Program
     {

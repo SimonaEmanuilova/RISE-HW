@@ -1,16 +1,19 @@
-﻿using L11_OOPEncapsulation.Animals;
-using L11_OOPEncapsulation.Foods;
+﻿using OOPNatureReserveSimulationSolution.Foods;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OOPNatureReserveSimulationSolution.Animals;
 
-namespace OOPNatureReserveSimulationSolution.Animals
+
+
+namespace OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals
 {
-    public class Salmon : Animal
+    public class Frog : Animal
     {
-        public Salmon() : base(10, new HashSet<Food>() { new Insects() }, 2)
+
+        public Frog() : base(10, new HashSet<Food>() { new Algae() }, 1)
         {
         }
 
@@ -18,20 +21,21 @@ namespace OOPNatureReserveSimulationSolution.Animals
         {
             return new HashSet<Food> { new Algae(), new Insects() };
         }
+
         public override void CheckIfStarving()
         {
             if (Starving)
-                Console.WriteLine($"A salmon is starving.");
+                Console.WriteLine($"A frog is starving.");
         }
 
         public override void GetDyingAnimal()
         {
-            Console.WriteLine("A salmon has died.");
+            Console.WriteLine("A frog has died.");
         }
 
         public override void MakeSoundWhenEating(Food food)
         {
-            Console.WriteLine($"A salmon is eating {food.Name}.");
+            Console.WriteLine($"A frog is eating {food.Name}.");
         }
     }
 }

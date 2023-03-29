@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace L11_OOPEncapsulation.Foods
+namespace OOPNatureReserveSimulationSolution.Foods
 {
     internal class Krill : Food
     {

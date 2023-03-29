@@ -1,7 +1,10 @@
-using L11_OOPEncapsulation;
-using L11_OOPEncapsulation.Animals;
-using L11_OOPEncapsulation.Foods;
 using OOPNatureReserveSimulationSolution.Animals;
+using OOPNatureReserveSimulationSolution.Foods;
+using OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals;
+using OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals;
+using OOPNatureReserveSimulationSolution.Animals.HerbivoreAnimals;
+
+
 
 namespace L11_OOPEncapsulationTests
 {
@@ -9,7 +12,7 @@ namespace L11_OOPEncapsulationTests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestEatToCheckEnergyGivenMeatThatTheLionAndHippoEat()
+        public void TestEatToCheckEnergyGivenMeatThatOneAnimalEats()
         {
 
             HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy = 10 }, new Salmon { Energy = 10 } , new Frog { Energy = 10}
@@ -17,7 +20,7 @@ namespace L11_OOPEncapsulationTests
 
             Food randomFood = new Milk();
 
-            List<int> expectedEnergy = new List<int>() { 10, 9, 9 };
+            List<int> expectedEnergy = new List<int>() { 11, 9, 9 };
 
 
             List<int> actualEnergy = new List<int>();
@@ -58,9 +61,9 @@ namespace L11_OOPEncapsulationTests
         public void TestEatToCheckLifeSpanGrowForOneCycle()
         {
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Herbivores(),
-                new Lion(),
-                new Nonspecified() };
+            HashSet<Animal> animals = new HashSet<Animal>() { new Frog(),
+                new Lion(), new Gazelle()
+               };
 
             Food randomFood = new Milk();
 

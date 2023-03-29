@@ -1,18 +1,17 @@
-﻿using L11_OOPEncapsulation.Foods;
+﻿using OOPNatureReserveSimulationSolution.Foods;
 
-namespace L11_OOPEncapsulation.Animals
+namespace OOPNatureReserveSimulationSolution.Animals
 {
     public class Herbivores : Animal
     {
 
-        public Herbivores() : base(10, new HashSet<Food>() { new Seeds() }, 5)
+        public Herbivores(int maxEnergy, HashSet<Food> diet, int matureAge) : base(maxEnergy, diet, matureAge)
         {
         }
 
         public override void MakeSoundWhenEating(Food food)
         {
             Console.WriteLine($"A wild Herbivore animal is eating {food.Name}.");
-            //Console.WriteLine("Mmm leafes and seeds! Just what you need! Nom Nom.");
         }
 
 
