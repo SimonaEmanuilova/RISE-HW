@@ -12,10 +12,10 @@ namespace OOPNatureReserveSimulationSolution
         {
         }
 
-        protected HashSet<Animal> InitializeAnimals()
+        protected List<Animal> InitializeAnimals()
         {
-            HashSet<Animal> allAnimals = new HashSet<Animal>()
-            {   new Gazelle(),
+            List<Animal> allAnimals = new List<Animal>()
+            {   new Gazelle(),new Gazelle(),
                 new Lion(),
                 new Frog(),
                 new Salmon()
@@ -24,24 +24,24 @@ namespace OOPNatureReserveSimulationSolution
             return allAnimals;
         }
 
-        protected HashSet<Food> InitializeFoods(HashSet<Animal> allAnimals)
+        protected List<Food> InitializeFoods(List<Animal> allAnimals)
         {
-            HashSet<Food> allFoods = new HashSet<Food>(allAnimals) {
+            List<Food> allFoods = new List<Food>(allAnimals) {
                 new Meat(), new Milk(), new Seeds(), new TallPlant(),
                 new ToxicMushroom(), new Algae(), new Insects(), new Krill(), new Plant() };
-
+            
             return allFoods;
         }
 
-        protected Food GetRandomFood(HashSet<Food> allFoods)
+        protected Food GetRandomFood(List<Food> allFoods)
         {
             Random random = new Random();
-            Food foodOfTheDay = allFoods.Where(x => x.NutritionalValue > 0).ElementAt(random.Next(allFoods.Where(x => x.NutritionalValue > 0).ToHashSet().Count));
+            Food foodOfTheDay = allFoods.Where(x => x.NutritionalValue > 0).ElementAt(random.Next(allFoods.Where(x => x.NutritionalValue > 0).ToList().Count));
 
             return foodOfTheDay;
         }
 
-        protected HashSet<Animal> FeedAnimals(HashSet<Food> allFoods, HashSet<Animal> allAnimals)
+        protected List<Animal> FeedAnimals(List<Food> allFoods, List<Animal> allAnimals)
         {
 
             foreach (Animal animal in allAnimals.Where(x => x.IsAlive == true))
@@ -53,7 +53,7 @@ namespace OOPNatureReserveSimulationSolution
             return allAnimals;
         }
 
-        protected void GetStatistic(HashSet<Animal> allAnimals)
+        protected void GetStatistic(List<Animal> allAnimals)
         {
             List<int> allLifeSpans = new List<int>();
 
@@ -71,7 +71,7 @@ namespace OOPNatureReserveSimulationSolution
             Console.WriteLine($"The average lifespan is: {averageLifeSpan}");
         }
 
-        protected void RegeneratePlants(HashSet<Food> allFood)
+        protected void RegeneratePlants(List<Food> allFood)
         {
             foreach (Food food in allFood)
             {
@@ -86,15 +86,24 @@ namespace OOPNatureReserveSimulationSolution
         {
 
             bool hasAlive = true;
-            HashSet<Animal> allAnimals = InitializeAnimals();
+            List<Animal> allAnimals = InitializeAnimals();
 
-            HashSet<Food> allFoods = InitializeFoods(allAnimals);
+            List<Food> allFoods = InitializeFoods(allAnimals);
+
             int dayCounter = 0;
+
+            Console.WriteLine("Welcome to Nature Simulator 3000!\n PLease select a View Mode - detailed / summary :");
+            string detailLevel = Console.ReadLine().ToLower();
 
             while (hasAlive)
             {
+                DisplayResults(detailLevel, allAnimals, dayCounter);
+
                 dayCounter++;
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Day {dayCounter}");
+                Console.ForegroundColor = ConsoleColor.White;
+
                 hasAlive = false;
                 FeedAnimals(allFoods, allAnimals);
                 RegeneratePlants(allFoods);
@@ -109,7 +118,42 @@ namespace OOPNatureReserveSimulationSolution
             GetStatistic(allAnimals);
         }
 
+        public void DisplayResults(string detailLevel, List<Animal> allAnimals, int dayCounter)
+        {
 
+            if (detailLevel == "summary")
+            {
+                int aliveAnimals = 0;
+                int deadAnimals = 0;
+                foreach (Animal animal in allAnimals)
+                {
+                    if (animal.IsAlive)
+                    {
+                        aliveAnimals++;
+                    }
+                    else deadAnimals++;
+                }
+                Console.WriteLine($"Alive: {aliveAnimals}");
+                Console.WriteLine($"Dead: {deadAnimals}\n");
+
+            }
+            else if (detailLevel == "detailed")
+            {
+                foreach (Animal animal in allAnimals.Where(x => x.IsAlive))
+                {
+                    Console.WriteLine(animal.Name + ":");    
+                    animal.CongratulateMatured();
+                    Console.WriteLine("Energy: " + animal.Energy + "\n");
+                }
+
+
+            }
+
+            else { Console.WriteLine("Please select a detail level to view the statistic of the simulation."); }
+
+
+
+        }
 
 
     }

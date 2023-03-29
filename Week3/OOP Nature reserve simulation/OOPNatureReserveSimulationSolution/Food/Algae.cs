@@ -11,6 +11,7 @@ namespace OOPNatureReserveSimulationSolution.Foods
     {
         public Algae():base("Algae",2)
         {
+            this.IsPLant = true;
         }
     }
 }

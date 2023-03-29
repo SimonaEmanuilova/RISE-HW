@@ -3,7 +3,10 @@
     public class TallPlant : Food
     {
         public TallPlant()
-        : base("TallPlant", 4) { }
+        : base("TallPlant", 4)
+        {
+            this.IsPLant = true;
+        }
     }
 
     

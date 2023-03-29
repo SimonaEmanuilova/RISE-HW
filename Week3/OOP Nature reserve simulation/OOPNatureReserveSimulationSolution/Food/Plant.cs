@@ -9,8 +9,7 @@ namespace OOPNatureReserveSimulationSolution.Foods
 {
     public class Plant : Food
     {
-
-        public Plant() : base("Grass", 3)
+        public Plant() : base("Plant", 2)
         {
             this.IsPLant = true;
         }

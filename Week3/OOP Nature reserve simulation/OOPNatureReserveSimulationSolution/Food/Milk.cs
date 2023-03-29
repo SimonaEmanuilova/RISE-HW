@@ -3,6 +3,6 @@
     public class Milk : Food
     {
         public Milk()
-        : base("Milk", 50) {}
+        : base("Milk", 10) {}
     }
 }

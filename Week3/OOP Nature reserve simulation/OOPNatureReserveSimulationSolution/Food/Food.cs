@@ -4,7 +4,7 @@
     {
         public string Name { get; protected set; }
         public int NutritionalValue { get; set; }
-        public int MaxNutritionalValue => NutritionalValue;
+        public int MaxNutritionalValue { get; set; }
 
         public bool IsPLant { get; protected set; }
 
@@ -12,6 +12,7 @@
         {
             Name = name;
             NutritionalValue = nutritionalValue;
+            MaxNutritionalValue = nutritionalValue;
         }
 
         public override int GetHashCode()

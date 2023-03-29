@@ -6,16 +6,16 @@ namespace OOPNatureReserveSimulationSolution.Animals
     public abstract class Animal : Food
     {
         public int Energy { get; set; }
-        public int MaxEnergy { get; protected set; } = 10;
+        public int MaxEnergy { get; set; } 
 
-        public HashSet<Food> Diet;
+        public List<Food> Diet;
         public int LifeSpan { get; private set; } = 0;
         public bool IsAlive => Energy > 0 && NutritionalValue == MaxEnergy;
         public int MatureAge { get; protected set; }
         public bool Starving => (Energy <= MaxEnergy / 2) ? true : false;
 
 
-        public Animal(string name, int maxEnergy, HashSet<Food> diet, int matureAge) : base(name, maxEnergy)
+        public Animal(string name, int maxEnergy, List<Food> diet, int matureAge) : base(name, maxEnergy)
         {
             Energy = maxEnergy;
             MaxEnergy = maxEnergy;
@@ -34,25 +34,31 @@ namespace OOPNatureReserveSimulationSolution.Animals
                 if (Energy < MaxEnergy)
                 {
                     Energy += food.NutritionalValue;
-                   
 
                     MakeSoundWhenEating(food);
-                    RecalculateNutritionValueOfFood(food); 
+                    RecalculateNutritionValueOfFood(food);
 
                     if (Energy > MaxEnergy)
                     {
                         Energy = MaxEnergy;
                     }
                 }
+                else
+                {
+                    Console.WriteLine($"{Name} is full. It will skip lunch today.");
+                    Energy--;
+                }
             }
             else
             {
                 Energy--;
+                Console.WriteLine($"{Name} didn't found anything to eat.");
             }
             LifeSpan++;
 
             CheckIfDying();
         }
+
 
         private void RecalculateNutritionValueOfFood(Food food)
         {
@@ -73,12 +79,27 @@ namespace OOPNatureReserveSimulationSolution.Animals
             }
         }
 
-        public abstract HashSet<Food> GetMatureDiet();
+        public virtual void CongratulateMatured()
+        {
+
+            if (MatureAge == LifeSpan)
+            {
+                Console.WriteLine($"Today the {Name} matured! Happy birthay!");
+            }
+        }
+
+        public abstract List<Food> GetMatureDiet();
 
 
         public virtual void MakeSoundWhenEating(Food food)
         {
+
             Console.WriteLine($"{Name} is eating {food.Name} with {food.NutritionalValue} nutritional Value.");
+        }
+
+        public virtual void MakeSoundWhenEating()
+        {
+            Console.WriteLine($"{Name} is eating.");
         }
 
         public virtual void CheckIfStarving()
@@ -102,7 +123,6 @@ namespace OOPNatureReserveSimulationSolution.Animals
             Console.WriteLine($"{Name} has died.");
         }
 
-        public virtual void ChangeDietForCarnivores() { }
 
     }
 

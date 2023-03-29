@@ -13,16 +13,19 @@ namespace OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals
     public class Frog : Animal
     {
 
-        public Frog() : base("Frog", 10, new HashSet<Food>() { new Algae() }, 1)
+        public Frog() : base("Frog", 5, new List<Food>() { new Algae() }, 1)
         {
         }
 
-        public override HashSet<Food> GetMatureDiet()
+        public override List<Food> GetMatureDiet()
         {
-            return new HashSet<Food> { new Algae(), new Insects() };
+            return new List<Food> { new Algae(), new Insects() };
         }
 
-
+        public override void MakeSoundWhenEating()
+        {
+            Console.WriteLine("Croak croak, my tummy is thankful.");
+        }
 
     }
 }

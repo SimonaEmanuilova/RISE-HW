@@ -11,21 +11,13 @@ namespace OOPNatureReserveSimulationSolution.Animals
         //{
         //}
 
-        public Carnivores(string name, int maxEnergy, HashSet<Food> diet, int matureAge) : base(name, maxEnergy, diet, matureAge)
+        public Carnivores(string name, int maxEnergy, List<Food> diet, int matureAge) : base(name, maxEnergy, diet, matureAge)
         {
         }
 
-        public override void ChangeDietForCarnivores()
+        public override List<Food> GetMatureDiet()
         {
-            List<HashSet<object>> hashSets = new List<HashSet<object>>();
-
-            hashSets.Add(new HashSet<object>() { new Milk(), new Meat() });
-            hashSets.Add(new HashSet<object>() { new Lion(), new Gazelle() });
-        }
-
-        public override HashSet<Food> GetMatureDiet()
-        {
-            return new HashSet<Food> { new Milk(), new Meat(), new Gazelle(), new Frog(), new Salmon()};
+            return new List<Food> { new Milk(), new Meat(), new Gazelle(), new Frog(), new Salmon()};
         }
 
     }
