@@ -25,13 +25,32 @@
             return this.Name.Equals(((Food)obj).Name);
         }
 
-        public void ReduceNutritionValueOfFood(int nutritionalValueRemainder)
+        //public void ReduceNutritionValueOfFood(int nutritionalValueRemainder)
+        //{
+        //    if (nutritionalValueRemainder <= 0)
+        //    {
+        //        NutritionalValue = 0;
+        //    }
+        //    else { NutritionalValue = nutritionalValueRemainder; }
+        //}
+
+        public int RecalculateNutritionValue(int energyDeficiency, Food food)
         {
-            if (nutritionalValueRemainder <= 0)
+
+            int animalEnergy;
+
+            if (energyDeficiency >= NutritionalValue)
             {
-                NutritionalValue = 0;
+                food.NutritionalValue = 0;
+                animalEnergy = NutritionalValue;
             }
-            else { NutritionalValue = nutritionalValueRemainder; }
+            else
+            {
+                food.NutritionalValue -= energyDeficiency;
+                animalEnergy = energyDeficiency;
+            }
+
+            return animalEnergy;
         }
 
     }

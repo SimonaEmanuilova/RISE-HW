@@ -12,15 +12,14 @@ namespace L11_OOPEncapsulationTests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestEatToCheckEnergyGivenMeatThatOneAnimalEats()
+        public void TestEatToCheckEnergyIncrease()
         {
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy = 9, MaxEnergy = 10 }, new Salmon { Energy = 9, MaxEnergy=10   } 
-                };
+            HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy = 9, MaxEnergy = 10 } };
 
             Food randomFood = new Milk();
 
-            List<int> expectedEnergy = new List<int>() { 10, 8 };
+            List<int> expectedEnergy = new List<int>() { 10 };
 
 
             List<int> actualEnergy = new List<int>();

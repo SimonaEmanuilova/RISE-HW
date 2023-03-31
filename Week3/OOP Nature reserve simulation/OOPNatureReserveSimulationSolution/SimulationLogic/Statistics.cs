@@ -9,34 +9,25 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
     public class Statistics
     {
+
+        private IWriteStats _summaryStats;
+        private IWriteStats _detailedStats;
+
+
+
         public Statistics() { }
         public void DisplayDayStats(string detailLevel, List<Animal> allAnimals, int dayCounter)
         {
 
             if (detailLevel == "summary")
             {
-                int aliveAnimals = 0;
-                int deadAnimals = 0;
-                foreach (Animal animal in allAnimals)
-                {
-                    if (animal.IsAlive)
-                    {
-                        aliveAnimals++;
-                    }
-                    else deadAnimals++;
-                }
-                Console.WriteLine($"Alive: {aliveAnimals}");
-                Console.WriteLine($"Dead: {deadAnimals}\n");
-
+                _summaryStats = new SummaryStats();
+                _summaryStats.WriteStats(allAnimals);
             }
             else if (detailLevel == "detailed")
             {
-                foreach (Animal animal in allAnimals.Where(x => x.IsAlive))
-                {
-                    Console.WriteLine(animal.Name + ":");
-                    animal.CongratulateMatured();
-                    Console.WriteLine("Energy: " + animal.Energy + "\n");
-                }
+                _detailedStats = new DetailedStats();
+                _detailedStats.WriteStats(allAnimals);
             }
 
             else { Console.WriteLine("Please select a detail level to view the statistic of the simulation."); }

@@ -1,4 +1,8 @@
-﻿using OOPNatureReserveSimulationSolution.SimulationLogic;
+﻿using OOPNatureReserveSimulationSolution.Animals;
+using OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals;
+using OOPNatureReserveSimulationSolution.Animals.HerbivoreAnimals;
+using OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals;
+using OOPNatureReserveSimulationSolution.SimulationLogic;
 
 namespace OOPNatureReserveSimulationSolution
 {
@@ -9,7 +13,7 @@ namespace OOPNatureReserveSimulationSolution
             Simulation simulation = new Simulation(new AnimalGenerator(), new FoodGenerator());
 
             simulation.RunSimulation();
-            
+
         }
     }
 }

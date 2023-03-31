@@ -42,18 +42,9 @@ namespace OOPNatureReserveSimulationSolution.Animals
             {
                 if (Energy < MaxEnergy)
                 {
-                    Energy += food.NutritionalValue;
-
+                    Energy+=RecalculateNutritionValue(MaxEnergy - Energy, food);
+                    
                     MakeSoundWhenEating(food);
-
-                    int nutritionalValueRemainder = Energy - MaxEnergy;
-
-                    food.ReduceNutritionValueOfFood(nutritionalValueRemainder);
-
-                    if (Energy > MaxEnergy)
-                    {
-                        Energy = MaxEnergy;
-                    }
                 }
                 else
                 {
@@ -71,17 +62,6 @@ namespace OOPNatureReserveSimulationSolution.Animals
             CheckIfDying();
         }
 
-
-        //private void ReduceNutritionValueOfFood(Food food)
-        //{
-        //    int NutritionalValueRemainder = Energy - MaxEnergy;
-
-        //    if (NutritionalValueRemainder <= 0)
-        //    {
-        //        food.NutritionalValue = 0;
-        //    }
-        //    else { food.NutritionalValue = NutritionalValueRemainder; }
-        //}
 
         public virtual void ChooseDiet()
         {
