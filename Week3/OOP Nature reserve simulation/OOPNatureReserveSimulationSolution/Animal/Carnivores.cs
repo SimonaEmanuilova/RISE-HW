@@ -17,7 +17,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
 
         public override List<Food> GetMatureDiet()
         {
-            return new List<Food> { new Milk(), new Meat(), new Gazelle(), new Frog(), new Salmon()};
+            return new List<Food> { new Milk(), new Meat(), new Frog(), new Salmon()};
         }
 
     }

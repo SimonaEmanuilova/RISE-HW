@@ -3,7 +3,7 @@
     public class Meat : Food
     {
         public Meat()
-        : base("Meat", 10) { }
+        : base("Meat", 30) { }
 
     }
 }

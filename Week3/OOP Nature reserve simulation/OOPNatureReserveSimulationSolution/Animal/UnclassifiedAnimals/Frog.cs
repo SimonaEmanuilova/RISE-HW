@@ -13,7 +13,7 @@ namespace OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals
     public class Frog : Animal
     {
 
-        public Frog() : base("Frog", 5, new List<Food>() { new Algae() }, 1)
+        public Frog() : base("Frog", 8, new List<Food>() { new Algae() }, 1)
         {
         }
 

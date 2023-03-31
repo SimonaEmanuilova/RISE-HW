@@ -1,10 +1,12 @@
-﻿namespace OOPNatureReserveSimulationSolution
+﻿using OOPNatureReserveSimulationSolution.SimulationLogic;
+
+namespace OOPNatureReserveSimulationSolution
 {
-    internal class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            Simulation simulation = new Simulation();
+            Simulation simulation = new Simulation(new AnimalGenerator(), new FoodGenerator());
 
             simulation.RunSimulation();
             

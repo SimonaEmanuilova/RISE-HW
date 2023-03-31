@@ -23,6 +23,15 @@ namespace OOPNatureReserveSimulationSolution.Animals
             MatureAge = matureAge;
         }
 
+        public Food FindRandomFood(List<Food> allFoods)
+        {
+            Random random = new Random();
+            Food foodOfTheDay = allFoods.Where(x => x.NutritionalValue > 0).ElementAt(random.Next(allFoods.Where(x => x.NutritionalValue > 0).ToList().Count));
+
+            return foodOfTheDay;
+        }
+
+     
         public void Eat(Food food)
         {
             if (!IsAlive) { return; }
@@ -36,7 +45,10 @@ namespace OOPNatureReserveSimulationSolution.Animals
                     Energy += food.NutritionalValue;
 
                     MakeSoundWhenEating(food);
-                    RecalculateNutritionValueOfFood(food);
+
+                    int nutritionalValueRemainder = Energy - MaxEnergy;
+
+                    food.ReduceNutritionValueOfFood(nutritionalValueRemainder);
 
                     if (Energy > MaxEnergy)
                     {
@@ -60,16 +72,16 @@ namespace OOPNatureReserveSimulationSolution.Animals
         }
 
 
-        private void RecalculateNutritionValueOfFood(Food food)
-        {
-            int NutritionalValueRemainder = Energy - MaxEnergy;
+        //private void ReduceNutritionValueOfFood(Food food)
+        //{
+        //    int NutritionalValueRemainder = Energy - MaxEnergy;
 
-            if (NutritionalValueRemainder <= 0)
-            {
-                food.NutritionalValue = 0;
-            }
-            else { food.NutritionalValue = NutritionalValueRemainder; }
-        }
+        //    if (NutritionalValueRemainder <= 0)
+        //    {
+        //        food.NutritionalValue = 0;
+        //    }
+        //    else { food.NutritionalValue = NutritionalValueRemainder; }
+        //}
 
         public virtual void ChooseDiet()
         {

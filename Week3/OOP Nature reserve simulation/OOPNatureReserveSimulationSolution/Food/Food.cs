@@ -25,5 +25,14 @@
             return this.Name.Equals(((Food)obj).Name);
         }
 
+        public void ReduceNutritionValueOfFood(int nutritionalValueRemainder)
+        {
+            if (nutritionalValueRemainder <= 0)
+            {
+                NutritionalValue = 0;
+            }
+            else { NutritionalValue = nutritionalValueRemainder; }
+        }
+
     }
 }

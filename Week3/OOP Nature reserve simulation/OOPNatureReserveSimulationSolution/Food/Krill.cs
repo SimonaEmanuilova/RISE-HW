@@ -8,7 +8,7 @@ namespace OOPNatureReserveSimulationSolution.Foods
 {
     internal class Krill : Food
     {
-        public Krill() : base("Krill", 4)
+        public Krill() : base("Krill", 15)
         {
         }
     }

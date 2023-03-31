@@ -10,7 +10,7 @@ namespace OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals
 {
     public class Salmon : Animal
     {
-        public Salmon() : base("Salmon", 10, new List<Food>() { new Insects() }, 2)
+        public Salmon() : base("Salmon", 8, new List<Food>() { new Insects() }, 2)
         {
         }
 

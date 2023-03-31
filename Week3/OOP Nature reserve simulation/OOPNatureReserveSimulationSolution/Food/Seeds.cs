@@ -3,6 +3,6 @@
     public class Seeds : Food
     {
         public Seeds()
-        : base("Seeds", 4) {  }
+        : base("Seeds", 30) {  }
     }
 }

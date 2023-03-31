@@ -8,7 +8,7 @@ namespace OOPNatureReserveSimulationSolution.Foods
 {
     public class Insects : Food
     {
-        public Insects():base("Insects", 4)
+        public Insects():base("Insects", 20)
         {
         }
 
