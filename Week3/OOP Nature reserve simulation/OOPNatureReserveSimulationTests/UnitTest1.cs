@@ -100,5 +100,40 @@ namespace L11_OOPEncapsulationTests
 
             Assert.IsTrue(expectedIsAlife.SequenceEqual(actualIsAlive));
         }
+
+
+        [TestMethod]
+        public void TestRegeneratePlantGivenPlantBelowMaxNutritionalValue()
+        {
+            Food food = new Plant { NutritionalValue = 9, MaxNutritionalValue=10 };
+
+            int expectedNutritionalValue = 10;
+            int actualNutritionalValue=food.RegeneratePlants();
+           
+            Assert.AreEqual(expectedNutritionalValue,actualNutritionalValue);
+        }
+
+        [TestMethod]
+        public void TestRegeneratePlantGivenPlantWithMaxNutritionalValue()
+        {
+            Food food = new Plant { NutritionalValue = 10, MaxNutritionalValue = 10 };
+
+            int expectedNutritionalValue = 10;
+            int actualNutritionalValue = food.RegeneratePlants();
+
+            Assert.AreEqual(expectedNutritionalValue, actualNutritionalValue);
+        }
+
+        [TestMethod]
+        public void TestRegeneratePlantGivenNotPlant()
+        {
+            Food food = new Meat { NutritionalValue = 9, MaxNutritionalValue = 10 };
+
+            int expectedNutritionalValue = 9;
+            int actualNutritionalValue = food.RegeneratePlants();
+
+            Assert.AreEqual(expectedNutritionalValue, actualNutritionalValue);
+        }
+
     }
 }

@@ -7,10 +7,6 @@ namespace OOPNatureReserveSimulationSolution.Animals
 {
     public class Carnivores : Animal
     {
-        //public Carnivores() : base(10, new HashSet<Food>() { new Milk() }, 10)
-        //{
-        //}
-
         public Carnivores(string name, int maxEnergy, List<Food> diet, int matureAge) : base(name, maxEnergy, diet, matureAge)
         {
         }

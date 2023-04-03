@@ -13,7 +13,6 @@ namespace OOPNatureReserveSimulationSolution
             Simulation simulation = new Simulation(new AnimalGenerator(), new FoodGenerator());
 
             simulation.RunSimulation();
-
         }
     }
 }

@@ -7,13 +7,14 @@ namespace OOPNatureReserveSimulationSolution.Animals
     {
         public int Energy { get; set; }
         public int MaxEnergy { get; set; }
-        public List<string> AnimalInfo;
 
         public List<Food> Diet;
         public int LifeSpan { get; private set; } = 0;
         public bool IsAlive => Energy > 0 && NutritionalValue == MaxEnergy;
         public int MatureAge { get; protected set; }
         public bool Starving => (Energy <= MaxEnergy / 2) ? true : false;
+
+        public List<string> DailyRemarks;
 
 
         public Animal(string name, int maxEnergy, List<Food> diet, int matureAge) : base(name, maxEnergy)
@@ -22,7 +23,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
             MaxEnergy = maxEnergy;
             Diet = diet;
             MatureAge = matureAge;
-            AnimalInfo = new List<string>();
+            DailyRemarks = new List<string>();
 
         }
 
@@ -47,8 +48,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
                 {
                     MakeSoundWhenEating(food);
 
-                    Energy += RecalculateNutritionValue(MaxEnergy - Energy, food);
-
+                    Energy += food.RecalculateNutritionValue(MaxEnergy - Energy);
                 }
                 else
                 {
@@ -58,8 +58,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
             else
             {
                 Energy--;
-                //Console.WriteLine($"{Name} didn't found anything to eat.");
-                AnimalInfo.Add($"{Name} didn't found anything to eat.");
+                DailyRemarks.Add($"{Name} didn't found anything to eat.");
             }
             LifeSpan++;
 
@@ -75,12 +74,11 @@ namespace OOPNatureReserveSimulationSolution.Animals
             }
         }
 
-        public virtual void CongratulateMatured()
+        public virtual void CongratulateIfMatured()
         {
-
             if (MatureAge == LifeSpan)
             {
-                Console.WriteLine($"Today the {Name} matured! Happy birthay!");
+                DailyRemarks.Add($"Today the {Name} matured! Happy birthay!");
             }
         }
 
@@ -89,9 +87,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
 
         public virtual void MakeSoundWhenEating(Food food)
         {
-
-            //Console.WriteLine($"{Name} is eating {food.Name} with {food.NutritionalValue} nutritional Value.");
-            AnimalInfo.Add($"{Name} is eating {food.Name} with {food.NutritionalValue} nutritional Value.");
+            DailyRemarks.Add($"{Name} is eating {food.Name} with {food.NutritionalValue} nutritional Value.");
         }
 
         public virtual void MakeSoundWhenEating()
@@ -104,8 +100,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
         {
             if (Starving)
             {
-                //Console.WriteLine($"{Name} is starving.");
-                AnimalInfo.Add($"{Name} is starving.");
+                DailyRemarks.Add($"{Name} is starving.");
             }
         }
 
@@ -121,8 +116,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
 
         public virtual void GetDyingAnimal()
         {
-            //Console.WriteLine($"{Name} has died.");
-            AnimalInfo.Add($"{Name} has died.");
+            DailyRemarks.Add($"{Name} has died.");
         }
 
 

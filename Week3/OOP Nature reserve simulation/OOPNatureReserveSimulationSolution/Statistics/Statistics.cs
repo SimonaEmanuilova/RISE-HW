@@ -10,9 +10,9 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
     public class Statistics
     {
 
-        private IStatisticsDisplay _statisticsDisplay;
+        private IStatisticsDisplayMode _statisticsDisplay;
 
-        public Statistics(IStatisticsDisplay statisticsDisplay)
+        public Statistics(IStatisticsDisplayMode statisticsDisplay)
         {
             _statisticsDisplay = statisticsDisplay;
         }

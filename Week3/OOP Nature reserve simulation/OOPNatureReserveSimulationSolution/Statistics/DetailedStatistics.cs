@@ -8,21 +8,22 @@ using System.Threading.Tasks;
 
 namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
-    public class DetailedStatistics : IStatisticsDisplay
+    public class DetailedStatistics : IStatisticsDisplayMode
     {
         public void Display(List<Animal> allAnimals)
         {
             foreach (Animal animal in allAnimals.Where(x => x.IsAlive))
             {
                 Console.WriteLine(animal.Name + ":");
-                animal.CongratulateMatured();
+
+                animal.CongratulateIfMatured();
                 Console.WriteLine("Energy: " + animal.Energy + "\n");
-                foreach (var info in animal.AnimalInfo)
+
+                foreach (var info in animal.DailyRemarks)
                 {
                     Console.WriteLine(info);
-
                 }
-                animal.AnimalInfo.Clear();
+                animal.DailyRemarks.Clear();
             }
         }
     }

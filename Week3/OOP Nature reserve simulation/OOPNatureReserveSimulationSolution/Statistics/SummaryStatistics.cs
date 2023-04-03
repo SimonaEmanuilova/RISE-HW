@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
-    public class SummaryStatistics : IStatisticsDisplay
+    public class SummaryStatistics : IStatisticsDisplayMode
     {
         public SummaryStatistics() { }
         public  void Display(List<Animal> allAnimals)

@@ -34,10 +34,9 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
 
         public void CallForPlantsRegeneration(List<Food> allFoods)
         {
-            foreach (Food food in allFoods)
+            foreach (Food food in allFoods.Where(x => x.IsPLant))
             {
-                if (food.IsPLant) { food.RegeneratePlants(food); }
-
+                food.RegeneratePlants();
             }
         }
 
@@ -52,13 +51,11 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             List<Food> allFoods = _foodInitialiser.Generate(allAnimals);
 
             int dayCounter = 0;
-    
 
             Statistics statistics = ChooseStatisticsLevel(allAnimals);
 
             while (hasAlive)
             {
-
                 dayCounter++;
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine($"Day {dayCounter}");
@@ -80,7 +77,7 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
         {
             Console.WriteLine("Enter 'detailed' or 'summary' to display statistics:");
             string detailLevel = Console.ReadLine().ToLower();
-            Statistics statisticsMode = null;
+            Statistics statisticsMode;
 
             if (detailLevel == "summary")
             {

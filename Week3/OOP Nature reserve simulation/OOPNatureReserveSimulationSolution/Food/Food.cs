@@ -15,6 +15,34 @@
             MaxNutritionalValue = nutritionalValue;
         }
 
+        public int RecalculateNutritionValue(int energyDeficiency)
+        {
+
+            int animalEnergy;
+
+            if (energyDeficiency >= NutritionalValue)
+            {
+                NutritionalValue = 0;
+                animalEnergy = NutritionalValue;
+            }
+            else
+            {
+                NutritionalValue -= energyDeficiency;
+                animalEnergy = energyDeficiency;
+            }
+
+            return animalEnergy;
+        }
+
+        public int RegeneratePlants()
+        {
+            if (IsPLant && NutritionalValue < MaxNutritionalValue)
+            {
+                NutritionalValue++;
+            }
+            return NutritionalValue;
+        }
+
         public override int GetHashCode()
         {
             return HashCode.Combine(this.Name);
@@ -23,33 +51,6 @@
         public override bool Equals(object? obj)
         {
             return this.Name.Equals(((Food)obj).Name);
-        }
-
-        public int RecalculateNutritionValue(int energyDeficiency, Food food)
-        {
-
-            int animalEnergy;
-
-            if (energyDeficiency >= food.NutritionalValue)
-            {
-                food.NutritionalValue = 0;
-                animalEnergy = food.NutritionalValue;
-            }
-            else
-            {
-                food.NutritionalValue -= energyDeficiency;
-                animalEnergy = energyDeficiency;
-            }
-
-            return animalEnergy;
-        }
-
-        public void RegeneratePlants(Food food)
-        {
-            if (food.IsPLant && food.NutritionalValue < food.MaxNutritionalValue)
-            {
-                food.NutritionalValue++;
-            }
         }
 
     }

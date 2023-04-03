@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
-    public interface IStatisticsDisplay
+    public interface IStatisticsDisplayMode
     {
         public void Display(List<Animal> allAnimals);
 
