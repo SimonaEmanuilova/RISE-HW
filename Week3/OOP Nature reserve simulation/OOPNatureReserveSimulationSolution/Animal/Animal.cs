@@ -6,7 +6,8 @@ namespace OOPNatureReserveSimulationSolution.Animals
     public abstract class Animal : Food
     {
         public int Energy { get; set; }
-        public int MaxEnergy { get; set; } 
+        public int MaxEnergy { get; set; }
+        public List<string> AnimalInfo;
 
         public List<Food> Diet;
         public int LifeSpan { get; private set; } = 0;
@@ -21,6 +22,8 @@ namespace OOPNatureReserveSimulationSolution.Animals
             MaxEnergy = maxEnergy;
             Diet = diet;
             MatureAge = matureAge;
+            AnimalInfo = new List<string>();
+
         }
 
         public Food FindRandomFood(List<Food> allFoods)
@@ -31,7 +34,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
             return foodOfTheDay;
         }
 
-     
+
         public void Eat(Food food)
         {
             if (!IsAlive) { return; }
@@ -42,20 +45,21 @@ namespace OOPNatureReserveSimulationSolution.Animals
             {
                 if (Energy < MaxEnergy)
                 {
-                    Energy+=RecalculateNutritionValue(MaxEnergy - Energy, food);
-                    
                     MakeSoundWhenEating(food);
+
+                    Energy += RecalculateNutritionValue(MaxEnergy - Energy, food);
+
                 }
                 else
                 {
-                    Console.WriteLine($"{Name} is full. It will skip lunch today.");
                     Energy--;
                 }
             }
             else
             {
                 Energy--;
-                Console.WriteLine($"{Name} didn't found anything to eat.");
+                //Console.WriteLine($"{Name} didn't found anything to eat.");
+                AnimalInfo.Add($"{Name} didn't found anything to eat.");
             }
             LifeSpan++;
 
@@ -86,18 +90,23 @@ namespace OOPNatureReserveSimulationSolution.Animals
         public virtual void MakeSoundWhenEating(Food food)
         {
 
-            Console.WriteLine($"{Name} is eating {food.Name} with {food.NutritionalValue} nutritional Value.");
+            //Console.WriteLine($"{Name} is eating {food.Name} with {food.NutritionalValue} nutritional Value.");
+            AnimalInfo.Add($"{Name} is eating {food.Name} with {food.NutritionalValue} nutritional Value.");
         }
 
         public virtual void MakeSoundWhenEating()
         {
             Console.WriteLine($"{Name} is eating.");
+
         }
 
         public virtual void CheckIfStarving()
         {
             if (Starving)
-                Console.WriteLine($"{Name} is starving.");
+            {
+                //Console.WriteLine($"{Name} is starving.");
+                AnimalInfo.Add($"{Name} is starving.");
+            }
         }
 
         public virtual void CheckIfDying()
@@ -112,7 +121,8 @@ namespace OOPNatureReserveSimulationSolution.Animals
 
         public virtual void GetDyingAnimal()
         {
-            Console.WriteLine($"{Name} has died.");
+            //Console.WriteLine($"{Name} has died.");
+            AnimalInfo.Add($"{Name} has died.");
         }
 
 

@@ -7,9 +7,10 @@ using System.Threading.Tasks;
 
 namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
-    public class SummaryStats : IWriteStats
+    public class SummaryStatistics : IStatisticsDisplay
     {
-        public  void WriteStats(List<Animal> allAnimals)
+        public SummaryStatistics() { }
+        public  void Display(List<Animal> allAnimals)
         {
             int aliveAnimals = 0;
             int deadAnimals = 0;

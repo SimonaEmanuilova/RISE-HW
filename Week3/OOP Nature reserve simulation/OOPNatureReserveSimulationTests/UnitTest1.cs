@@ -37,10 +37,11 @@ namespace L11_OOPEncapsulationTests
         public void TestEatToCheckEnergyGivenFoodThatNoOneEats()
         {
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy = 10 }, new Frog { Energy = 10 }, new Salmon { Energy = 10 }
+            HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy=10 }, new Frog { Energy = 10 }, new Salmon { Energy = 10 }
                };
+           
 
-            Food randomFood = new ToxicMushroom();
+            Food randomFood = new Plant();
 
             List<int> expectedEnergy = new List<int>() { 9, 9, 9 };
 

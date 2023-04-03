@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
-    public interface IWriteStats
+    public interface IStatisticsDisplay
     {
-        public void WriteStats(List<Animal> allAnimals);
+        public void Display(List<Animal> allAnimals);
 
     }
 }

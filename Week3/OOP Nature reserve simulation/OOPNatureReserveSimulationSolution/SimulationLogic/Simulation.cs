@@ -10,10 +10,11 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
     public class Simulation
     {
-        private readonly OOPNatureReserveSimulationSolution.IAnimalGenerator _animalInitialiser;
+        private readonly IAnimalGenerator _animalInitialiser;
         private readonly IFoodGenerator _foodInitialiser;
 
-        public Simulation(OOPNatureReserveSimulationSolution.IAnimalGenerator animalInitialiser, IFoodGenerator foodInitialiser)
+
+        public Simulation(IAnimalGenerator animalInitialiser, IFoodGenerator foodInitialiser)
         {
             this._animalInitialiser = animalInitialiser;
             this._foodInitialiser = foodInitialiser;
@@ -31,20 +32,18 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             return allAnimals;
         }
 
-        protected void RegeneratePlants(List<Food> allFood)
+        public void CallForPlantsRegeneration(List<Food> allFoods)
         {
-            foreach (Food food in allFood)
+            foreach (Food food in allFoods)
             {
-                if (food.IsPLant && food.NutritionalValue < food.MaxNutritionalValue)
-                {
-                    food.NutritionalValue++;
-                }
+                if (food.IsPLant) { food.RegeneratePlants(food); }
+
             }
         }
 
         public void RunSimulation()
         {
-            Statistics statistic = new Statistics();
+            Console.WriteLine("Welcome to Nature Simulator 3000!\n");
 
             bool hasAlive = true;
 
@@ -53,15 +52,12 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             List<Food> allFoods = _foodInitialiser.Generate(allAnimals);
 
             int dayCounter = 0;
+    
 
-            Console.WriteLine("Welcome to Nature Simulator 3000!\n PLease select a View Mode - detailed / summary :");
-
-            string detailLevel = Console.ReadLine().ToLower();
-
+            Statistics statistics = ChooseStatisticsLevel(allAnimals);
 
             while (hasAlive)
             {
-                statistic.DisplayDayStats(detailLevel, allAnimals, dayCounter);
 
                 dayCounter++;
                 Console.ForegroundColor = ConsoleColor.Blue;
@@ -71,11 +67,38 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
                 hasAlive = false;
 
                 FeedAnimals(allFoods, allAnimals);
-                RegeneratePlants(allFoods);
+                CallForPlantsRegeneration(allFoods);
 
                 hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, allAnimals);
+                statistics.DisplayDayStatistics(allAnimals);
+
             }
-            statistic.DisplayFinalStats(allAnimals);
+            statistics.DisplayFinalStatistics(allAnimals);
+        }
+
+        public Statistics ChooseStatisticsLevel(List<Animal> allAnimals)
+        {
+            Console.WriteLine("Enter 'detailed' or 'summary' to display statistics:");
+            string detailLevel = Console.ReadLine().ToLower();
+            Statistics statisticsMode = null;
+
+            if (detailLevel == "summary")
+            {
+                Statistics summaryStats = new Statistics(new SummaryStatistics());
+                statisticsMode = summaryStats;
+            }
+            else if (detailLevel == "detailed")
+            {
+                Statistics detailedStats = new Statistics(new DetailedStatistics());
+                statisticsMode = detailedStats;
+            }
+            else
+            {
+                Console.WriteLine("Please select a detail level to view the statistic of the simulation.");
+                throw new Exception();
+            }
+
+            return statisticsMode;
         }
 
         private static bool CheckIsAtLeastOneAnimalAlive(bool hasAlive, List<Animal> allAnimals)
