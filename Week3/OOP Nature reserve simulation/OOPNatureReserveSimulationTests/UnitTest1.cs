@@ -15,7 +15,7 @@ namespace L11_OOPEncapsulationTests
         public void TestEatToCheckEnergyIncrease()
         {
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy = 9, MaxEnergy = 10 } };
+            HashSet<Animal> animals = new HashSet<Animal>() { new Lion(9, 10) };
 
             Food randomFood = new Milk();
 
@@ -37,9 +37,9 @@ namespace L11_OOPEncapsulationTests
         public void TestEatToCheckEnergyGivenFoodThatNoOneEats()
         {
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy=10 }, new Frog { Energy = 10 }, new Salmon { Energy = 10 }
+            HashSet<Animal> animals = new HashSet<Animal>() { new Lion(10,10), new Frog(10,10), new Salmon(10,10)
                };
-           
+
 
             Food randomFood = new Plant();
 
@@ -61,8 +61,8 @@ namespace L11_OOPEncapsulationTests
         public void TestEatToCheckLifeSpanGrowForOneCycle()
         {
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Frog(),
-                new Lion(), new Gazelle()
+            HashSet<Animal> animals = new HashSet<Animal>() { new Frog(8,8),
+                new Lion(10,10), new Gazelle(15,15)
                };
 
             Food randomFood = new Milk();
@@ -84,7 +84,7 @@ namespace L11_OOPEncapsulationTests
         [TestMethod]
         public void TestEatWhereAnimalDiesGivenFoodItDoesntEat()
         {
-            HashSet<Animal> animals = new HashSet<Animal>() { new Lion { Energy = 1 }, new Frog { Energy = 1 }, new Salmon { Energy = 1 } };
+            HashSet<Animal> animals = new HashSet<Animal>() { new Lion(1, 10), new Frog(1, 8), new Salmon(1, 8) };
 
             Food randomFood = new Milk();
 
@@ -105,12 +105,12 @@ namespace L11_OOPEncapsulationTests
         [TestMethod]
         public void TestRegeneratePlantGivenPlantBelowMaxNutritionalValue()
         {
-            Food food = new Plant { NutritionalValue = 9, MaxNutritionalValue=10 };
+            Food food = new Plant { NutritionalValue = 9, MaxNutritionalValue = 10 };
 
             int expectedNutritionalValue = 10;
-            int actualNutritionalValue=food.RegeneratePlants();
-           
-            Assert.AreEqual(expectedNutritionalValue,actualNutritionalValue);
+            int actualNutritionalValue = food.RegeneratePlants();
+
+            Assert.AreEqual(expectedNutritionalValue, actualNutritionalValue);
         }
 
         [TestMethod]

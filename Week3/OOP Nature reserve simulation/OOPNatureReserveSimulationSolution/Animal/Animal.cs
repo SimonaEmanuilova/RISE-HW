@@ -5,21 +5,21 @@ namespace OOPNatureReserveSimulationSolution.Animals
 {
     public abstract class Animal : Food
     {
-        public int Energy { get; set; }
-        public int MaxEnergy { get; set; }
+        public int Energy { get; private set; }
+        public int MaxEnergy { get; private set; }
 
         public List<Food> Diet;
         public int LifeSpan { get; private set; } = 0;
         public bool IsAlive => Energy > 0 && NutritionalValue == MaxEnergy;
-        public int MatureAge { get; protected set; }
+        public int MatureAge { get; private set; }
         public bool Starving => (Energy <= MaxEnergy / 2) ? true : false;
 
         public List<string> DailyRemarks;
 
 
-        public Animal(string name, int maxEnergy, List<Food> diet, int matureAge) : base(name, maxEnergy)
+        public Animal(string name, int energy, int maxEnergy, List<Food> diet, int matureAge) : base(name, maxEnergy)
         {
-            Energy = maxEnergy;
+            Energy = energy;
             MaxEnergy = maxEnergy;
             Diet = diet;
             MatureAge = matureAge;

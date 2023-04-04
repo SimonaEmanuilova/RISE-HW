@@ -10,14 +10,14 @@ namespace OOPNatureReserveSimulationSolution.Animals.HerbivoreAnimals
     public class Gazelle : Herbivores
     {
 
-        public Gazelle() : base("Gazelle",15, new List<Food>() { new Milk(), new Plant()}, 4)
+        public Gazelle(int energy, int maxEnergy) : base("Gazelle", energy, maxEnergy, new List<Food>() { new Milk(), new Plant() }, 4)
         {
         }
 
 
         public override List<Food> GetMatureDiet()
         {
-            return new List<Food> { new Milk(), new Seeds(), new TallPlant() , new Plant()};
+            return new List<Food> { new Milk(), new Seeds(), new TallPlant(), new Plant() };
         }
 
         public override void MakeSoundWhenEating()

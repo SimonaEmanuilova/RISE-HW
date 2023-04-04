@@ -6,13 +6,13 @@ namespace OOPNatureReserveSimulationSolution.Animals
 {
     public class AnimalFactory
     {
-        public Lion CreateLion() { return new Lion(); }
+        public Lion CreateLion() { return new Lion(10, 10); }
 
-        public Gazelle CreateGazelle() { return new Gazelle(); }
+        public Gazelle CreateGazelle() { return new Gazelle(15, 15); }
 
-        public Frog CreateFrog() { return new Frog(); }
+        public Frog CreateFrog() { return new Frog(8, 8); }
 
-        public Salmon CreateSalmon() { return new Salmon(); }
+        public Salmon CreateSalmon() { return new Salmon(8, 8); }
 
         public List<Animal> CreateAllAnimals()
         {

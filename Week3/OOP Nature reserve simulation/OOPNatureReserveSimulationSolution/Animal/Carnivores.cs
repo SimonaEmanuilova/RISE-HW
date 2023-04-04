@@ -7,13 +7,14 @@ namespace OOPNatureReserveSimulationSolution.Animals
 {
     public class Carnivores : Animal
     {
-        public Carnivores(string name, int maxEnergy, List<Food> diet, int matureAge) : base(name, maxEnergy, diet, matureAge)
+        public Carnivores(string name, int energy, int maxEnergy, List<Food> diet, int matureAge) : base(name, energy, maxEnergy, diet, matureAge)
         {
         }
 
         public override List<Food> GetMatureDiet()
         {
-            return new List<Food> { new Milk(), new Meat(), new Frog(), new Salmon()};
+            AnimalFactory animalFactory = new AnimalFactory();
+            return new List<Food> { new Milk(), new Meat(), animalFactory.CreateFrog(), animalFactory.CreateSalmon() };
         }
 
     }

@@ -6,10 +6,10 @@ namespace OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals
 {
     public class Lion : Carnivores
     {
-        public Lion() : base("Lion", 10, new List<Food>() { new Milk() }, 5)
+        public Lion(int energy, int maxEnergy) : base("Lion", energy, maxEnergy, new List<Food>() { new Milk() }, 5)
         {
         }
-      
+
         public override void MakeSoundWhenEating()
         {
             Console.WriteLine("Rawwwwwr I will eat you!!!");
@@ -17,7 +17,8 @@ namespace OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals
 
         public override List<Food> GetMatureDiet()
         {
-            return new List<Food> { new Milk(), new Meat(), new Frog(), new Salmon(), new Gazelle() };
+            AnimalFactory animalFactory = new AnimalFactory();
+            return new List<Food> { new Milk(), new Meat(), animalFactory.CreateFrog(), animalFactory.CreateSalmon(), animalFactory.CreateGazelle() };
         }
 
     }
