@@ -10,7 +10,9 @@ namespace OOPNatureReserveSimulationSolution
     {
         static void Main(string[] args)
         {
-            Simulation simulation = new Simulation(new AnimalGenerator(), new FoodGenerator());
+            ConsoleEnglishLogger logger = new ConsoleEnglishLogger();
+
+            Main simulation = new Main(new AnimalGenerator(logger), new FoodGenerator(), logger, new Simulation());
 
             simulation.RunSimulation();
         }

@@ -3,54 +3,52 @@ using OOPNatureReserveSimulationSolution.Foods;
 using OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals;
 using OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals;
 using OOPNatureReserveSimulationSolution.Animals.HerbivoreAnimals;
-
-
+using OOPNatureReserveSimulationSolution;
 
 namespace L11_OOPEncapsulationTests
 {
     [TestClass]
     public class UnitTest1
     {
-        [TestMethod]
-        public void TestEatToCheckEnergyIncrease()
+        ConsoleEnglishLogger animalEvents;
+
+        [TestInitialize]
+        public void Initialize()
         {
-
-            HashSet<Animal> animals = new HashSet<Animal>() { new Lion(9, 10) };
-
-            Food randomFood = new Milk();
-
-            List<int> expectedEnergy = new List<int>() { 10 };
-
-
-            List<int> actualEnergy = new List<int>();
-
-            foreach (Animal animal in animals)
-            {
-                animal.Eat(randomFood);
-                actualEnergy.Add(animal.Energy);
-            }
-
-            Assert.IsTrue(expectedEnergy.SequenceEqual(actualEnergy));
+            animalEvents = new ConsoleEnglishLogger();
         }
 
         [TestMethod]
-        public void TestEatToCheckEnergyGivenFoodThatNoOneEats()
+        public void TestIfAnimalIncreasesEnergyWhenEatingFoodInItsDiet()
         {
+            Animal animal = new Lion(9, 10, animalEvents);
+            Food food = new Milk();
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Lion(10,10), new Frog(10,10), new Salmon(10,10)
-               };
+            int expectedEnergy = 10;
+            int actualEnergy;
 
+            animal.Eat(food);
+            actualEnergy = animal.Energy;
 
-            Food randomFood = new Plant();
+            Assert.AreEqual(expectedEnergy, actualEnergy);
+        }
+
+        [TestMethod]
+        public void TestIfAnimalsDecreaseEnergyWhenEatingFoodThatIsNotInTheirDiet()
+        {
+            HashSet<Animal> animals = new HashSet<Animal>() {
+                new Lion(10, 10, animalEvents),
+                new Frog(10, 10, animalEvents),
+                new Salmon(10, 10, animalEvents)
+            };
+            Food food = new Plant();
 
             List<int> expectedEnergy = new List<int>() { 9, 9, 9 };
-
-
             List<int> actualEnergy = new List<int>();
 
             foreach (Animal animal in animals)
             {
-                animal.Eat(randomFood);
+                animal.Eat(food);
                 actualEnergy.Add(animal.Energy);
             }
 
@@ -58,74 +56,59 @@ namespace L11_OOPEncapsulationTests
         }
 
         [TestMethod]
-        public void TestEatToCheckLifeSpanGrowForOneCycle()
+        public void TestIfTheLifespanOfAnAnimalIncreasesWhenADayHasGoneByAndItIsStillAlive()
         {
+            Animal animal = new Frog(10, 10, animalEvents);   //when we create the animal, its lifespan starts from 0
+            Food food = new Algae();
 
-            HashSet<Animal> animals = new HashSet<Animal>() { new Frog(8,8),
-                new Lion(10,10), new Gazelle(15,15)
-               };
+            int expectedLifespan = 1;
+            int actualLifespan;
 
-            Food randomFood = new Milk();
+            animal.Eat(food);
+            actualLifespan = animal.LifeSpan;
 
-            List<int> expectedLifespan = new List<int>() { 1, 1, 1 };
-
-
-            List<int> actualLifespan = new List<int>();
-
-            foreach (Animal animal in animals)
-            {
-                animal.Eat(randomFood);
-                actualLifespan.Add(animal.LifeSpan);
-            }
-
-            Assert.IsTrue(expectedLifespan.SequenceEqual(actualLifespan));
+            Assert.AreEqual(expectedLifespan, actualLifespan);
         }
 
         [TestMethod]
-        public void TestEatWhereAnimalDiesGivenFoodItDoesntEat()
+        public void TestIfTheAnimalDiesWhenItHasOneEnergyBarLeftAndDoesntFindFoodInItsDiet()
         {
-            HashSet<Animal> animals = new HashSet<Animal>() { new Lion(1, 10), new Frog(1, 8), new Salmon(1, 8) };
+            Animal animal = new Frog(1, 8, animalEvents);
+            Food food = new Milk();
 
-            Food randomFood = new Milk();
+            bool expectedIsAlive = false;
+            bool actualIsAlive;
 
-            List<bool> expectedIsAlife = new List<bool>() { true, false, false };
+            animal.Eat(food);
+            actualIsAlive = animal.IsAlive;
 
-            List<bool> actualIsAlive = new List<bool>();
-
-            foreach (Animal animal in animals)
-            {
-                animal.Eat(randomFood);
-                actualIsAlive.Add(animal.IsAlive);
-            }
-
-            Assert.IsTrue(expectedIsAlife.SequenceEqual(actualIsAlive));
+            Assert.AreEqual(expectedIsAlive, actualIsAlive);
         }
 
-
         [TestMethod]
-        public void TestRegeneratePlantGivenPlantBelowMaxNutritionalValue()
+        public void TestIfPlantRegeneratesItsNutritionalValueWhenItIsBelowItsMaxNutritionalValue()
         {
-            Food food = new Plant { NutritionalValue = 9, MaxNutritionalValue = 10 };
+            Food plant = new Plant { NutritionalValue = 9, MaxNutritionalValue = 10 };
 
             int expectedNutritionalValue = 10;
-            int actualNutritionalValue = food.RegeneratePlants();
+            int actualNutritionalValue = plant.RegeneratePlants();
 
             Assert.AreEqual(expectedNutritionalValue, actualNutritionalValue);
         }
 
         [TestMethod]
-        public void TestRegeneratePlantGivenPlantWithMaxNutritionalValue()
+        public void TestThatPlantDoesntRegenerateItsNutritionalValueWhenItIsAlreadyWithMaxNutritionalValue()
         {
-            Food food = new Plant { NutritionalValue = 10, MaxNutritionalValue = 10 };
+            Food plant = new Plant { NutritionalValue = 10, MaxNutritionalValue = 10 };
 
             int expectedNutritionalValue = 10;
-            int actualNutritionalValue = food.RegeneratePlants();
+            int actualNutritionalValue = plant.RegeneratePlants();
 
             Assert.AreEqual(expectedNutritionalValue, actualNutritionalValue);
         }
 
         [TestMethod]
-        public void TestRegeneratePlantGivenNotPlant()
+        public void TestThatFoodThatIsNotAPlantDoesntRegenerateItsNutritionalValue()
         {
             Food food = new Meat { NutritionalValue = 9, MaxNutritionalValue = 10 };
 

@@ -6,7 +6,8 @@ namespace OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals
 {
     public class Lion : Carnivores
     {
-        public Lion(int energy, int maxEnergy) : base("Lion", energy, maxEnergy, new List<Food>() { new Milk() }, 5)
+        public Lion(int energy, int maxEnergy, IAnimalEvents animalEvents) : 
+            base("Lion", energy, maxEnergy, new List<Food>() { new Milk() }, 5, animalEvents)
         {
         }
 
@@ -17,8 +18,9 @@ namespace OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals
 
         public override List<Food> GetMatureDiet()
         {
-            AnimalFactory animalFactory = new AnimalFactory();
-            return new List<Food> { new Milk(), new Meat(), animalFactory.CreateFrog(), animalFactory.CreateSalmon(), animalFactory.CreateGazelle() };
+            AnimalGenerator animalGenerator = new AnimalGenerator(_events);
+
+            return new List<Food> { new Milk(), new Meat(), animalGenerator.CreateFrog(), animalGenerator.CreateSalmon(), animalGenerator.CreateGazelle() };
         }
 
     }

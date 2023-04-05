@@ -17,9 +17,9 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             _statisticsDisplay = statisticsDisplay;
         }
 
-        public void DisplayDayStatistics(List<Animal> allAnimals)
+        public void DisplayDayStatistics(List<Animal> allAnimals, int dayCounter)
         {
-            this._statisticsDisplay.Display(allAnimals);
+            this._statisticsDisplay.Display(allAnimals, dayCounter);
         }
 
 

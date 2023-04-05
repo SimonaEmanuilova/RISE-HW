@@ -9,7 +9,7 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
     public interface IStatisticsDisplayMode
     {
-        public void Display(List<Animal> allAnimals);
+        public void Display(List<Animal> allAnimals, int dayCounter);
 
     }
 }

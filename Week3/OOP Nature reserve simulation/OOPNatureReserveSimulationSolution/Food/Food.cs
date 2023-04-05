@@ -13,6 +13,7 @@
             Name = name;
             NutritionalValue = nutritionalValue;
             MaxNutritionalValue = nutritionalValue;
+
         }
 
         public int RecalculateNutritionValue(int energyDeficiency)
