@@ -1,0 +1,46 @@
+
+
+Task 1:
+
+1) Test If Animal Increases Energy When Eating Food In ItsDiet
+
+2) Test If Animals Decrease Energy When Eating Food That Is Not In Their Diet
+
+3) Test If The Lifespan Of An Animal Increases When A Day Has Gone By And It Is Still Alive
+
+4) Test If The Animal Dies When It Has One Energy Bar Left And Doesnt Find Food In Its Diet
+
+
+Task 2:
+
+1) Test If Lion Raws When Eating Food In Its Diet
+
+2) Test That Lion Doesn't Raw When It Doesn't Eat Anything For The Day
+
+3) Test If Lion Is Starving When Energy Falls Below Half
+
+4) Test That Lion Matures And Changes Diet
+
+5) Test That Carnivore Eats Another Animal
+
+
+Task 3:
+
+1) Test If Plant Regenerates Its Nutritional Value When It Is Below Its Max Nutritional Value
+
+2) Test That Plant Doesn't Regenerate Its Nutritional Value When It Is Already With Max Nutritional Value
+
+3) Test That Food That Is Not A Plant Doesn't Regenerate Its Nutritional Value
+
+
+Task 4:
+
+1) Test that animal crosses to another biome when it can live on the second biome.
+
+2) Test that animal doesn't cross to another biome when it can't live on the second biome.
+
+3) Test that animal doesn't move to another biome when it is dead.
+
+4) Test that animal doesn't change it's energy when it gets to a second biome.
+
+5) Test that animal can be eaten by other carnivore animals when it has gone to their biome.
