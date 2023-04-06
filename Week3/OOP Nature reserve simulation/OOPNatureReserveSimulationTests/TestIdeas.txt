@@ -1,0 +1,9 @@
+1) Test that animal crosses to another biome when it can live on the second biome.
+
+2) Test that animal doesn't cross to another biome when it can't live on the second biome.
+
+3) Test that animal doesn't move to another biome when it is dead.
+
+4) Test that animal doesn't change it's energy when it gets to a second biome.
+
+5) Test that animal can be eaten by other carnivore animals when it has gone to their biome.
