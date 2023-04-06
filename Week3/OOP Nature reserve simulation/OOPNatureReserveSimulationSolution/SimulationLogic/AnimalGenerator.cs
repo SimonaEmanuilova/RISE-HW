@@ -24,7 +24,7 @@ namespace OOPNatureReserveSimulationSolution
 
         public List<Animal> Generate()
         {
-            
+
             List<Animal> allAnimals = new List<Animal>();
 
             Console.WriteLine("Choose number of Lions ");

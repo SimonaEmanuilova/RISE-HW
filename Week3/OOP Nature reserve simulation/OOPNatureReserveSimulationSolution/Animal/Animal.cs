@@ -45,22 +45,16 @@ namespace OOPNatureReserveSimulationSolution.Animals
         public void Eat(Food food)
         {
             if (!IsAlive) { return; }
+
             CheckIfStarving();
             ChooseDiet();
 
-            if (Diet.Contains(food) && food.NutritionalValue > 0)
+            if (Diet.Contains(food) && food.NutritionalValue > 0 && Energy < MaxEnergy)
             {
-                if (Energy < MaxEnergy)
-                {
-                    MakeSoundWhenEating(food);
-                    _events.Eat(Name, food.Name, food.NutritionalValue);
+                MakeSoundWhenEating(food);
+                _events.Eat(Name, food.Name, food.NutritionalValue);
 
-                    Energy += food.RecalculateNutritionValue(MaxEnergy - Energy);
-                }
-                else
-                {
-                    Energy--;
-                }
+                Energy += food.RecalculateNutritionValue(MaxEnergy - Energy);
             }
             else
             {
@@ -68,7 +62,6 @@ namespace OOPNatureReserveSimulationSolution.Animals
                 _events.Eat(Name, null, null);
             }
             LifeSpan++;
-
             CheckIfDying();
         }
 
@@ -121,7 +114,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
 
         public virtual void GetDyingAnimal()
         {
-                _events.Die(Name);
+            _events.Die(Name);
         }
 
 
