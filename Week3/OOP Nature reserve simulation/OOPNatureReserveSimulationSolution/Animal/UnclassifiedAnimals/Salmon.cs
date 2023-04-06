@@ -10,7 +10,8 @@ namespace OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals
 {
     public class Salmon : Animal
     {
-        public Salmon(int energy, int maxEnergy, IAnimalEvents animalEvents) : base("Salmon", energy, maxEnergy, new List<Food>() { new Insects() }, 2, animalEvents)
+        private const int matureAge = 2;
+        public Salmon(int energy, int maxEnergy, IAnimalEvents animalEvents) : base("Salmon", energy, maxEnergy, new List<Food>() { new Insects() }, matureAge, animalEvents)
         {
         }
 

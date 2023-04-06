@@ -14,13 +14,36 @@ namespace OOPNatureReserveSimulationSolution
             this.animalEvents = animalEvents;
         }
 
-        public Lion CreateLion() { return new Lion(10, 10, animalEvents); }
+        public Lion CreateLion()
+        {
+            int lionCurrentEnergy = 10;
+            int lionMaxEnergy = 10;
 
-        public Gazelle CreateGazelle() { return new Gazelle(15, 15, animalEvents); }
+            return new Lion(lionCurrentEnergy, lionMaxEnergy, animalEvents);
+        }
 
-        public Frog CreateFrog() { return new Frog(8, 8, animalEvents); }
+        public Gazelle CreateGazelle()
+        {
+            int GazelleCurrentEnergy = 15;
+            int GazelleMaxEnergy = 15;
 
-        public Salmon CreateSalmon() { return new Salmon(8, 8, animalEvents); }
+            return new Gazelle(GazelleCurrentEnergy, GazelleMaxEnergy, animalEvents);
+        }
+
+        public Frog CreateFrog()
+        {
+            int FrogCurrentEnergy = 8;
+            int FrogMaxEnergy = 8;
+            return new Frog(FrogCurrentEnergy, FrogMaxEnergy, animalEvents);
+        }
+
+        public Salmon CreateSalmon()
+        {
+            int SalmonCurrentEnergy = 8;
+            int SalmonMaxEnergy = 8;
+
+            return new Salmon(SalmonCurrentEnergy, SalmonMaxEnergy, animalEvents);
+        }
 
         public List<Animal> Generate()
         {

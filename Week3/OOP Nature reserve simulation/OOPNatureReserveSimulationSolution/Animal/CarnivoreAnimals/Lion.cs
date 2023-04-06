@@ -6,8 +6,10 @@ namespace OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals
 {
     public class Lion : Carnivores
     {
+        private const int matureAge = 5;
+
         public Lion(int energy, int maxEnergy, IAnimalEvents animalEvents) : 
-            base("Lion", energy, maxEnergy, new List<Food>() { new Milk() }, 5, animalEvents)
+            base("Lion", energy, maxEnergy, new List<Food>() { new Milk() }, matureAge, animalEvents)
         {
         }
 

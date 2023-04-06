@@ -1,6 +1,4 @@
 ﻿using OOPNatureReserveSimulationSolution.Foods;
-using System;
-using System.ComponentModel.Design;
 
 namespace OOPNatureReserveSimulationSolution.Animals
 {

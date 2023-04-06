@@ -15,7 +15,6 @@ namespace OOPNatureReserveSimulationSolution.Animals
         {
             AnimalGenerator animalGenerator = new AnimalGenerator(_events);
 
-            //AnimalFactory animalFactory = new AnimalFactory();
             return new List<Food> { new Milk(), new Meat(), animalGenerator.CreateFrog(), animalGenerator.CreateSalmon() };
         }
 

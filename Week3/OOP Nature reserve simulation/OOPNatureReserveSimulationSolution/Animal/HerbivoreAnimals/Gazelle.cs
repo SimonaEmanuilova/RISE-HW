@@ -9,8 +9,9 @@ namespace OOPNatureReserveSimulationSolution.Animals.HerbivoreAnimals
 {
     public class Gazelle : Herbivores
     {
+        private const int matureAge = 4;
 
-        public Gazelle(int energy, int maxEnergy, IAnimalEvents animalEvents) : base("Gazelle", energy, maxEnergy, new List<Food>() { new Milk(), new Plant() }, 4, animalEvents)
+        public Gazelle(int energy, int maxEnergy, IAnimalEvents animalEvents) : base("Gazelle", energy, maxEnergy, new List<Food>() { new Milk(), new Plant() }, matureAge, animalEvents)
         {
         }
 

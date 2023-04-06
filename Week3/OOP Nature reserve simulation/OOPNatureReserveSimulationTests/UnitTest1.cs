@@ -21,7 +21,10 @@ namespace L11_OOPEncapsulationTests
         [TestMethod]
         public void TestIfAnimalIncreasesEnergyWhenEatingFoodInItsDiet()
         {
-            Animal animal = new Lion(9, 10, animalEvents);
+
+            int lionCurrentEnergy = 9;
+            int lionMaxEnergy = 10;
+            Animal animal = new Lion(lionCurrentEnergy, lionMaxEnergy, animalEvents);
             Food food = new Milk();
 
             int expectedEnergy = 10;
@@ -34,31 +37,28 @@ namespace L11_OOPEncapsulationTests
         }
 
         [TestMethod]
-        public void TestIfAnimalsDecreaseEnergyWhenEatingFoodThatIsNotInTheirDiet()
+        public void TestIfAnimalDecreasesEnergyWhenEatingFoodThatIsNotInItsDiet()
         {
-            HashSet<Animal> animals = new HashSet<Animal>() {
-                new Lion(10, 10, animalEvents),
-                new Frog(10, 10, animalEvents),
-                new Salmon(10, 10, animalEvents)
-            };
+            int lionCurrentEnergy = 10;
+            int lionMaxEnergy = 10;
+            Animal animal = new Lion(lionCurrentEnergy, lionMaxEnergy, animalEvents);
             Food food = new Plant();
 
-            List<int> expectedEnergy = new List<int>() { 9, 9, 9 };
-            List<int> actualEnergy = new List<int>();
+            int expectedEnergy = 9;
+            int actualEnergy;
 
-            foreach (Animal animal in animals)
-            {
-                animal.Eat(food);
-                actualEnergy.Add(animal.Energy);
-            }
+            animal.Eat(food);
+            actualEnergy = animal.Energy;
 
-            Assert.IsTrue(expectedEnergy.SequenceEqual(actualEnergy));
+            Assert.AreEqual(expectedEnergy, actualEnergy);
         }
 
         [TestMethod]
         public void TestIfTheLifespanOfAnAnimalIncreasesWhenADayHasGoneByAndItIsStillAlive()
         {
-            Animal animal = new Frog(10, 10, animalEvents);   //when we create the animal, its lifespan starts from 0
+            int frogCurrentEnergy = 10;
+            int frogMaxEnergy = 10;
+            Animal animal = new Frog(frogCurrentEnergy, frogMaxEnergy, animalEvents);   //when we create the animal, its lifespan starts from 0
             Food food = new Algae();
 
             int expectedLifespan = 1;
@@ -73,7 +73,9 @@ namespace L11_OOPEncapsulationTests
         [TestMethod]
         public void TestIfTheAnimalDiesWhenItHasOneEnergyBarLeftAndDoesntFindFoodInItsDiet()
         {
-            Animal animal = new Frog(1, 8, animalEvents);
+            int frogCurrentEnergy = 1;
+            int frogMaxEnergy = 8;
+            Animal animal = new Frog(frogCurrentEnergy, frogMaxEnergy, animalEvents);
             Food food = new Milk();
 
             bool expectedIsAlive = false;

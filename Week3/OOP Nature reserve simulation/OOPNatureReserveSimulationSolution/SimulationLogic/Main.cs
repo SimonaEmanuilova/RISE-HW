@@ -1,9 +1,5 @@
 ﻿using OOPNatureReserveSimulationSolution.Animals;
 using OOPNatureReserveSimulationSolution.Foods;
-using OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals;
-using OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals;
-using OOPNatureReserveSimulationSolution.Animals.HerbivoreAnimals;
-using OOPNatureReserveSimulationSolution.SimulationLogic;
 
 
 namespace OOPNatureReserveSimulationSolution.SimulationLogic
@@ -20,7 +16,7 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             this._animalInitialiser = animalInitialiser;
             this._foodInitialiser = foodInitialiser;
             this.eventsLogger = languageLogger;
-            _simulation = simulation;
+            this._simulation = simulation;
         }
 
         public void RunSimulation()

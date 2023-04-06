@@ -12,8 +12,8 @@ namespace OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals
 {
     public class Frog : Animal
     {
-
-        public Frog(int energy, int maxEnergy, IAnimalEvents animalEvents) : base("Frog", energy, maxEnergy, new List<Food>() { new Algae() }, 1, animalEvents)
+        private const int matureAge= 1;
+        public Frog(int energy, int maxEnergy, IAnimalEvents animalEvents) : base("Frog", energy, maxEnergy, new List<Food>() { new Algae() }, matureAge, animalEvents)
         {
         }
 
