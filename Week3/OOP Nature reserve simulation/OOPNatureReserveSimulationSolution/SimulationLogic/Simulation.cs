@@ -22,7 +22,7 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
                     biome.FindNeighbours(biomes);
                 }
 
-                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.Blue;   //TODO: move UI part in Statistic
                 Console.WriteLine($"\nDAY {dayCounter}");
                 Console.ForegroundColor = ConsoleColor.White;
 
@@ -35,7 +35,7 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
                     FeedAnimals(biome.Foods, biome.Animals);
                     CallForPlantsRegeneration(biome.Foods);
                     hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, biome.Animals);
-                    statistics.DisplayDayStatistics(biome.Animals, dayCounter);  //TODO: make better UI for daily statistics
+                    statistics.DisplayDayStatistics(biome.Animals, dayCounter);
                     biomeNumber++;
                 }
 

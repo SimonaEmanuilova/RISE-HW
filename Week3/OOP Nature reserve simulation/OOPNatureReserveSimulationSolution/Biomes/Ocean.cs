@@ -5,7 +5,7 @@ namespace OOPNatureReserveSimulationSolution.Biomes
 {
     public class Ocean : Biome
     {
-        public Ocean(IAnimalEvents events) : base("Ocean", events) 
+        public Ocean(IAnimalEvents events) : base("Ocean", events)
         {
         }
 
