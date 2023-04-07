@@ -1,5 +1,6 @@
 ﻿using OOPNatureReserveSimulationSolution.Animals.HerbivoreAnimals;
 using OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals;
+using OOPNatureReserveSimulationSolution.Biomes;
 using OOPNatureReserveSimulationSolution.Foods;
 
 namespace OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals
@@ -9,7 +10,12 @@ namespace OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals
         private const int matureAge = 5;
 
         public Lion(int energy, int maxEnergy, IAnimalEvents animalEvents) : 
-            base("Lion", energy, maxEnergy, new List<Food>() { new Milk() }, matureAge, animalEvents)
+            base("Lion", 
+                energy, maxEnergy, 
+                new List<Food>() { new Milk() }, 
+                new List<Biome> { new Savannah(animalEvents) }, 
+                matureAge, 
+                animalEvents)
         {
         }
 

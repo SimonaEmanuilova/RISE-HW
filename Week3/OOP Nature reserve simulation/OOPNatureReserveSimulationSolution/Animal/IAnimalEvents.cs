@@ -1,4 +1,6 @@
-﻿namespace OOPNatureReserveSimulationSolution.Animals
+﻿using OOPNatureReserveSimulationSolution.Biomes;
+
+namespace OOPNatureReserveSimulationSolution.Animals
 {
     public interface IAnimalEvents
     {
@@ -8,6 +10,7 @@
         void Mature(string animalName);
         void Starve(string animalName);
         void Die(string animalName);
+        void Move(string animalName, Biome? oldBiome, Biome? newBiome);
     }
 
 }

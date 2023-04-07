@@ -1,11 +1,12 @@
 ﻿using OOPNatureReserveSimulationSolution.Animals;
+using OOPNatureReserveSimulationSolution.Biomes;
 using OOPNatureReserveSimulationSolution.Foods;
 
 namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
     public class Simulation
     {
-        public void Run(List<Animal> allAnimals, List<Food> allFoods, Statistics statistics)
+        public void Run(Biome[,] biomes, Statistics statistics)
         {
             int dayCounter = 0;
 
@@ -16,15 +17,60 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
                 dayCounter++;
 
                 hasAlive = false;
+                foreach (Biome biome in biomes)
+                {
+                    biome.FindNeighbours(biomes);
+                }
 
-                FeedAnimals(allFoods, allAnimals);
-                CallForPlantsRegeneration(allFoods);
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine($"\nDAY {dayCounter}");
+                Console.ForegroundColor = ConsoleColor.White;
 
-                hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, allAnimals);
-                statistics.DisplayDayStatistics(allAnimals, dayCounter);
+                int biomeNumber = 1;
+                foreach (Biome biome in biomes)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine($"\nBiome {biomeNumber} - {biome.Name} - Lunch time");
+
+                    FeedAnimals(biome.Foods, biome.Animals);
+                    CallForPlantsRegeneration(biome.Foods);
+                    hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, biome.Animals);
+                    statistics.DisplayDayStatistics(biome.Animals, dayCounter);  //TODO: make better UI for daily statistics
+                    biomeNumber++;
+                }
+
+                biomeNumber = 1;
+
+                foreach (Biome biome in biomes)
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine($"\nBiome {biomeNumber} - {biome.Name} - Migration time");
+
+                    CallAnimalsForMigration(biome.Animals);
+                    hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, biome.Animals);
+                    statistics.DisplayDayStatistics(biome.Animals, dayCounter);
+                    biomeNumber++;
+                }
 
             }
-            statistics.DisplayFinalStatistics(allAnimals);
+            //statistics.DisplayFinalStatistics(allAnimals); //TODO: make all animals from every biome in one list to view the final stats
+        }
+
+
+        private void CallAnimalsForMigration(List<Animal> animalsInBiome)
+        {
+
+            List<Animal> staticAnimalsInBiome = new List<Animal>();
+
+            foreach (var animal in animalsInBiome)
+            {
+                staticAnimalsInBiome.Add(animal);
+            }
+
+            foreach (Animal animal in staticAnimalsInBiome)
+            {
+                animal.Move();
+            }
         }
 
         private void FeedAnimals(List<Food> allFoods, List<Animal> allAnimals)

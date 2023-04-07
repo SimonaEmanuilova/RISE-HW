@@ -2,12 +2,12 @@
 
 namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
-    public class SummaryStatistics : IStatisticsDisplayMode
+    public class SummaryStatistics : IStatisticsDisplay
     {
         public SummaryStatistics() { }
         public void Display(List<Animal> allAnimals, int dayCounter)
         {
-            DisplayDay(dayCounter);
+            //DisplayDay(dayCounter);
 
             int aliveAnimals = 0;
             int deadAnimals = 0;

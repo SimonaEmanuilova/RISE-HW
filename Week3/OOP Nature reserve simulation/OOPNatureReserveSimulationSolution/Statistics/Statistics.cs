@@ -5,9 +5,9 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
     public class Statistics
     {
 
-        private IStatisticsDisplayMode _statisticsDisplay;
+        private IStatisticsDisplay _statisticsDisplay;
 
-        public Statistics(IStatisticsDisplayMode statisticsDisplay)
+        public Statistics(IStatisticsDisplay statisticsDisplay)
         {
             _statisticsDisplay = statisticsDisplay;
         }
@@ -17,7 +17,7 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             this._statisticsDisplay.Display(allAnimals, dayCounter);
         }
 
-
+        
         public void DisplayFinalStatistics(List<Animal> allAnimals)
         {
             List<int> allLifeSpans = new List<int>();

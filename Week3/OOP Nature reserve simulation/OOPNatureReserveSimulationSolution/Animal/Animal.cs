@@ -1,4 +1,5 @@
-﻿using OOPNatureReserveSimulationSolution.Foods;
+﻿using OOPNatureReserveSimulationSolution.Biomes;
+using OOPNatureReserveSimulationSolution.Foods;
 
 namespace OOPNatureReserveSimulationSolution.Animals
 {
@@ -13,22 +14,20 @@ namespace OOPNatureReserveSimulationSolution.Animals
         public int MatureAge { get; private set; }
         public bool IsStarving => (Energy <= MaxEnergy / 2) ? true : false;
 
+        public List<Biome> PossibleBiomes;
+        public Biome CurrentBiome { get; set; }  
+
         protected readonly IAnimalEvents _events;
 
 
-        //public List<string> DailyRemarks;
-
-
-        public Animal(string name, int energy, int maxEnergy, List<Food> diet, int matureAge, IAnimalEvents events) : base(name, maxEnergy)
+        public Animal(string name, int energy, int maxEnergy, List<Food> diet, List<Biome> possibleBiomes, int matureAge, IAnimalEvents events) : base(name, maxEnergy)
         {
             Energy = energy;
             MaxEnergy = maxEnergy;
             Diet = diet;
+            PossibleBiomes = possibleBiomes;
             MatureAge = matureAge;
             this._events = events;
-
-            //DailyRemarks = new List<string>();
-
         }
 
         public Food FindRandomFood(List<Food> allFoods)
@@ -62,7 +61,6 @@ namespace OOPNatureReserveSimulationSolution.Animals
             LifeSpan++;
             CheckIfDying();
         }
-
 
         public virtual void ChooseDiet()
         {
@@ -115,7 +113,40 @@ namespace OOPNatureReserveSimulationSolution.Animals
             _events.Die(Name);
         }
 
+        public void Move()
+        {
+            if(!IsAlive) { return; }
 
+            Biome chosenBiome = ChooseRandomDirection();
+            if (PossibleBiomes.Contains(chosenBiome))
+            {
+                CurrentBiome.RemoveAnimal(this);
+                chosenBiome.AddAnimal(this);
+                _events.Move(this.Name, CurrentBiome, chosenBiome);
+
+                CurrentBiome = chosenBiome;
+            }
+            _events.Move(this.Name, null, null);
+
+        }
+
+        public Biome ChooseRandomDirection()
+        {
+            Random random = new Random();
+            Biome randomBiome = CurrentBiome.BiomeNeighbours.ElementAt(random.Next(CurrentBiome.BiomeNeighbours.Count));
+
+            return randomBiome;
+        }
+
+        public void SetCurrentBiomeForAnimal(Biome biome) 
+        {
+            foreach (var animal in biome.Animals)
+            {
+                animal.CurrentBiome = biome;
+            }
+
+
+        }
     }
 
 }

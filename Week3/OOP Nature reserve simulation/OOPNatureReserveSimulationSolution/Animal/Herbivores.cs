@@ -1,10 +1,12 @@
-﻿using OOPNatureReserveSimulationSolution.Foods;
+﻿using OOPNatureReserveSimulationSolution.Biomes;
+using OOPNatureReserveSimulationSolution.Foods;
 
 namespace OOPNatureReserveSimulationSolution.Animals
 {
     public class Herbivores : Animal
     {
-        public Herbivores(string name, int energy, int maxEnergy, List<Food> diet, int matureAge, IAnimalEvents animalEvents) : base(name, energy, maxEnergy, diet, matureAge, animalEvents)
+        public Herbivores(string name, int energy, int maxEnergy, List<Food> diet, List<Biome> possibleBiomes, int matureAge, IAnimalEvents animalEvents) : 
+            base(name, energy, maxEnergy, diet, possibleBiomes, matureAge, animalEvents)
         {
         }
 

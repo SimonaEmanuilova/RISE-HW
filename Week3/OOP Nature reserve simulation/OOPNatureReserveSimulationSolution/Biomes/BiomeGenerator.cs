@@ -1,32 +1,34 @@
-﻿
-using OOPNatureReserveSimulationSolution.Animals;
-using OOPNatureReserveSimulationSolution.SimulationLogic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using OOPNatureReserveSimulationSolution.Animals;
 
 namespace OOPNatureReserveSimulationSolution.Biomes
 {
-    internal class BiomeGenerator
+    public class BiomeGenerator
     {
-        private IAnimalEvents eventsLogger;
+        private readonly IAnimalEvents animalEvents;
 
-        public BiomeGenerator(IAnimalEvents eventsLogger)
+        public BiomeGenerator(IAnimalEvents events)
         {
-            this.eventsLogger = eventsLogger;
+            this.animalEvents = events;
         }
 
-        public void GenerateSavannah() { 
+        public List<Biome> Generate()
+        {
+            List<Biome> allPossibleBiomes = new List<Biome>() { new Savannah(animalEvents), new Ocean(animalEvents), new Plain(animalEvents) };
+            foreach (var biome in allPossibleBiomes)
+            {
+                biome.SetAnimals();
+                biome.SetFoods();
+            }
+            return allPossibleBiomes;
+        }
+        public Biome MakeRandomBiome(List<Biome> allPossibleBiomes)
+        {
+            Random random = new Random();
+            Biome randomBiome = allPossibleBiomes.ElementAt(random.Next(allPossibleBiomes.Count));
 
-       
-
-
-
-        
+            return randomBiome.CreateNewInstance();
         }
 
-       
+
     }
 }
