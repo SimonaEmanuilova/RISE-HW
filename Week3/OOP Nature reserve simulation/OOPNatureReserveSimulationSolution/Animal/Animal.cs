@@ -1,4 +1,5 @@
-﻿using OOPNatureReserveSimulationSolution.Foods;
+﻿using OOPNatureReserveSimulationSolution.Biomes;
+using OOPNatureReserveSimulationSolution.Foods;
 
 namespace OOPNatureReserveSimulationSolution.Animals
 {
@@ -11,24 +12,24 @@ namespace OOPNatureReserveSimulationSolution.Animals
         public int LifeSpan { get; private set; } = 0;
         public bool IsAlive => Energy > 0 && NutritionalValue == MaxEnergy;
         public int MatureAge { get; private set; }
-        public bool IsStarving => (Energy <= MaxEnergy / 2) ? true : false;
+        public bool IsStarving => (Energy <= MaxEnergy / 2);
+
+        public List<Biome> PossibleBiomes;
+        public Biome CurrentBiome { get; set; }
+
+        public bool hasAlreadyMoved;
 
         protected readonly IAnimalEvents _events;
 
 
-        //public List<string> DailyRemarks;
-
-
-        public Animal(string name, int energy, int maxEnergy, List<Food> diet, int matureAge, IAnimalEvents events) : base(name, maxEnergy)
+        public Animal(string name, int energy, int maxEnergy, List<Food> diet, List<Biome> possibleBiomes, int matureAge, IAnimalEvents events) : base(name, maxEnergy)
         {
             Energy = energy;
             MaxEnergy = maxEnergy;
             Diet = diet;
+            PossibleBiomes = possibleBiomes;
             MatureAge = matureAge;
-            this._events = events;
-
-            //DailyRemarks = new List<string>();
-
+            _events = events;
         }
 
         public Food FindRandomFood(List<Food> allFoods)
@@ -63,12 +64,11 @@ namespace OOPNatureReserveSimulationSolution.Animals
             CheckIfDying();
         }
 
-
         public virtual void ChooseDiet()
         {
             if (MatureAge == LifeSpan)
             {
-                this.Diet = GetMatureDiet();
+                Diet = GetMatureDiet();
             }
         }
 
@@ -115,7 +115,44 @@ namespace OOPNatureReserveSimulationSolution.Animals
             _events.Die(Name);
         }
 
+        public void Move()
+        {
+            if (hasAlreadyMoved || !IsAlive || CurrentBiome.BiomeNeighbours == null) { return; }
 
+            Biome chosenBiome = ChooseRandomDirection();
+            if (PossibleBiomes.Contains(chosenBiome))
+            {
+                CurrentBiome.RemoveAnimal(this);
+                chosenBiome.AddAnimal(this);
+                _events.Move(Name, CurrentBiome, chosenBiome);
+
+                CurrentBiome = chosenBiome;
+                hasAlreadyMoved = true;
+            }
+            else
+            {
+                _events.Move(Name, null, null);
+            }
+
+        }
+
+        public Biome ChooseRandomDirection()
+        {
+            Random random = new Random();
+            Biome randomBiome = CurrentBiome.BiomeNeighbours.ElementAt(random.Next(CurrentBiome.BiomeNeighbours.Count));
+
+            return randomBiome;
+        }
+
+        public void SetCurrentBiome(Biome biome)
+        {
+            CurrentBiome = biome;
+        }
+
+        public void ResetMovingPossibility()
+        {
+            hasAlreadyMoved = false;
+        }
     }
 
 }

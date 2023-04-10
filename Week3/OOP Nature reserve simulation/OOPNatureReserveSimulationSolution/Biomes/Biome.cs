@@ -1,47 +1,73 @@
 ﻿using OOPNatureReserveSimulationSolution.Animals;
-using OOPNatureReserveSimulationSolution.SimulationLogic;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using OOPNatureReserveSimulationSolution.Foods;
 
 namespace OOPNatureReserveSimulationSolution.Biomes
 {
-    public class Biome
+    public abstract class Biome
     {
+        public string Name { get; private set; }
+        public List<Animal> Animals { get; protected set; }
+        public List<Food> Foods { get; protected set; }
+        public int xCordinate { get; private set; }
+        public int yCordinate { get; private set; }
 
-        // must take simulation, animalsToGenerate,allFoods
+        protected readonly IAnimalEvents _events;
+        public List<Biome> BiomeNeighbours { get; private set; }
 
-
-        private readonly IAnimalGenerator _animalIGenerator;
-        private readonly IFoodGenerator _foodGenerator;
-        private readonly IAnimalEvents eventsLogger;
-        private readonly Simulation _simulation;
-
-
-
-        public Biome(IAnimalGenerator animalIGenerator, IFoodGenerator foodGenerator, IAnimalEvents languageLogger, Simulation simulation)
+        public Biome(string name, IAnimalEvents events)
         {
-            this._animalIGenerator = animalIGenerator;
-            this._foodGenerator = foodGenerator;
-            this.eventsLogger = languageLogger;
-            _simulation = simulation;
+            this.Name = name;
+            this._events = events;
         }
 
-        public HashSet<Func<Animal>> GetPossibleAnimals()
+        public abstract List<Animal> SetAnimals();
+        public abstract List<Food> SetFoods();
+
+        public virtual void GenerateAnimals()
         {
-            AnimalGenerator animalGenerator = new AnimalGenerator(eventsLogger);
+            this.Animals = SetAnimals();
+        }
 
-            HashSet<Func<Animal>> biomeSpecies = new HashSet<Func<Animal>> {
-               //animalGenerator.CreateFrog(),
-               //animalGenerator.CreateGazelle(),
-               //animalGenerator.CreateSalmon()
-            };
+        public virtual void GenerateFoods()
+        {
+            this.Foods = SetFoods();
+        }
 
-            return biomeSpecies;
+        public void SetLocation(int x, int y)
+        {
+            this.xCordinate = x;
+            this.yCordinate = y;
+        }
+
+        public void SetNeighbors(List<Biome> neighbors)
+        {
+            this.BiomeNeighbours = neighbors;
+        }
+
+        public void RemoveAnimal(Animal animal)
+        {
+            this.Animals.Remove(animal);
+            this.Foods.Remove(animal);
+        }
+
+        public void AddAnimal(Animal animal)
+        {
+            this.Animals.Add(animal);
+            this.Foods.Add(animal);
 
         }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.Name);
+        }
+
+        public override bool Equals(object? obj)
+        {
+            return this.Name.Equals(((Biome)obj).Name);
+        }
+
+        public abstract Biome CreateNewInstance();
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using OOPNatureReserveSimulationSolution.Animals;
+using OOPNatureReserveSimulationSolution.Biomes;
 using OOPNatureReserveSimulationSolution.SimulationLogic;
 
 namespace OOPNatureReserveSimulationSolution
@@ -9,7 +10,7 @@ namespace OOPNatureReserveSimulationSolution
         {
             ConsoleEnglishLogger logger = new ConsoleEnglishLogger();
 
-            Main simulation = new Main(new AnimalGenerator(logger), new FoodGenerator(), logger, new Simulation());
+            Main simulation = new Main(new AnimalGenerator(logger), new FoodGenerator(), new BiomeGenerator(logger), logger, new Simulation());
 
             simulation.RunSimulation();
         }

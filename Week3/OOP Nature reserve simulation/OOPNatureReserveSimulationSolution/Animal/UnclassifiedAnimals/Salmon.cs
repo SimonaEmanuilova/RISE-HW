@@ -1,4 +1,5 @@
 ﻿using OOPNatureReserveSimulationSolution.Animals;
+using OOPNatureReserveSimulationSolution.Biomes;
 using OOPNatureReserveSimulationSolution.Foods;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,13 @@ namespace OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals
     public class Salmon : Animal
     {
         private const int matureAge = 2;
-        public Salmon(int energy, int maxEnergy, IAnimalEvents animalEvents) : base("Salmon", energy, maxEnergy, new List<Food>() { new Insects() }, matureAge, animalEvents)
+        public Salmon(int energy, int maxEnergy, IAnimalEvents animalEvents) : 
+            base("Salmon", 
+                energy, maxEnergy,
+                new List<Food>() { new Insects() }, 
+                new List<Biome> { new Ocean(animalEvents) }, 
+                matureAge, 
+                animalEvents)
         {
         }
 

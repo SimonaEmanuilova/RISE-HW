@@ -2,7 +2,7 @@
 
 namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
-    public interface IStatisticsDisplayMode
+    public interface IStatisticsDisplay
     {
         public void Display(List<Animal> allAnimals, int dayCounter);
 

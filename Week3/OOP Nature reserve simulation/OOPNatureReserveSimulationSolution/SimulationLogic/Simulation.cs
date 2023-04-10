@@ -1,11 +1,12 @@
 ﻿using OOPNatureReserveSimulationSolution.Animals;
+using OOPNatureReserveSimulationSolution.Biomes;
 using OOPNatureReserveSimulationSolution.Foods;
 
 namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
     public class Simulation
     {
-        public void Run(List<Animal> allAnimals, List<Food> allFoods, Statistics statistics)
+        public void Run(Biome[,] biomes, Statistics statistics, List<Animal> allAnimals)
         {
             int dayCounter = 0;
 
@@ -14,17 +15,68 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             while (hasAlive)
             {
                 dayCounter++;
-
                 hasAlive = false;
 
-                FeedAnimals(allFoods, allAnimals);
-                CallForPlantsRegeneration(allFoods);
+                statistics.DisplayDayCounter(dayCounter);
 
-                hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, allAnimals);
-                statistics.DisplayDayStatistics(allAnimals, dayCounter);
+                ManageFeedingTime(biomes, statistics, dayCounter, ref hasAlive);
+                ManageMigration(biomes, statistics, dayCounter, ref hasAlive);
 
+                ResetDailyData(allAnimals);
             }
             statistics.DisplayFinalStatistics(allAnimals);
+        }
+
+        private bool ManageMigration(Biome[,] biomes, Statistics statistics, int dayCounter, ref bool hasAlive)
+        {
+            int biomeNumber = 1;
+            foreach (Biome biome in biomes)
+            {
+                statistics.DisplayMigrationTimeMessage(biomeNumber, biome);
+
+                CallAnimalsForMigration(biome.Animals);
+
+                hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, biome.Animals);
+                statistics.DisplayDayStatistics(biome.Animals, dayCounter);
+
+                biomeNumber++;
+            }
+
+            return hasAlive;
+        }
+
+        private bool ManageFeedingTime(Biome[,] biomes, Statistics statistics, int dayCounter, ref bool hasAlive)
+        {
+            int biomeNumber = 1;
+            foreach (Biome biome in biomes)
+            {
+                statistics.DisplayFeedTimeMessage(biomeNumber, biome);
+
+                FeedAnimals(biome.Foods, biome.Animals);
+                CallForPlantsRegeneration(biome.Foods);
+
+                hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, biome.Animals);
+                statistics.DisplayDayStatistics(biome.Animals, dayCounter);
+
+                biomeNumber++;
+            }
+            return hasAlive;
+        }
+
+        private void CallAnimalsForMigration(List<Animal> animalsInBiome)
+        {
+
+            List<Animal> staticAnimalsInBiome = new List<Animal>();
+
+            foreach (var animal in animalsInBiome)
+            {
+                staticAnimalsInBiome.Add(animal);
+            }
+
+            foreach (Animal animal in staticAnimalsInBiome)
+            {
+                animal.Move();
+            }
         }
 
         private void FeedAnimals(List<Food> allFoods, List<Animal> allAnimals)
@@ -59,5 +111,14 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             return hasAlive;
         }
 
+        private static void ResetDailyData(List<Animal> animals)
+        {
+
+            foreach (var animal in animals)
+            {
+                animal.ResetMovingPossibility();
+            }
+
+        }
     }
 }

@@ -2,8 +2,6 @@ using OOPNatureReserveSimulationSolution.Animals;
 using OOPNatureReserveSimulationSolution.Foods;
 using OOPNatureReserveSimulationSolution.Animals.CarnivoreAnimals;
 using OOPNatureReserveSimulationSolution.Animals.UnclassifiedAnimals;
-using OOPNatureReserveSimulationSolution.Animals.HerbivoreAnimals;
-using OOPNatureReserveSimulationSolution;
 
 namespace L11_OOPEncapsulationTests
 {

@@ -1,4 +1,6 @@
-﻿namespace OOPNatureReserveSimulationSolution.Animals
+﻿using OOPNatureReserveSimulationSolution.Biomes;
+
+namespace OOPNatureReserveSimulationSolution.Animals
 {
     public class ConsoleEnglishLogger : IAnimalEvents
     {
@@ -25,8 +27,14 @@
 
         public void Die(string animalName)
         {
-                WriteLine($"{animalName} has died");
+            WriteLine($"{animalName} has died");
         }
+
+        public void Move(string animalName, Biome? oldBiome, Biome? newBiome)
+        {
+            WriteLine(oldBiome != null ? $"{animalName} moved from {oldBiome.Name} to {newBiome.Name}.": $"{animalName} didn't move for the day.");
+        }
+
 
 
     }
