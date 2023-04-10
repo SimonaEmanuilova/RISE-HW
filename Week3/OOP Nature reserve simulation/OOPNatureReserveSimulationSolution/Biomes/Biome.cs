@@ -39,30 +39,9 @@ namespace OOPNatureReserveSimulationSolution.Biomes
             this.yCordinate = y;
         }
 
-        public void FindNeighbours(Biome[,] map)
+        public void SetNeighbors(List<Biome> neighbors)
         {
-            List<Biome> biomeNeighbors = new List<Biome>();
-            int[,] relativeNeighbourCoords = new int[,] {   //relative neighbour coordinates
-                { 1, 0 }, { -1, 0 },
-                { 0, 1 }, { 0, -1 },
-                { 1, 1 }, { 1, -1 },
-                { -1, 1 }, { -1, -1 }
-            };
-
-            for (int i = 0; i < relativeNeighbourCoords.GetLength(0); i++)
-            {
-                int x = this.xCordinate + relativeNeighbourCoords[i, 0];  //absolute neighbour coordinates
-                int y = this.yCordinate + relativeNeighbourCoords[i, 1];
-
-                if (x >= 0 && x < map.GetLength(0) &&
-                    y >= 0 && y < map.GetLength(1) &&
-                   (x != this.xCordinate || y != this.yCordinate))
-                {
-                    biomeNeighbors.Add(map[x, y]);
-                }
-            }
-
-            this.BiomeNeighbours = biomeNeighbors;
+            this.BiomeNeighbours = neighbors;
         }
 
         public void RemoveAnimal(Animal animal)

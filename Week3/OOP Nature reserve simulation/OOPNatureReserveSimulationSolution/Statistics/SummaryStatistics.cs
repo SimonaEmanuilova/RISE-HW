@@ -7,8 +7,6 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
         public SummaryStatistics() { }
         public void Display(List<Animal> allAnimals, int dayCounter)
         {
-            //DisplayDay(dayCounter);
-
             int aliveAnimals = 0;
             int deadAnimals = 0;
             foreach (Animal animal in allAnimals)
@@ -23,13 +21,5 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             Console.WriteLine($"Dead: {deadAnimals}\n");
         }
 
-        private void DisplayDay(int dayCounter)
-        {
-
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine($"Day {dayCounter}");
-            Console.ForegroundColor = ConsoleColor.White;
-
-        }
     }
 }

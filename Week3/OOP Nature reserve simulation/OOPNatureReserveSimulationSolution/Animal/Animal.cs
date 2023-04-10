@@ -12,10 +12,12 @@ namespace OOPNatureReserveSimulationSolution.Animals
         public int LifeSpan { get; private set; } = 0;
         public bool IsAlive => Energy > 0 && NutritionalValue == MaxEnergy;
         public int MatureAge { get; private set; }
-        public bool IsStarving => (Energy <= MaxEnergy / 2) ? true : false;
+        public bool IsStarving => (Energy <= MaxEnergy / 2);
 
         public List<Biome> PossibleBiomes;
-        public Biome CurrentBiome { get; set; }  
+        public Biome CurrentBiome { get; set; }
+
+        public bool hasAlreadyMoved;
 
         protected readonly IAnimalEvents _events;
 
@@ -27,7 +29,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
             Diet = diet;
             PossibleBiomes = possibleBiomes;
             MatureAge = matureAge;
-            this._events = events;
+            _events = events;
         }
 
         public Food FindRandomFood(List<Food> allFoods)
@@ -66,7 +68,7 @@ namespace OOPNatureReserveSimulationSolution.Animals
         {
             if (MatureAge == LifeSpan)
             {
-                this.Diet = GetMatureDiet();
+                Diet = GetMatureDiet();
             }
         }
 
@@ -115,18 +117,22 @@ namespace OOPNatureReserveSimulationSolution.Animals
 
         public void Move()
         {
-            if(!IsAlive) { return; }
+            if (hasAlreadyMoved || !IsAlive || CurrentBiome.BiomeNeighbours == null) { return; }
 
             Biome chosenBiome = ChooseRandomDirection();
             if (PossibleBiomes.Contains(chosenBiome))
             {
                 CurrentBiome.RemoveAnimal(this);
                 chosenBiome.AddAnimal(this);
-                _events.Move(this.Name, CurrentBiome, chosenBiome);
+                _events.Move(Name, CurrentBiome, chosenBiome);
 
                 CurrentBiome = chosenBiome;
+                hasAlreadyMoved = true;
             }
-            _events.Move(this.Name, null, null);
+            else
+            {
+                _events.Move(Name, null, null);
+            }
 
         }
 
@@ -138,14 +144,14 @@ namespace OOPNatureReserveSimulationSolution.Animals
             return randomBiome;
         }
 
-        public void SetCurrentBiomeForAnimal(Biome biome) 
+        public void SetCurrentBiome(Biome biome)
         {
-            foreach (var animal in biome.Animals)
-            {
-                animal.CurrentBiome = biome;
-            }
+            CurrentBiome = biome;
+        }
 
-
+        public void ResetMovingPossibility()
+        {
+            hasAlreadyMoved = false;
         }
     }
 

@@ -6,7 +6,7 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
 {
     public class Simulation
     {
-        public void Run(Biome[,] biomes, Statistics statistics)
+        public void Run(Biome[,] biomes, Statistics statistics, List<Animal> allAnimals)
         {
             int dayCounter = 0;
 
@@ -15,47 +15,53 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             while (hasAlive)
             {
                 dayCounter++;
-
                 hasAlive = false;
-                foreach (Biome biome in biomes)
-                {
-                    biome.FindNeighbours(biomes);
-                }
 
-                Console.ForegroundColor = ConsoleColor.Blue;   //TODO: move UI part in Statistic
-                Console.WriteLine($"\nDAY {dayCounter}");
-                Console.ForegroundColor = ConsoleColor.White;
+                statistics.DisplayDayCounter(dayCounter);
 
-                int biomeNumber = 1;
-                foreach (Biome biome in biomes)
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    Console.WriteLine($"\nBiome {biomeNumber} - {biome.Name} - Lunch time");
+                ManageFeedingTime(biomes, statistics, dayCounter, ref hasAlive);
+                ManageMigration(biomes, statistics, dayCounter, ref hasAlive);
 
-                    FeedAnimals(biome.Foods, biome.Animals);
-                    CallForPlantsRegeneration(biome.Foods);
-                    hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, biome.Animals);
-                    statistics.DisplayDayStatistics(biome.Animals, dayCounter);
-                    biomeNumber++;
-                }
-
-                biomeNumber = 1;
-
-                foreach (Biome biome in biomes)
-                {
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine($"\nBiome {biomeNumber} - {biome.Name} - Migration time");
-
-                    CallAnimalsForMigration(biome.Animals);
-                    hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, biome.Animals);
-                    statistics.DisplayDayStatistics(biome.Animals, dayCounter);
-                    biomeNumber++;
-                }
-
+                ResetDailyData(allAnimals);
             }
-            //statistics.DisplayFinalStatistics(allAnimals); //TODO: make all animals from every biome in one list to view the final stats
+            statistics.DisplayFinalStatistics(allAnimals);
         }
 
+        private bool ManageMigration(Biome[,] biomes, Statistics statistics, int dayCounter, ref bool hasAlive)
+        {
+            int biomeNumber = 1;
+            foreach (Biome biome in biomes)
+            {
+                statistics.DisplayMigrationTimeMessage(biomeNumber, biome);
+
+                CallAnimalsForMigration(biome.Animals);
+
+                hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, biome.Animals);
+                statistics.DisplayDayStatistics(biome.Animals, dayCounter);
+
+                biomeNumber++;
+            }
+
+            return hasAlive;
+        }
+
+        private bool ManageFeedingTime(Biome[,] biomes, Statistics statistics, int dayCounter, ref bool hasAlive)
+        {
+            int biomeNumber = 1;
+            foreach (Biome biome in biomes)
+            {
+                statistics.DisplayFeedTimeMessage(biomeNumber, biome);
+
+                FeedAnimals(biome.Foods, biome.Animals);
+                CallForPlantsRegeneration(biome.Foods);
+
+                hasAlive = CheckIsAtLeastOneAnimalAlive(hasAlive, biome.Animals);
+                statistics.DisplayDayStatistics(biome.Animals, dayCounter);
+
+                biomeNumber++;
+            }
+            return hasAlive;
+        }
 
         private void CallAnimalsForMigration(List<Animal> animalsInBiome)
         {
@@ -105,5 +111,14 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             return hasAlive;
         }
 
+        private static void ResetDailyData(List<Animal> animals)
+        {
+
+            foreach (var animal in animals)
+            {
+                animal.ResetMovingPossibility();
+            }
+
+        }
     }
 }

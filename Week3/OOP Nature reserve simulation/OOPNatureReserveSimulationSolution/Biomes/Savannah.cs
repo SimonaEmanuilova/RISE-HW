@@ -32,7 +32,7 @@ namespace OOPNatureReserveSimulationSolution.Biomes
             savannah.Foods = savannah.SetFoods();
             foreach (Animal animal in savannah.Animals)
             {
-                animal.SetCurrentBiomeForAnimal(savannah);
+                animal.SetCurrentBiome(savannah);
             }
             return savannah;
         }

@@ -27,11 +27,10 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
         {
             Console.WriteLine("Welcome to Nature Simulator 3000!\n");
 
-            //List<Animal> allAnimals = _animalInitialiser.Generate();
             Map map = new Map(2, 2, _biomeGenerator);
-
             Biome[,] biomesInMap = map.SetBiomesInMap(_biomeGenerator.Generate());
             List<Animal> allAnimals = new List<Animal>();
+
             foreach (var biome in biomesInMap)
             {
                 foreach (var animal in biome.Animals)
@@ -41,11 +40,7 @@ namespace OOPNatureReserveSimulationSolution.SimulationLogic
             }
 
             Statistics statistics = ChooseStatisticsLevel(allAnimals);
-            _simulation.Run(biomesInMap, statistics);
-
-            //List<Food> allFoods = _foodInitialiser.Generate(allAnimals);
-
-            //_simulation.Run(allAnimals, allFoods, statistics);
+            _simulation.Run(biomesInMap, statistics,allAnimals);
         }
 
         public Statistics ChooseStatisticsLevel(List<Animal> allAnimals)

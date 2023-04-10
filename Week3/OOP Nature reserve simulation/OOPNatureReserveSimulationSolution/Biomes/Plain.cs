@@ -1,10 +1,5 @@
 ﻿using OOPNatureReserveSimulationSolution.Animals;
 using OOPNatureReserveSimulationSolution.Foods;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OOPNatureReserveSimulationSolution.Biomes
 {
@@ -37,7 +32,7 @@ namespace OOPNatureReserveSimulationSolution.Biomes
             plain.Foods = plain.SetFoods();
             foreach (Animal animal in plain.Animals)
             {
-                animal.SetCurrentBiomeForAnimal(plain);
+                animal.SetCurrentBiome(plain);
             }
             return plain;
         }

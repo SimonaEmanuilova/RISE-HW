@@ -30,7 +30,7 @@ namespace OOPNatureReserveSimulationSolution.Biomes
             ocean.Foods = ocean.SetFoods();
             foreach (Animal animal in ocean.Animals)
             {
-                animal.SetCurrentBiomeForAnimal(ocean);
+                animal.SetCurrentBiome(ocean);
             }
             return ocean;
         }
