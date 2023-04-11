@@ -227,3 +227,19 @@ INSERT INTO OUTCOMES
 
 INSERT INTO OUTCOMES
   VALUES ('California', 'Guadalcanal', 'damaged');
+
+
+  --1)
+  INSERT INTO CLASSES
+  VALUES ('Nelson', 'bb', 'Gt.Britain', 9, 16, 34000);
+
+  INSERT INTO SHIPS
+  VALUES ('Nelson', 'Nelson', 1927),
+  ('Rodney', 'Nelson', 1927);  -- there is already Rodney in the key values. One possible way of doing the task is getting the row updated, but this way the info about the old Rodney ship would be lost. 
+
+  --2)
+  DELETE FROM SHIPS
+  where NAME in (select SHIP from OUTCOMES where RESULT='sunk');
+
+  --3)
+  UPDATE CLASSES SET BORE=BORE*2.5, DISPLACEMENT=DISPLACEMENT*1.1;
