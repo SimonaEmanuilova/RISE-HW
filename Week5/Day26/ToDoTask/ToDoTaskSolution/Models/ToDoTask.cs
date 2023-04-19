@@ -10,13 +10,15 @@
         public Assignment Assignment { get; set; }
         public  int AssignmentId { get; set; }
 
-        public ToDoTask(int id, string name, string description, DateTime date)
+        public ToDoTask(int id, string name, string description, DateTime date, Assignment assignment)
         {
             Id = id;
             Name = name;
             Description = description;
             Date = date;
             Done = false;
+            Assignment = assignment;
+            AssignmentId=assignment.Id;
         }
 
         public ToDoTask()

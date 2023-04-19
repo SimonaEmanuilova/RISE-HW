@@ -15,9 +15,9 @@ namespace ToDoTaskSolution.Controllers
 
         public static List<ToDoTask> _toDoTasks = new List<ToDoTask> {
 
-        new ToDoTask( 1, "Walk the cat", "I know you have cat allergy, but pleace walk the cat.",DateTime.Now),
+        new ToDoTask( 1, "Walk the cat", "I know you have cat allergy, but pleace walk the cat.",DateTime.Now, _assignments.FirstOrDefault(x=> x.Id==1)),
 
-        new ToDoTask( 2, "Shower the parrot", "Shower the parrot, otherwise he gets anxiety", DateTime.Now)
+        new ToDoTask( 2, "Shower the parrot", "Shower the parrot, otherwise he gets anxiety", DateTime.Now, _assignments.FirstOrDefault(x=> x.Id==2))
         };
 
 
@@ -61,6 +61,7 @@ namespace ToDoTaskSolution.Controllers
             newTask.Done = false;
             newTask.Date = task.Date;
             newTask.AssignmentId = newAssignment.Id;
+            newTask.Assignment = newAssignment;
 
             _assignments.Add(newAssignment);
             _toDoTasks.Add(newTask);
@@ -81,6 +82,9 @@ namespace ToDoTaskSolution.Controllers
             task.Description = editedTask.Description;
             task.Done = editedTask.Done;
 
+            task.Assignment.AssignedTo= editedTask.Assignment.AssignedTo;
+            task.Assignment.CreatedBy = editedTask.Assignment.CreatedBy;
+
             return RedirectToAction("Index");
         }
 
@@ -91,6 +95,9 @@ namespace ToDoTaskSolution.Controllers
         {
             ToDoTask task = _toDoTasks.FirstOrDefault(x => x.Id == id);
             _toDoTasks.Remove(task);
+
+            Assignment assignment = _assignments.FirstOrDefault(x => x.Id == task.AssignmentId);
+            _assignments.Remove(assignment);
 
             return RedirectToAction("Index");
         }
