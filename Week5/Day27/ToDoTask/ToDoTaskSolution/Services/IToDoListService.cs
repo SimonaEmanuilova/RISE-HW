@@ -5,7 +5,7 @@ namespace ToDoTaskSolution.Services
     public interface IToDoListService
     {
         public List<Todotask> GetAllTasks();
-        public void CreateToDoTask(Todotask newTask);
+        public bool CreateToDoTask(Todotask newTask);
 
         public (Todotask,bool) GetJoinedTaskWithAssignment(int id);
 

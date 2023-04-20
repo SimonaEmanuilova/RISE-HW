@@ -36,10 +36,12 @@ namespace ToDoTaskSolution.Services
         }
 
         [HttpGet]
-        public void CreateToDoTask(Todotask newTask)
+        public bool CreateToDoTask(Todotask newTask)
         {
             context.Todotasks.Add(newTask);
             context.SaveChanges();
+
+            return true;
         }
 
         [HttpGet]
@@ -89,7 +91,6 @@ namespace ToDoTaskSolution.Services
         [HttpDelete]
         public bool DeleteTask(int id)
         {
-
             Todotask task = context.Todotasks.FirstOrDefault(x => x.Id == id);
             context.Todotasks.Remove(task);
 
