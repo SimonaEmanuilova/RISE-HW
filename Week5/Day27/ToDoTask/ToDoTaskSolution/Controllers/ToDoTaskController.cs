@@ -1,49 +1,40 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ToDoTaskSolution.Entities;
-using ToDoTaskSolution.Models;
+using ToDoTaskSolution.Services;
 
 namespace ToDoTaskSolution.Controllers
 {
     public class ToDoTaskController : Controller
     {
 
-        private readonly TODOTASKSContext context;
+        private readonly IToDoListService _listService;
 
-        public ToDoTaskController(TODOTASKSContext context)
+        public ToDoTaskController(IToDoListService listService)
         {
-            this.context = context;
+            _listService = listService;
         }
-    
 
+        [HttpGet]
         public IActionResult Index()
         {
+            List<Todotask> tasks = new();
 
-            var methodTasks = context.Todotasks.Join(context.Assignments,
-                          task => task.Id,
-                          assignment => assignment.Id,
-                        (task, assignment) => new Todotask
-                        {
-                            Id = task.Id,
-                            Name = task.Name,
-                            Date = task.Date,
-                            Done = task.Done,
-                            Description = task.Description,
-                            AssignmentId = assignment.Id,
-                            Assignment = assignment
-                        }).ToList();
+            tasks = _listService.GetAllTasks();
 
-            context.SaveChanges();
-
-            return View(methodTasks);
+            return View(tasks);
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult CreateNewTask(Todotask task)
+        [HttpPost]
+        public IActionResult Create(Todotask task)
         {
+            if (task == null) { return BadRequest("Error"); }
+
             Assignment newAssignment = new Assignment();
             newAssignment.CreatedBy = task.Assignment.CreatedBy;
             newAssignment.AssignedTo = task.Assignment.AssignedTo;
@@ -55,79 +46,61 @@ namespace ToDoTaskSolution.Controllers
             newTask.Date = task.Date;
             newTask.Assignment = newAssignment;
 
-            context.Todotasks.Add(newTask);
-            context.SaveChanges();
+            _listService.CreateToDoTask(newTask);
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
         public IActionResult Edit(int id)
         {
-            var methodTask = context.Todotasks.Join(context.Assignments,
-                        task => task.Id,
-                        assignment => assignment.Id,
-                      (task, assignment) => new Todotask
-                      {
-                          Id = task.Id,
-                          Name = task.Name,
-                          Date = task.Date,
-                          Done = task.Done,
-                          Description = task.Description,
-                          AssignmentId = assignment.Id,
-                          Assignment = assignment
-                      }).FirstOrDefault(x => x.Id == id);
+            (Todotask todotask, bool isTrue) = _listService.GetJoinedTaskWithAssignment(id);
 
-            return View(methodTask);
+            if (!isTrue)
+            {
+                return BadRequest("Null content");
+            }
+
+            return View(todotask);
         }
 
-        public IActionResult EditTask(Todotask editedTask)
+        [HttpPost]
+        public IActionResult Edit(Todotask editedTask)
         {
 
-            Todotask task = context.Todotasks.FirstOrDefault(x => x.Id == editedTask.Id);
+            bool isTrue = _listService.EditToDoTask(editedTask);
 
-            task.Id = editedTask.Id;
-            task.Name = editedTask.Name;
-            task.Description = editedTask.Description;
-            task.Done = editedTask.Done;
-
-            Assignment assignment = context.Assignments.FirstOrDefault(x => x.Id == editedTask.Id);
-            assignment.AssignedTo = editedTask.Assignment.AssignedTo;
-            assignment.CreatedBy = editedTask.Assignment.CreatedBy;
-
-
-            context.SaveChanges();
+            if (!isTrue)
+            {
+                return BadRequest();
+            }
 
             return RedirectToAction("Index");
         }
 
-        public IActionResult Details(int id) 
+        [HttpGet]
+        public IActionResult Details(int id)
         {
-            var methodTask = context.Todotasks.Join(context.Assignments,
-                        task => task.Id,
-                        assignment => assignment.Id,
-                      (task, assignment) => new Todotask
-                      {
-                          Id = task.Id,
-                          Name = task.Name,
-                          Date = task.Date,
-                          Done = task.Done,
-                          Description = task.Description,
-                          AssignmentId = assignment.Id,
-                          Assignment = assignment
-                      }).FirstOrDefault(x=>x.Id==id);
+            (Todotask todotask, bool isTrue) = _listService.GetJoinedTaskWithAssignment(id);
 
-            return View(methodTask); 
+            if (!isTrue)
+            {
+                return BadRequest("There is no To Do Task with such ID.");
+            }
+
+            return View(todotask);
         }
 
-
+        [HttpGet]
         public IActionResult Delete(int id)
         {
-            Todotask task = context.Todotasks.FirstOrDefault(x => x.Id == id);
-            context.Todotasks.Remove(task);
+            bool isTrue = _listService.DeleteTask(id);
 
-            Assignment assignment = context.Assignments.FirstOrDefault(x => x.Id == task.AssignmentId);
-            context.Assignments.Remove(assignment);
+            if (!isTrue)
+            {
+                return BadRequest("Null content");
+            };
 
-            context.SaveChanges();
             return RedirectToAction("Index");
         }
     }

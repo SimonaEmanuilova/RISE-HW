@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ToDoTaskSolution.Entities;
+using ToDoTaskSolution.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<TODOTASKSContext>(options => 
 options.UseSqlServer(builder.Configuration.GetConnectionString("connection")));
+builder.Services.AddScoped<IToDoListService, ToDoListService>();
 
 var app = builder.Build();
 
