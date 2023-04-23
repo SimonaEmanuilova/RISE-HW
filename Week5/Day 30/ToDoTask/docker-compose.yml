@@ -18,9 +18,15 @@ services:
     ports:
       - "1433:1433"
     environment:
-      SA_PASSWORD: "YourStrong@Passw0rd"
+      SA_PASSWORD: ${SA_PASSWORD:?database password not set}
       ACCEPT_EULA: "Y"
     volumes:
         - ./db_data:/var/opt/mssql/data
 
-# To preview: go to https://localhost:8888 to view the app. YOu can run the docker-compose from the Docker Compose button in VS or from the command in cmd "docker-compose up".
+# To preview: go to https://localhost:8888 to view the app. You can run the docker-compose from the Docker Compose button in VS or from the command in cmd "docker-compose up".
+
+# If you experience problems with the preview on the localhost:
+# 1) delete old containers and images from Docker for the current repo.
+# 2) run the Dockerfile through VS (right-click on Dockerfile in the Solution Explorer -> "Build Docker Image").
+# 3) run the docker-compose from the Docker Compose button in VS or from the command in cmd "docker-compose up".
+# 4) go to https://localhost:8888 to view the app;
