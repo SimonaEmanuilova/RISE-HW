@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  todotasksolution:
+    container_name: web_api_application
+    build:
+      context: .
+      dockerfile: ToDoTaskSolution/Dockerfile
+    depends_on:
+      - sql-server-db
+    ports:
+     - "8000:5000"
+     - "8888:443"
+
+  sql-server-db:
+    container_name: sql-server-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - "1433:1433"
+    environment:
+      SA_PASSWORD: "YourStrong@Passw0rd"
+      ACCEPT_EULA: "Y"
+    volumes:
+        - ./db_data:/var/opt/mssql/data
+
+# To preview: go to https://localhost:8888 to view the app. YOu can run the docker-compose from the Docker Compose button in VS or from the command in cmd "docker-compose up".
