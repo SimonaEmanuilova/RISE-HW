@@ -23,6 +23,15 @@ services:
     volumes:
         - ./db_data:/var/opt/mssql/data
 
+  prometheus:
+      container_name: prometheus
+      image: prom/prometheus
+      ports: 
+        - 9090:9090
+      volumes: 
+        - ./prometheus.yml:/etc/prometheus/prometheus.yml
+        
+  
 # To preview: go to https://localhost:8888 to view the app. You can run the docker-compose from the Docker Compose button in VS or from the command in cmd "docker-compose up".
 
 # If you experience problems with the preview on the localhost:

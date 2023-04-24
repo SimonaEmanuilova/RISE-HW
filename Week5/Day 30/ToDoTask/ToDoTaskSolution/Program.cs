@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Prometheus;
 using ToDoTaskSolution.Entities;
 using ToDoTaskSolution.Services;
 
@@ -25,10 +26,17 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
+
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+//prometheus
+app.UseMetricServer();
+
+
 
 app.Run();
