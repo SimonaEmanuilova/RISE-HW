@@ -12,6 +12,9 @@ services:
      - "8000:5000"
      - "8888:443"
 
+    environment:
+     - PROMETHEUS_ENDPOINT=http://prometheus:9090/
+
   sql-server-db:
     container_name: sql-server-db
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -30,7 +33,14 @@ services:
         - 9090:9090
       volumes: 
         - ./prometheus.yml:/etc/prometheus/prometheus.yml
-        
+ 
+  grafana:
+      container_name: grafana
+      image: grafana/grafana
+      ports:
+        - 3000:3000
+      
+
   
 # To preview: go to https://localhost:8888 to view the app. You can run the docker-compose from the Docker Compose button in VS or from the command in cmd "docker-compose up".
 
