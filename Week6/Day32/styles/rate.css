@@ -1,0 +1,56 @@
+#rating-container {
+    margin-top: 3rem;
+}
+
+.form {
+    margin: 1rem auto 2rem;
+    padding: 1rem;
+    width: 50rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 425px;
+    border-radius: 20px;
+    background-color: #f8f9ff;
+}
+
+.input {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 1.5rem;
+}
+
+.input-label {
+    padding-bottom: 0.5rem;
+}
+
+.input-field {
+    border: 0;
+    background-color: transparent;
+    border-bottom: 2px solid #e1dfec;
+    font-size: 1.2rem;
+    padding: 0.25rem 0;
+}
+
+.comment-field {
+    border: 0;
+}
+
+.action-button {
+    border: 0;
+    padding: 1rem;
+    margin: 1rem 0;
+    width: 100%;
+    font-size: 1.25rem;
+    background-color: #4c43c5;
+    border-radius: 6px;
+    color: #fff;
+}
+
+@media (max-width: 769px) {
+    .form {
+        width: 100%;
+    }
+
+}

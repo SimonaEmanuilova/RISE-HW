@@ -1,0 +1,114 @@
+.sidebar {
+    width: 25rem;
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    padding: 2rem;
+    background-color: rgb(186, 202, 245);
+    margin: 0 2rem;
+    width: 25%;
+    min-width: 25rem;
+    height: 100%;
+}
+
+.side-text-container {
+    padding: 2rem 2rem;
+    background-color: rgba(213, 222, 245, 0.5);
+    margin: 1rem 0;
+    border-radius: 7px;
+    text-align: center;
+    overflow-wrap: break-word;
+}
+
+.central-section {
+    align-self: flex-start;
+    padding: var(--top-padding) 0;
+    width: 60rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    gap: 4rem;
+    height: 100%;
+    width: 40%;
+    min-width: 20rem;
+}
+
+.text-container {
+    border-bottom: 3px dashed rgb(150, 150, 150);
+    text-align: start;
+    overflow-wrap: break-word;
+}
+
+.central-section-title {
+    margin-bottom: 2rem;
+}
+
+#profile-img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+#languages * {
+    text-align: center;
+}
+
+.language-table {
+    margin: 0 auto;
+}
+
+.radio-btn {
+    accent-color: rgb(68, 65, 226);
+}
+
+.employment-subsection {
+    margin-bottom: 2rem;
+}
+
+#skills {
+    border-bottom: none;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.list li {
+    display: inline-block;
+    padding: 0.3rem 1.5rem;
+    background-color: rgb(186, 202, 245);
+    border-radius: 3px;
+}
+
+@media (max-width: 769px) {
+    .main {
+        flex-direction: column;
+        align-content: center;
+    }
+
+    .sidebar {
+        padding: 0;
+        margin: 0;
+    }
+
+    .name {
+        word-wrap: break-word;
+        padding: 2rem;
+        text-align: center;
+    }
+    .central-section {
+        width: 100%;
+        align-self: center;
+        padding: 0 1rem;
+    }
+
+    .list{
+        flex-direction: column;
+        text-align: center;
+    }
+}

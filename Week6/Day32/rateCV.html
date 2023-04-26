@@ -5,41 +5,55 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Add CV</title>
+        <link rel="stylesheet" href="./styles/style.css" />
+        <link rel="stylesheet" href="./styles/rate.css" />
     </head>
     <body>
-        <header><h1>Rate CV</h1></header>
-        <nav>
-            <a href="index.html">Back to CV</a>
-        </nav>
-        <main>
-            <article id="rate">
+        <header class="header">
+            <nav class="navbar">
+                <a class="anchor-tag" href="index.html">Back to CV</a>
+            </nav>
+        </header>
+
+        <main class="main">
+            <h1 class="title">Rate CV</h1>
+            <article id="rating-container">
                 <h2>Leave a rating:</h2>
-                <form action="/addForm.html">
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" placeholder="Name" />
-                    <label for="age">Age:</label>
-                    <input type="number" id="age" name="age" placeholder="Age" />
-                    <label for="rating">Rating:</label>
-                    <select name="rating" id="rating">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    <label for="comment">Comment</label>
-                    <textarea id="comment" name="comment" rows="4" cols="20" placeholder="Write a comment here"> </textarea>
-                    <input type="submit" value="Submit" />
+                <form action="/addForm.html" class="form">
+                    <div class="input">
+                        <label for="name" class="input-label">Name:</label>
+                        <input type="text" id="name" class="input-field" name="name" />
+                    </div>
+                    <div class="input">
+                        <label for="age" class="input-label">Age:</label>
+                        <input type="number" id="age" class="input-field" name="age" />
+                    </div>
+                    <div class="input">
+                        <label for="rating" class="input-label">Rating:</label>
+                        <select name="rating" class="input-field" id="rating">
+                            <option value="10">10</option>
+                            <option value="9">9</option>
+                            <option value="8">8</option>
+                            <option value="7">7</option>
+                            <option value="6">6</option>
+                            <option value="5">5</option>
+                            <option value="4">4</option>
+                            <option value="3">3</option>
+                            <option value="2">2</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                    <div class="input">
+                        <label for="comment" class="input-label">Comment</label>
+                        <textarea class="comment-field" id="comment" name="comment" rows="4" cols="20" placeholder="Write a comment here"> </textarea>
+                    </div>
+
+                    <input type="submit" class="action-button" value="Submit" />
                 </form>
             </article>
         </main>
-        <footer>
-            <p>© RISE Academy 2022</p>
+        <footer class="footer">
+            <p>© RISE Academy 2023</p>
         </footer>
     </body>
 </html>

@@ -5,80 +5,106 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>CV web page</title>
+        <link rel="stylesheet" href="./styles/style.css" />
+        <link rel="stylesheet" href="./styles/home.css" />
     </head>
     <body>
-        <header>
-            <h1>CV</h1>
-            <nav>
-                <a href="rateCV.html">Rate CV</a>
+        <header class="header">
+            <nav class="navbar">
+                <a class="anchor-tag" href="rateCV.html">Rate CV</a>
             </nav>
         </header>
-        <main>
-            <article id="profile-intro">
-                <h2>Simona Emanuilova Stoyanova</h2>
-                <img src="./assets/Simona_image.jpg" alt="CV image" width="400" height="400" title="Simona Stoyanova" />
-                <p><strong>Date of Birth: </strong>11.05.1999</p>
-                <p><strong>Tel: </strong>0123456789</p>
-                <p><strong>E-Mail: </strong>simona.stoyanova.mes@gmail.com</p>
-                <p>
-                    <strong>Linked In:</strong>
-                    <a href="https://www.linkedin.com/in/simona-stoyanova-mes/" target="_blank">https://www.linkedin.com/in/simona-stoyanova-mes/</a>
-                </p>
-            </article>
-            <article id="education">
-                <h2>Education</h2>
-                <h3>Bachelor, Engineering Physics at Faculty of Physics, Sofia University "St.Kliment Ohridski", Sofia</h3>
-                <p>October, 2018 - July, 2022</p>
-            </article>
-            <article id="employment-history">
-                <h2>Employment History</h2>
-                <h3>Wordpress Developer, SU "St.Kliment Ohridski", Sofia</h3>
-                <ul>
-                    <li>Development and maintenance of the Faculty of Physics website using Wordpress;</li>
-                </ul>
-                <h3>Student Trainee's - Electronic Design Automation in Microelectronics, GlobalFoundries Bulgaria</h3>
-                <ul>
-                    <li>Used advanced Cadence Virtuoso to make DRC checks on ICs;</li>
-                </ul>
-            </article>
-            <article id="skills">
-                <h2>Skills</h2>
-                <ul>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                    <li>Git & Gitlab</li>
-                    <li>OOP</li>
-                    <li>Python</li>
-                </ul>
-            </article>
-            <article id="languages">
-                <h2>Languages</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Language</th>
-                            <th>Level</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Bulgarian</td>
-                            <td><input type="radio" checked /><input type="radio" checked /><input type="radio" checked /></td>
-                        </tr>
-                        <tr>
-                            <td>English</td>
-                            <td><input type="radio" checked /><input type="radio" checked /><input type="radio" disabled /></td>
-                        </tr>
-                        <tr>
-                            <td>German</td>
-                            <td><input type="radio" checked /><input type="radio" checked /><input type="radio" disabled /></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <ul></ul>
-            </article>
+        <main class="main">
+            <h1 class="title">CV</h1>
+            <div class="sidebar">
+                <article id="profile-intro">
+                    <h2 class="name">Simona Emanuilova Stoyanova</h2>
+                    <img id="profile-img" src="./assets/Simona_image.jpg" alt="CV image" title="Simona Stoyanova" />
+                </article>
+                <article id="personal-data" class="side-text-container">
+                    <h2>Personal information</h2>
+                    <p><strong>Date of Birth: </strong>11.05.1999</p>
+                    <p><strong>Tel: </strong>0123456789</p>
+                    <p><strong>E-Mail: </strong>simona.stoyanova.mes@gmail.com</p>
+                    <p>
+                        <strong>Linked In:</strong>
+                        <a class="anchor-tag" href="https://www.linkedin.com/in/simona-stoyanova-mes/" target="_blank"
+                            >https://www.linkedin.com/in/simona-stoyanova-mes/</a
+                        >
+                    </p>
+                </article>
+                <article id="languages" class="side-text-container">
+                    <h2>Languages</h2>
+                    <table class="language-table">
+                        <thead>
+                            <tr>
+                                <th>Language</th>
+                                <th>Level</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Bulgarian</td>
+                                <td>
+                                    <input class="radio-btn" type="radio" checked />
+                                    <input class="radio-btn" type="radio" checked />
+                                    <input class="radio-btn" type="radio" checked />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>English</td>
+                                <td>
+                                    <input class="radio-btn" type="radio" checked />
+                                    <input class="radio-btn" type="radio" checked />
+                                    <input class="radio-btn" type="radio" disabled />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>German</td>
+                                <td>
+                                    <input class="radio-btn" type="radio" checked />
+                                    <input class="radio-btn" type="radio" checked />
+                                    <input class="radio-btn" type="radio" disabled />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </article>
+            </div>
+            <div class="central-section">
+                <article id="education" class="text-container">
+                    <h2 class="central-section-title">Education</h2>
+                    <h3>Bachelor, Engineering Physics at Faculty of Physics, Sofia University "St.Kliment Ohridski", Sofia</h3>
+                    <p>October, 2018 - July, 2022</p>
+                </article>
+                <article id="employment-history" class="text-container">
+                    <h2 class="central-section-title">Employment History</h2>
+                    <div class="employment-subsection">
+                        <h3>Wordpress Developer, SU "St.Kliment Ohridski", Sofia</h3>
+                        <ul>
+                            <li>Development and maintenance of the Faculty of Physics website using Wordpress;</li>
+                        </ul>
+                    </div>
+                    <div class="employment-subsection">
+                        <h3>Student Trainee's - Electronic Design Automation in Microelectronics, GlobalFoundries Bulgaria</h3>
+                        <ul>
+                            <li>Used advanced Cadence Virtuoso to make DRC checks on ICs;</li>
+                        </ul>
+                    </div>
+                </article>
+                <article id="skills" class="text-container">
+                    <h2>Skills</h2>
+                    <ul class="list">
+                        <li>Git & Gitlab</li>
+                        <li>OOP</li>
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>Python</li>
+                    </ul>
+                </article>
+            </div>
         </main>
-        <footer>© RISE Academy 2022</footer>
+        <footer class="footer">© RISE Academy 2023</footer>
     </body>
 </html>
