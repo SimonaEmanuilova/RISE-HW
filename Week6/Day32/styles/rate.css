@@ -1,11 +1,14 @@
+.rating-section {
+    width: 70%;
+}
+
 #rating-container {
-    margin-top: 3rem;
+    padding-top: 5rem;
 }
 
 .form {
     margin: 1rem auto 2rem;
     padding: 1rem;
-    width: 50rem;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -19,6 +22,7 @@
     flex-direction: column;
     position: relative;
     padding-top: 1.5rem;
+    width: 100%;
 }
 
 .input-label {
@@ -48,9 +52,61 @@
     color: #fff;
 }
 
+#comments-container {
+    padding: 0 1rem;
+}
+
+.user-details{
+    padding: 0.5rem 0 0.5rem;
+    background-color: #beb8fd;
+    display: inline-block;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.user-name {
+    font-weight: 300;
+    font-size: 1rem;
+    padding: 0 0.5rem;
+}
+
+.user-age {
+    font-weight: 100;
+    font-size: 0.8rem;
+    padding: 0 0.5rem;
+}
+
+.user-rating {
+    font-weight: 700;
+    font-size: 1rem;
+    background-color: #8d85f7;
+    width: 100%;
+    height: 100%;
+    padding: 0.5rem 0.8rem;
+}
+
+.user-comment {
+    padding: 2rem;
+    background-color: #f1f3ff;
+    border-radius: 7px;
+    margin: 0 2rem 3rem 0rem;
+}
+
+.error-msg-show {
+    color: red;
+}
+
+.error-msg-hide {
+    display: none;
+}
+
+
 @media (max-width: 769px) {
     .form {
         width: 100%;
     }
 
+    .rating-section {
+        width: 100%;
+    }
 }

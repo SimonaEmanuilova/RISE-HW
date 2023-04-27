@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Just John",
+    "age": 30,
+    "rating": 4.5,
+    "comment": "Good."
+  },
+  {
+    "name": "Sherlock",
+    "age": 20,
+    "rating": 2.5,
+    "comment": "The CV was elementary and boring as there was no plot twist."
+  },
+  {
+    "name": "Peter the Great",
+    "age": 40,
+    "rating": 8,
+    "comment": "Excellent!"
+  },
+  {
+    "name": "Marie Curie ",
+    "age": 55,
+    "rating": 3.5,
+    "comment": "Not impressed, expected more from a woman of science."
+  },
+  {
+    "name": "Rick the scientist",
+    "age": 35,
+    "rating": 9,
+    "comment": "Relatively great!"
+  }
+
+]
