@@ -1,0 +1,58 @@
+﻿@using ToDoTaskSolution.Entities
+@model IEnumerable<Todotask>
+
+<h1> To Do List</h1>
+
+<a asp-action="Create" role="button" class="btn btn-success">Create New</a>
+
+<div>
+    <table class="table">
+        <thead>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Assignment.CreatedBy)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Assignment.AssignedTo)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Done)
+            </th>
+            <th> </th>
+        </thead>
+        <tbody>
+                @foreach (var task in Model)
+                { <tr>
+                    <td> @task.Id</td>
+                    <td> @task.Name</td>
+                    <td> @task.Date</td>
+                    <td> @task.Assignment.CreatedBy</td>
+                    <td> @task.Assignment.AssignedTo</td>
+                    <td> @task.Done</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@task.Id" role="button" class="btn btn-light">Edit</a>
+                        <a asp-action="Details" asp-route-id="@task.Id" role="button" class="btn btn-light">Details</a>
+                        <a asp-action="Delete" asp-route-id="@task.Id" role="button" class="btn btn-danger">Delete</a></td>
+                </tr>
+                }
+          
+        </tbody>
+
+
+    </table>
+
+
+</div>
