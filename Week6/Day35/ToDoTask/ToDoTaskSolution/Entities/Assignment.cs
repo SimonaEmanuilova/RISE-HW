@@ -15,17 +15,19 @@ public partial class Assignment
     [Column("ID")]
     public int Id { get; set; }
 
-    [Required]
-    [Column("CREATED_BY")]
-    [StringLength(50)]
-    [Unicode(false)]
-    public string CreatedBy { get; set; }
+    [Column("CREATED_BY_ID")]
+    public int CreatedById { get; set; }
 
-    [Required]
-    [Column("ASSIGNED_TO")]
-    [StringLength(50)]
-    [Unicode(false)]
-    public string AssignedTo { get; set; }
+    [Column("ASSIGNED_TO_ID")]
+    public int AssignedToId { get; set; }
+
+    [ForeignKey("AssignedToId")]
+    [InverseProperty("AssignmentAssignedTos")]
+    public virtual Person AssignedTo { get; set; }
+
+    [ForeignKey("CreatedById")]
+    [InverseProperty("AssignmentCreatedBies")]
+    public virtual Person CreatedBy { get; set; }
 
     [InverseProperty("Assignment")]
     public virtual ICollection<Todotask> Todotasks { get; set; } = new List<Todotask>();

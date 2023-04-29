@@ -1,4 +1,4 @@
-﻿@model ToDoTaskSolution.Entities.Todotask
+﻿@model ToDoTaskSolution.Entities.TaskPersonDTO;
 
 @{
     ViewData["Title"] = "Create";
@@ -28,12 +28,24 @@
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Assignment.CreatedBy" class="control-label"></label>
-                <input asp-for="Assignment.CreatedBy" class="form-control" />
+                <label asp-for="Assignment.CreatedById" class="control-label"></label>
+                <select asp-for="Assignment.CreatedById" multiple class="form-control">
+                    @foreach (var person in Model.People)
+                    {
+                        <option value="@person.Id">@person.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="Assignment.CreatedById" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Assignment.AssignedTo" class="control-label"></label>
-                <input asp-for="Assignment.AssignedTo" class="form-control" />
+                <label asp-for="Assignment.AssignedToId" class="control-label"></label>
+                <select asp-for="Assignment.AssignedToId" multiple class="form-control">
+                    @foreach (var person in Model.People)
+                    {
+                        <option value="@person.Id">@person.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="Assignment.AssignedToId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

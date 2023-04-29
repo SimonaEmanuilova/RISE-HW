@@ -44,8 +44,8 @@ namespace ToDoTaskSolution.Controllers
             newTask.Done = task.Done;
             newTask.Assignment = new Assignment()
             {
-                CreatedBy = task.Assignment.CreatedBy,
-                AssignedTo = task.Assignment.AssignedTo
+                CreatedById = task.Assignment.CreatedById,
+                AssignedToId = task.Assignment.AssignedToId
             };
 
             bool isCreated = _toDoListService.CreateToDoTask(newTask);

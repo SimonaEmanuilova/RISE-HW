@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ToDoTaskSolution.Entities;
 using ToDoTaskSolution.Models;
 
@@ -16,19 +17,36 @@ namespace ToDoTaskSolution.Services
         [HttpGet]
         public List<Todotask> GetAllTasks()
         {
-            var methodTasks = context.Todotasks.Join(context.Assignments,
-                             task => task.Id,
-                             assignment => assignment.Id,
-                           (task, assignment) => new Todotask
-                           {
-                               Id = task.Id,
-                               Name = task.Name,
-                               Date = task.Date,
-                               Done = task.Done,
-                               Description = task.Description,
-                               AssignmentId = assignment.Id,
-                               Assignment = assignment
-                           }).ToList();
+            var methodTasks = context.Todotasks
+                .Include(task => task.Assignment)
+                    .ThenInclude(assignment => assignment.CreatedBy)
+                .Include(task => task.Assignment)
+                .Select(task => new Todotask()
+                {
+                    Id = task.Id,
+                    Name = task.Name,
+                    Date = task.Date,
+                    Done = task.Done,
+                    Description = task.Description,
+                    AssignmentId = task.AssignmentId,
+                    Assignment = new Assignment()
+                    {
+                        Id = task.Assignment.Id,
+                        CreatedBy = new Person()
+                        {
+                            Id = task.Assignment.CreatedBy.Id,
+                            Name = task.Assignment.CreatedBy.Name,
+                            Age = task.Assignment.CreatedBy.Age
+                        },
+                        AssignedTo = new Person()
+                        {
+                            Id = task.Assignment.AssignedTo.Id,
+                            Name = task.Assignment.AssignedTo.Name,
+                            Age = task.Assignment.AssignedTo.Age
+                        }
+                    }
+                })
+                .ToList();
 
             context.SaveChanges();
 
@@ -39,6 +57,7 @@ namespace ToDoTaskSolution.Services
         public bool CreateToDoTask(Todotask newTask)
         {
             context.Todotasks.Add(newTask);
+
             context.SaveChanges();
 
             return true;
@@ -47,19 +66,37 @@ namespace ToDoTaskSolution.Services
         [HttpGet]
         public (Todotask, bool) GetJoinedTaskWithAssignment(int id)
         {
-            var todotask = context.Todotasks.Join(context.Assignments,
-                       task => task.Id,
-                       assignment => assignment.Id,
-                     (task, assignment) => new Todotask
+            var todotask = context.Todotasks
+                 .Include(task => task.Assignment)
+                     .ThenInclude(assignment => assignment.CreatedBy)
+                 .Include(task => task.Assignment)
+                     .ThenInclude(assignment => assignment.AssignedTo)
+                 .Select(task => new Todotask()
+                 {
+                     Id = task.Id,
+                     Name = task.Name,
+                     Date = task.Date,
+                     Done = task.Done,
+                     Description = task.Description,
+                     AssignmentId = task.AssignmentId,
+                     Assignment = new Assignment()
                      {
-                         Id = task.Id,
-                         Name = task.Name,
-                         Date = task.Date,
-                         Done = task.Done,
-                         Description = task.Description,
-                         AssignmentId = assignment.Id,
-                         Assignment = assignment
-                     }).FirstOrDefault(x => x.Id == id);
+                         Id = task.Assignment.Id,
+                         CreatedBy = new Person()
+                         {
+                             Id = task.Assignment.CreatedBy.Id,
+                             Name = task.Assignment.CreatedBy.Name,
+                             Age = task.Assignment.CreatedBy.Age
+                         },
+                         AssignedTo = new Person()
+                         {
+                             Id = task.Assignment.AssignedTo.Id,
+                             Name = task.Assignment.AssignedTo.Name,
+                             Age = task.Assignment.AssignedTo.Age
+                         }
+                     }
+                 })
+                 .FirstOrDefault(x => x.Id == id);
 
             if (todotask == null)
             {
@@ -79,9 +116,9 @@ namespace ToDoTaskSolution.Services
             task.Description = editedTask.Description;
             task.Done = editedTask.Done;
 
-            Assignment assignment = context.Assignments.FirstOrDefault(x => x.Id == editedTask.Id);
-            assignment.AssignedTo = editedTask.Assignment.AssignedTo;
-            assignment.CreatedBy = editedTask.Assignment.CreatedBy;
+            Assignment assignment = context.Assignments.FirstOrDefault(x => x.Id == task.AssignmentId);
+            assignment.AssignedToId = editedTask.Assignment.AssignedToId;
+            assignment.CreatedById = editedTask.Assignment.CreatedById;
 
             context.SaveChanges();
 

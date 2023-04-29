@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using ToDoTaskSolution.Entities;
 using ToDoTaskSolution.Services;
 
@@ -8,10 +9,13 @@ namespace ToDoTaskSolution.Controllers
     {
 
         private readonly IToDoListService _listService;
+        private readonly IPersonService _personService;
 
-        public ToDoTaskController(IToDoListService listService)
+
+        public ToDoTaskController(IToDoListService listService, IPersonService personService)
         {
             _listService = listService;
+            _personService = personService;
         }
 
         [HttpGet]
@@ -27,24 +31,28 @@ namespace ToDoTaskSolution.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View(new TaskPersonDTO { People=_personService.GetAllPeople()});
         }
 
         [HttpPost]
-        public IActionResult Create(Todotask task)
+        public IActionResult Create(TaskPersonDTO task)
         {
             if (task == null) { return BadRequest("Error"); }
 
             Assignment newAssignment = new Assignment();
-            newAssignment.CreatedBy = task.Assignment.CreatedBy;
-            newAssignment.AssignedTo = task.Assignment.AssignedTo;
+            newAssignment.CreatedById = task.Assignment.CreatedById;
+            newAssignment.AssignedToId = task.Assignment.AssignedToId;
 
             Todotask newTask = new Todotask();
             newTask.Name = task.Name;
             newTask.Description = task.Description;
             newTask.Done = false;
             newTask.Date = task.Date;
-            newTask.Assignment = newAssignment;
+            newTask.Assignment = new Assignment()
+            {
+                CreatedById = newAssignment.CreatedById,
+                AssignedToId = newAssignment.AssignedToId
+            };
 
             _listService.CreateToDoTask(newTask);
 
@@ -61,7 +69,25 @@ namespace ToDoTaskSolution.Controllers
                 return BadRequest("Null content");
             }
 
-            return View(todotask);
+            TaskPersonDTO taskDTO = new TaskPersonDTO();
+
+            taskDTO.Id = todotask.Id;
+            taskDTO.Name= todotask.Name;
+            taskDTO.Description= todotask.Description;
+            taskDTO.Date= todotask.Date;
+            taskDTO.Done = todotask.Done;
+            taskDTO.Assignment = todotask.Assignment;
+            taskDTO.Assignment.Id = todotask.Assignment.Id;
+            taskDTO.AssignedToId = todotask.Assignment.AssignedToId;
+            taskDTO.CreatedById= todotask.Assignment.CreatedById;
+            taskDTO.People = _personService.GetAllPeople();
+
+            Assignment assignment =new Assignment();
+            assignment.Id = todotask.AssignmentId;
+            assignment.AssignedToId= todotask.Assignment.AssignedToId;
+            assignment.CreatedById= todotask.Assignment.CreatedById;   
+
+            return View(taskDTO);
         }
 
         [HttpPost]

@@ -39,8 +39,8 @@
                     <td> @task.Id</td>
                     <td> @task.Name</td>
                     <td> @task.Date</td>
-                    <td> @task.Assignment.CreatedBy</td>
-                    <td> @task.Assignment.AssignedTo</td>
+                    <td> @task.Assignment.CreatedBy.Name</td>
+                    <td> @task.Assignment.AssignedTo.Name</td>
                     <td> @task.Done</td>
                     <td>
                         <a asp-action="Edit" asp-route-id="@task.Id" role="button" class="btn btn-light">Edit</a>

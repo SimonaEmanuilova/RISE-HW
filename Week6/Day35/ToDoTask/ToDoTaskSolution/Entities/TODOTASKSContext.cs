@@ -19,22 +19,37 @@ public partial class TODOTASKSContext : DbContext
 
     public virtual DbSet<Assignment> Assignments { get; set; }
 
+    public virtual DbSet<Person> People { get; set; }
+
     public virtual DbSet<Todotask> Todotasks { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-3JLTREN\\SQLEXPRESS01;Initial Catalog=TODOTASKS;Integrated Security=SSPI; Trust Server Certificate=True;");
+        => optionsBuilder.UseSqlServer("Data Source=DESKTOP-3JLTREN\\SQLEXPRESS01;Initial Catalog=TODOTASKS;Integrated Security=SSPI; Trust Server certificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Assignment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__ASSIGNME__3214EC272718617B");
+            entity.HasKey(e => e.Id).HasName("PK__ASSIGNME__3214EC2788FF20D1");
+
+            entity.HasOne(d => d.AssignedTo).WithMany(p => p.AssignmentAssignedTos)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ASSIGNMENTS_ASSIGNED_TO");
+
+            entity.HasOne(d => d.CreatedBy).WithMany(p => p.AssignmentCreatedBies)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ASSIGNMENTS_CREATED_BY");
+        });
+
+        modelBuilder.Entity<Person>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK__PEOPLE__3214EC2784EB288A");
         });
 
         modelBuilder.Entity<Todotask>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__TODOTASK__3214EC273CD4E09E");
+            entity.HasKey(e => e.Id).HasName("PK__TODOTASK__3214EC272CB66E99");
 
             entity.HasOne(d => d.Assignment).WithMany(p => p.Todotasks)
                 .OnDelete(DeleteBehavior.ClientSetNull)

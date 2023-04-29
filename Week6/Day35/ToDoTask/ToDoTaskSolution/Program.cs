@@ -6,9 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<TODOTASKSContext>(options => 
+builder.Services.AddDbContext<TODOTASKSContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("connection")));
 builder.Services.AddScoped<IToDoListService, ToDoListService>();
+builder.Services.AddScoped<IPersonService,PersonService>();
 
 var app = builder.Build();
 
