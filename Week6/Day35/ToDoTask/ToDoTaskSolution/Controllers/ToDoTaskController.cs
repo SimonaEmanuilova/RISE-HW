@@ -62,9 +62,9 @@ namespace ToDoTaskSolution.Controllers
                 AssignedToId = newAssignment.AssignedToId
             };
 
-            if (newTask.Date < DateTime.Now)
+            if (newTask.Date < DateTime.Now.AddDays(-14))
             {
-                ModelState.AddModelError("Date", "The date should be later than now");
+                ModelState.AddModelError("Date", "The date should be earlier than two weeks from now.");
             }
 
             if (!ModelState.IsValid) {
@@ -104,9 +104,9 @@ namespace ToDoTaskSolution.Controllers
         [HttpPost]
         public IActionResult Edit(Todotask editedTask)
         {
-            if (editedTask.Date < DateTime.Now)
+            if (editedTask.Date < DateTime.Now.AddDays(-14))
             {
-                ModelState.AddModelError("Date", "The date should be later than now");
+                ModelState.AddModelError("Date", "The date should be earlier than two weeks from now.");
             }
 
             if (!ModelState.IsValid)
