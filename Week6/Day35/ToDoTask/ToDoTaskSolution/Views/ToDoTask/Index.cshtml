@@ -41,11 +41,11 @@
                 <tr class="tr">
                     <td class="td"> @task.Id</td>
                     <td class="td"> @task.Name</td>
-                    <td class="td"> @task.Date</td>
-                    <td class="td"> @task.Assignment.CreatedBy.Name</td>
-                    <td class="td"> @task.Assignment.AssignedTo.Name</td>
+                    <td class="td"> @task.Date.ToString("d")</td>
+                    <td class="td"><a class="a" asp-action="Details" asp-route-id="@task.Assignment.CreatedBy.Id" asp-controller="Person"> @task.Assignment.CreatedBy.Name</a></td>
+                    <td class="td"><a class="a" asp-action="Details" asp-route-id="@task.Assignment.AssignedTo.Id" asp-controller="Person"> @task.Assignment.AssignedTo.Name</a></td>
                     <td class="td"> @task.Done</td>
-                    <td class="td">
+                    <td class="td td-details">
                         <a asp-action="Edit" asp-route-id="@task.Id" role="button" class="btn btn-light">Edit</a>
                         <a asp-action="Details" asp-route-id="@task.Id" role="button" class="btn btn-light">Details</a>
                         <a asp-action="Delete" asp-route-id="@task.Id" role="button" class="btn btn-delete">Delete</a>

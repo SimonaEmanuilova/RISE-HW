@@ -65,9 +65,9 @@ namespace ToDoTaskSolution.Services
                 Console.WriteLine("You cannot delete a user who has tasks");
                     return false;
             }
-            else{  Person person = context.People.FirstOrDefault(x=> x.Id==id);
+            Person person = context.People.FirstOrDefault(x=> x.Id==id);
             context.People.Remove(person);
-}
+
             context.SaveChanges();
             return true;
         }

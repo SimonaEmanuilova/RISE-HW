@@ -1,0 +1,30 @@
+.form {
+    margin: 1rem auto 2rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 425px;
+    border-radius: 20px;
+    background-color: var(--color-warm-300);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 1.5rem;
+    width: 100%;
+}
+
+.control-label {
+    padding-bottom: 0.5rem;
+}
+
+.form-control {
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+    border: 0;
+    border-bottom: 2px solid #e1dfec;
+    border-radius: 3px;
+}

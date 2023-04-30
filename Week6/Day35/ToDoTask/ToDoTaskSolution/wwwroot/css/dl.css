@@ -1,0 +1,26 @@
+
+.dl, .dt, .dd {
+    margin: 0;
+}
+
+.dl {
+    padding: 1rem 1rem 1rem 0;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.dd, .dt {
+    padding: 10px;
+}
+
+.dt {
+    font-weight: bold;
+    background-color: var(--color-gray-600);
+    border-bottom: 5px solid var(--background-color);
+}
+
+.dd {
+    background-color: var(--color-gray-500);
+    border-bottom: 5px solid var(--background-color);
+}

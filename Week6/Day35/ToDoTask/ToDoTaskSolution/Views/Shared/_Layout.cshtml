@@ -4,35 +4,40 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - ToDoTaskSolution</title>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/btn.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/dl.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/form.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/table.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/global.css" asp-append-version="true" />
+
     <link rel="stylesheet" href="~/ToDoTaskSolution.styles.css" asp-append-version="true" />
 </head>
 <body class="body">
-    <header class="header">
-        <nav class="nav">
-                <a class="a navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">To Do Task</a>
-                @*<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>*@
-                    <ul class="menu-items">
-                        <li class="menu-item">
-                            <a class="a nav-link" asp-area="" asp-controller="ToDoTask" asp-action="Index">To Do Tasks</a>
-                        </li>
-                        <li class="menu-item">
-                            <a class="a nav-link" asp-area="" asp-controller="Person" asp-action="Index">Users</a>
-                        </li>
-                    </ul>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="view-container">
-            @RenderBody()
-        </main>
+    <div class="upper-container">
+        <header class="header">
+            <nav class="nav">
+                <a class="a navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img class="img" src="~/assets/logo.png" />
+                </a>
+                <ul class="menu-items">
+                    <li class="menu-item">
+                        <a class="a nav-link" asp-area="" asp-controller="ToDoTask" asp-action="Index">To Do Tasks</a>
+                    </li>
+                    <li class="menu-item">
+                        <a class="a nav-link" asp-area="" asp-controller="Person" asp-action="Index">Users</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="center-container">
+            <main role="main" class="view-container">
+                @RenderBody()
+            </main>
+        </div>
     </div>
-
-    <footer  id="footer" class="footer">
-        <div class="container">
+    <footer id="footer" class="footer">
+        <div class="footer-container">
             &copy; 2023 - ToDoTaskSolution - <a class="a" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
