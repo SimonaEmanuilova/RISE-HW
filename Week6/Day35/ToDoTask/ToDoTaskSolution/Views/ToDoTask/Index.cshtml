@@ -1,58 +1,63 @@
 ﻿@using ToDoTaskSolution.Entities
 @model IEnumerable<Todotask>
 
-<h1> To Do List</h1>
-
-<a asp-action="Create" role="button" class="btn btn-success">Create New</a>
-
-<div>
+<div class="text-container">
+    <h1> To Do List</h1>
+    <a asp-action="Create" role="button" class="btn btn-create">Create New Task</a>
+</div>
+<div class="table-container">
     <table class="table">
-        <thead>
-            <th>
-                @Html.DisplayNameFor(model => model.Id)
-            </th>
+        <thead class="thead">
+            <tr class="tr">
+                <th class="th">
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
+                <th class="th">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
+                <th class="th">
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Assignment.CreatedBy)
-            </th>
+                <th class="th">
+                    Created By
+                </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Assignment.AssignedTo)
-            </th>
+                <th class="th">
+                    Assigned To
+                </th>
 
-            <th>
-                @Html.DisplayNameFor(model => model.Done)
-            </th>
-            <th> </th>
+                <th class="th">
+                    @Html.DisplayNameFor(model => model.Done)
+                </th>
+                <th class="th">Options</th>
+            </tr>
         </thead>
-        <tbody>
-                @foreach (var task in Model)
-                { <tr>
-                    <td> @task.Id</td>
-                    <td> @task.Name</td>
-                    <td> @task.Date</td>
-                    <td> @task.Assignment.CreatedBy.Name</td>
-                    <td> @task.Assignment.AssignedTo.Name</td>
-                    <td> @task.Done</td>
-                    <td>
+        <tbody class="tbody">
+            @foreach (var task in Model)
+            {
+                <tr class="tr">
+                    <td class="td"> @task.Id</td>
+                    <td class="td"> @task.Name</td>
+                    <td class="td"> @task.Date</td>
+                    <td class="td"> @task.Assignment.CreatedBy.Name</td>
+                    <td class="td"> @task.Assignment.AssignedTo.Name</td>
+                    <td class="td"> @task.Done</td>
+                    <td class="td">
                         <a asp-action="Edit" asp-route-id="@task.Id" role="button" class="btn btn-light">Edit</a>
                         <a asp-action="Details" asp-route-id="@task.Id" role="button" class="btn btn-light">Details</a>
-                        <a asp-action="Delete" asp-route-id="@task.Id" role="button" class="btn btn-danger">Delete</a></td>
+                        <a asp-action="Delete" asp-route-id="@task.Id" role="button" class="btn btn-delete">Delete</a>
+                    </td>
                 </tr>
-                }
-          
+            }
         </tbody>
-
-
     </table>
 
+    @if (TempData["ErrorNoTasks"] != null)
+    {
+        <span class="error-msg">@TempData["ErrorNoTasks"]</span>
+    }
 
 </div>

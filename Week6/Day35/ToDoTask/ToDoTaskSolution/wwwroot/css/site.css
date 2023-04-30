@@ -1,18 +1,247 @@
-html {
-  font-size: 14px;
+:root {
+    --color-fresh-300: #20ba7e;
+    --color-fresh-500: #5fbdac;
+    --color-bold-500: #f2482a;
+    --color-warm-300: #fac96c;
+    --color-warm-500: #f0b649;
+    --color-gray-500: #dfdce3;
+    --color-gray-600: #c0bdc3;
+    --background-color: #fef9f9;
+    --padding-left: 2rem;
+    --font-size-xxl: 4rem;
+    --font-size-xl: 1.6rem;
+    --font-size-l: 1.3rem;
+    --font-size-m: 1rem;
+    --font-size-s: 0.8rem;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+* {
+    box-sizing: border-box;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+html,
+.body {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: var(--background-color);
 }
 
-body {
-  margin-bottom: 60px;
+.main {
+    padding-left: 5rem
+}
+
+.view-container {
+    max-width: fit-content;
+    margin: 0 auto;
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    padding: 0 var(--padding-left);
+    background-color: var(--color-fresh-500);
+}
+
+.nav .a {
+    color: white;
+    font-size: var(--font-size-l);
+    font-weight: 500;
+    text-shadow: 7px 1px 40px rgba(63, 63, 63, 0.956);
+}
+
+.navbar-brand {
+    text-transform: uppercase;
+}
+
+.menu-items {
+    display: flex;
+    list-style-type: none;
+}
+
+.menu-item {
+    padding: 2rem 1rem;
+}
+
+.h4 {
+padding:0;
+margin:2rem 0 0 0 ;
+}
+
+.a {
+    text-decoration: none;
+    color: #353535;
+}
+
+.container {
+    padding: 1rem 0;
+    overflow-x: auto;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-container {
+    margin: 0 auto;
+    max-width: fit-content;
+    padding: 3rem;
+    text-align: center;
+}
+
+.home-title {
+    font-size: 4rem;
+}
+
+.text-container .btn {
+    margin-top: 1rem;
+}
+
+.table-container {
+    max-width: fit-content;
+    margin: 0 auto;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.th,
+.td {
+    padding: 15px;
+    text-align: left;
+    text-align: center;
+}
+
+.tr .th {
+    padding: 1.5rem 1rem;
+}
+
+.th {
+    background-color: var(--color-warm-500);
+    color: white;
+}
+
+.tr:nth-child(even) {
+    background-color: #f7f7f7;
+}
+
+.tr:nth-child(odd) {
+    background-color: #ebebeb;
+}
+
+.btn {
+    font-size: var(--font-size-m);
+    background-color: var(--color-gray-600);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btn-home {
+    padding:20px 60px;
+}
+
+.btn-create {
+    background-color: var(--color-fresh-300);
+}
+
+.btn-create {
+    background-color: var(--color-fresh-300);
+}
+
+.btn-delete {
+    background-color: var(--color-bold-500);
+}
+
+.text-danger {
+    color: var(--color-bold-500);
+}
+
+.form {
+    margin: 1rem auto 2rem;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-width: 425px;
+    border-radius: 20px;
+    background-color: var(--color-warm-300);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 1.5rem;
+    width: 100%;
+}
+
+.control-label {
+    padding-bottom: 0.5rem;
+}
+
+.form-control {
+    font-size: 1rem;
+    padding: 0.25rem 0.5rem;
+    border: 0;
+    border-bottom: 2px solid #e1dfec;
+    border-radius: 3px;
+}
+
+.dl, .dt, .dd {
+    margin: 0;
+}
+
+.dl {
+    padding: 1rem 1rem 1rem 0;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.dd, .dt {
+    padding: 10px;
+}
+
+.dt {
+    font-weight: bold;
+    background-color: var(--color-gray-600);
+    border-bottom: 5px solid var(--background-color);
+}
+
+.dd {
+    background-color: var(--color-gray-500);
+    border-bottom: 5px solid var(--background-color);
+}
+
+#footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    white-space: nowrap;
+    padding-left: var(--padding-left);
+}
+
+.error-msg {
+    display: block;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
 }

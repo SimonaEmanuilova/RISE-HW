@@ -48,6 +48,7 @@ namespace ToDoTaskSolution.Services
                 })
                 .ToList();
 
+
             context.SaveChanges();
 
             return methodTasks;
@@ -114,6 +115,7 @@ namespace ToDoTaskSolution.Services
             task.Id = editedTask.Id;
             task.Name = editedTask.Name;
             task.Description = editedTask.Description;
+            task.Date = editedTask.Date;
             task.Done = editedTask.Done;
 
             Assignment assignment = context.Assignments.FirstOrDefault(x => x.Id == task.AssignmentId);

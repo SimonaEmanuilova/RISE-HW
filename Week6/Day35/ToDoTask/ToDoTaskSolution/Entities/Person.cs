@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using ToDoTaskSolution.Entities.Constants;
 
 namespace ToDoTaskSolution.Entities;
 
@@ -17,10 +18,12 @@ public partial class Person
 
     [Required]
     [Column("NAME")]
-    [StringLength(300)]
+    [MinLength(DataConstants.PERSON_NAME_LEN_MIN, ErrorMessage = "User name must be at least {1} symbols.")]
+    [StringLength(DataConstants.PERSON_NAME_LEN_MAX, ErrorMessage = "User name must be shorter than {2} symbols.")]
     [Unicode(false)]
     public string Name { get; set; }
 
+    [Range(DataConstants.PERSON_AGE_MIN,DataConstants.PERSON_AGE_MAX, ErrorMessage = "Age must be between {1} and {2}.")]
     [Column("AGE")]
     public int Age { get; set; }
 

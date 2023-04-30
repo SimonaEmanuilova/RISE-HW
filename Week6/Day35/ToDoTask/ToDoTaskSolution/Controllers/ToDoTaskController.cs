@@ -25,17 +25,25 @@ namespace ToDoTaskSolution.Controllers
 
             tasks = _listService.GetAllTasks();
 
+            if (!tasks.Any())
+            {
+                TempData["ErrorNoTasks"] = "There are no tasks to preview.";
+                return View(tasks);
+            }
+            TempData.Remove("ErrorNoTasks"); 
+
             return View(tasks);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View(new TaskPersonDTO { People=_personService.GetAllPeople()});
+            ViewBag.People=_personService.GetAllPeople();
+            return View();
         }
 
         [HttpPost]
-        public IActionResult Create(TaskPersonDTO task)
+        public IActionResult Create(Todotask task)
         {
             if (task == null) { return BadRequest("Error"); }
 
@@ -54,6 +62,25 @@ namespace ToDoTaskSolution.Controllers
                 AssignedToId = newAssignment.AssignedToId
             };
 
+            if (newTask.Date < DateTime.Now)
+            {
+                ModelState.AddModelError("Date", "The date should be later than now");
+            }
+
+            if (!ModelState.IsValid) {
+
+                ViewBag.People = _personService.GetAllPeople();
+
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+                return View(task);
+            }
+
+            ModelState.Clear();
+
             _listService.CreateToDoTask(newTask);
 
             return RedirectToAction("Index");
@@ -62,6 +89,8 @@ namespace ToDoTaskSolution.Controllers
         [HttpGet]
         public IActionResult Edit(int id)
         {
+            ViewBag.People = _personService.GetAllPeople();
+
             (Todotask todotask, bool isTrue) = _listService.GetJoinedTaskWithAssignment(id);
 
             if (!isTrue)
@@ -69,30 +98,28 @@ namespace ToDoTaskSolution.Controllers
                 return BadRequest("Null content");
             }
 
-            TaskPersonDTO taskDTO = new TaskPersonDTO();
-
-            taskDTO.Id = todotask.Id;
-            taskDTO.Name= todotask.Name;
-            taskDTO.Description= todotask.Description;
-            taskDTO.Date= todotask.Date;
-            taskDTO.Done = todotask.Done;
-            taskDTO.Assignment = todotask.Assignment;
-            taskDTO.Assignment.Id = todotask.Assignment.Id;
-            taskDTO.AssignedToId = todotask.Assignment.AssignedToId;
-            taskDTO.CreatedById= todotask.Assignment.CreatedById;
-            taskDTO.People = _personService.GetAllPeople();
-
-            Assignment assignment =new Assignment();
-            assignment.Id = todotask.AssignmentId;
-            assignment.AssignedToId= todotask.Assignment.AssignedToId;
-            assignment.CreatedById= todotask.Assignment.CreatedById;   
-
-            return View(taskDTO);
+            return View(todotask);
         }
 
         [HttpPost]
         public IActionResult Edit(Todotask editedTask)
         {
+            if (editedTask.Date < DateTime.Now)
+            {
+                ModelState.AddModelError("Date", "The date should be later than now");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                ViewBag.People = _personService.GetAllPeople();
+
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+                return View(editedTask);
+            }
 
             bool isTrue = _listService.EditToDoTask(editedTask);
 

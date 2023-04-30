@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
+using ToDoTaskSolution.Entities.Constants;
 
 namespace ToDoTaskSolution.Entities;
 
@@ -17,13 +18,15 @@ public partial class Todotask
 
     [Required]
     [Column("NAME")]
-    [StringLength(300)]
+    [MinLength(DataConstants.TASK_NAME_LEN_MIN, ErrorMessage = "Task Name must be longer than {1} symbols.")]
+    [StringLength(DataConstants.TASK_NAME_LEN_MAX, ErrorMessage = "Task Name must be shorter than {2} symbols.")]
     [Unicode(false)]
     public string Name { get; set; }
 
     [Required]
     [Column("DESCRIPTION")]
-    [StringLength(500)]
+    [MinLength(DataConstants.TASK_DESCRIPTION_LEN_MIN, ErrorMessage = "Task Description must be longer than {1} symbols.")]
+    [StringLength(DataConstants.TASK_DESCRIPTION_LEN_MAX, ErrorMessage = "Task Description must be shorter than {2} symbols.")]
     [Unicode(false)]
     public string Description { get; set; }
 

@@ -1,4 +1,4 @@
-﻿@model ToDoTaskSolution.Entities.TaskPersonDTO
+﻿@model ToDoTaskSolution.Entities.Todotask
 
 @{
     ViewData["Title"] = "Edit";
@@ -7,12 +7,11 @@
 <h1>Edit Task</h1>
 
 <h4>ToDoTask</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form class="form" asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
+            <div class="form-group hidden">
                 <label hidden asp-for="Id" class="control-label"></label>
                 <input type="hidden" asp-for="Id" class="form-control" />
                 <span asp-validation-for="Id" class="text-danger"></span>
@@ -34,8 +33,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Assignment.CreatedById" class="control-label"></label>
-                <select asp-for="Assignment.CreatedById" multiple class="form-control">
-                    @foreach (var person in Model.People)
+                <select asp-for="Assignment.CreatedById"  class="form-control">
+                    @foreach (var person in ViewBag.People)
                     {
                         <option value="@person.Id">@person.Name</option>
                     }
@@ -45,8 +44,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Assignment.AssignedToId" class="control-label"></label>
-                <select asp-for="Assignment.AssignedToId" multiple class="form-control">
-                    @foreach (var person in Model.People)
+                <select asp-for="Assignment.AssignedToId" class="form-control">
+                    @foreach (var person in ViewBag.People)
                     {
                         <option value="@person.Id">@person.Name</option>
                     }
@@ -60,14 +59,14 @@
                 </label>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-create" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a class="a" asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {

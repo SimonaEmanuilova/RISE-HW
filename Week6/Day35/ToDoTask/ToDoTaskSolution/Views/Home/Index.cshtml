@@ -1,8 +1,14 @@
-﻿@{
+﻿@using ToDoTaskSolution.Entities;
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="text-container">
+    <h1 class="home-title">Welcome!</h1>
+    <h2 class="home-title">Everything is fine.</h2>
+</div>
+<div class="btn-container">
+    <a asp-controller="Person" asp-action="Index" role="button" class="btn btn-create btn-home">View Users</a>
+    <a asp-controller="ToDoTask" asp-action="Index" role="button" class="btn btn-create btn-home">View Tasks</a>
 </div>

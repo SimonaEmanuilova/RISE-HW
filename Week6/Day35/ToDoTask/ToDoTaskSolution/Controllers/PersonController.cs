@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using ToDoTaskSolution.Entities;
 using ToDoTaskSolution.Services;
 
@@ -16,6 +17,7 @@ namespace ToDoTaskSolution.Controllers
         [HttpGet]
         public IActionResult Index()
         {
+
             List<Person> people = new();
 
             people = _personService.GetAllPeople();
@@ -33,6 +35,16 @@ namespace ToDoTaskSolution.Controllers
         public IActionResult Create(Person person)
         {
             if (person == null) { return BadRequest("Error"); }
+
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+                return View(person);
+            }
 
             Person newPerson= new Person();
             newPerson.Id = person.Id;
@@ -73,6 +85,16 @@ namespace ToDoTaskSolution.Controllers
         [HttpPost]
         public IActionResult Edit(Person person)
         {
+            if (!ModelState.IsValid)
+            {
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
+                return View(person);
+            }
+
             bool isTrue = _personService.EditPerson(person);
 
             if (!isTrue)
@@ -89,10 +111,12 @@ namespace ToDoTaskSolution.Controllers
             bool isTrue = _personService.DeletePerson(id);
 
             if (!isTrue)
-            {
-                return BadRequest("The user is taking part in tasks, you cannot delete him yet!");
-                //do this to return make an action that returns a span with the message instead
-            };
+                {
+                    TempData["ErrorMessage"] = "The user is taking part in tasks, you cannot delete him yet!";
+                    return RedirectToAction("Index");
+                }
+
+            TempData.Remove("ErrorMessage");
 
             return RedirectToAction("Index");
         }
