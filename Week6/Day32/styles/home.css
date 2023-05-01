@@ -1,8 +1,6 @@
 .sidebar {
-    width: 25rem;
     display: flex;
     flex-direction: column;
-    align-content: flex-start;
     padding: 2rem;
     background-color: rgb(186, 202, 245);
     margin: 0 2rem;
@@ -23,8 +21,6 @@
 .central-section {
     align-self: flex-start;
     padding: var(--top-padding) 0;
-    width: 60rem;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -37,7 +33,6 @@
 
 .text-container {
     border-bottom: 3px dashed rgb(150, 150, 150);
-    text-align: start;
     overflow-wrap: break-word;
 }
 

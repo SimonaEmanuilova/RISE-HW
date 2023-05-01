@@ -35,6 +35,7 @@
 
 .comment-field {
     border: 0;
+    resize: none;
 }
 
 .action-button {
